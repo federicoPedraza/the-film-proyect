@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { worker } from './mocks/browser';
+import { Navbar } from './components/ui/navbar';
+import { ThemeProvider } from '@material-ui/core';
+import { Theme } from './theme/globalStyles';
 
 
 worker.start()
@@ -13,7 +16,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={Theme}>
+      <Navbar />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
