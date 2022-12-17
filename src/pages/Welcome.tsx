@@ -1,15 +1,13 @@
 import { FC, useEffect } from "react";
 import { login } from "../services/authentication.service";
+import { getGenresList, getMovie } from "../services/movies.service";
 import useSession from "../store";
 
 const Welcome: FC<{}> = () => {
   const { setSession } = useSession();
   const handleClick = async () => {
-    const response = await login();
+    const response = await getGenresList();
     console.log(response)
-    if (response.success) {
-      setSession(response.request_token, response.expires_at);
-    }
   };
   return (
     <h1 onClick={handleClick}>Home</h1>

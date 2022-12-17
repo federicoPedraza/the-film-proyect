@@ -10,13 +10,8 @@ export async function login(): Promise<TokenResponse> {
   const headers = { api_key: API_KEY, request_token: REQUEST_TOKEN };
 
   try {
-    // Obtiene la respuesta de la función rest
     const response = await rest<TokenResponse>(HttpMethod.GET, endpoint, headers);
-
-    // Accede a la propiedad data de la respuesta para ver el contenido de la respuesta
-    console.log(response.data);
-
-    // Retorna la respuesta obtenida por la función rest
+    console.log(response.data); // CORS ERROR, UNAUTHORIZED PERMANENTLY
     return response.data;
   } catch (error) {
     throw error;

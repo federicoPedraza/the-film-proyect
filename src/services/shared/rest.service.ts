@@ -19,9 +19,6 @@ export async function rest<T>(
       data,
       headers: {
         ...headers,
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "text/plain",
-        Authorization: `Bearer ${API_KEY}`,
       },
     });
     return {
