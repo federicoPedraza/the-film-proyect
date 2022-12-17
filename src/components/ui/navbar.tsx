@@ -27,8 +27,5 @@ export const Navbar: FC<{}> = () => {
                 </div>
             </Toolbar>
         </AppBar>
-        //token
-        //username
-        //password
     );
 }
