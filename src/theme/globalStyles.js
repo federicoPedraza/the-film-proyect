@@ -1,10 +1,11 @@
 import { createTheme, makeStyles } from '@material-ui/core/styles'
+import { height } from '@material-ui/system';
 
 export const Theme = createTheme({
     palette: {
         primary: {
             main: '#FFFAFF',
-            dark: '#3F403F'
+            dark: '#D8315B'
         },
         secondary: {
             main: '#D8315B'
@@ -15,7 +16,6 @@ export const Theme = createTheme({
 export const GlobalStyles = makeStyles({
     body: {
         color: Theme.palette.primary.main,
-        backgroundColor: Theme.palette.primary.dark,
     }
 });
 
@@ -25,7 +25,7 @@ export const UIStyles = makeStyles({
         '&:hover': {
             opacity: 0.8,
             color: Theme.palette.primary.main,
-            backgroundColor: Theme.palette.secondary.main
+            backgroundColor: Theme.palette.primary.dark
         }
     },
 
@@ -45,8 +45,19 @@ export const UIStyles = makeStyles({
     },
 
     //Login
+    loginFormContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '50vh',
+    },
+
     loginForm: {
         display: 'flex',
-        justifyContent: 'center'
-    }
+        justifyContent: 'center',
+    },
+
+    input: {
+        marginBottom: Theme.spacing(2),
+    },
 });
