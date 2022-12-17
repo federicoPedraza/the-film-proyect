@@ -4,7 +4,8 @@ import {
   Route,
   Routes,
 } from 'react-router-dom';
-import { Login, OnboardingLayout, Welcome } from './pages/onboarding';
+import { Login, OnboardingLayout } from './pages/onboarding';
+import Welcome from './pages/Welcome';
 
 function App() {
   return (
