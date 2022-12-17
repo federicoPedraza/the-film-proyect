@@ -21,7 +21,6 @@ const Authorize: FC<{}> = () => {
 
   const handleApproved = async() => {
       const loginResult = await login(requestToken)
-      console.log(loginResult)
       if ( loginResult.success ){
         setSession(loginResult.session_id, 'never')
         setCecion(loginResult.session_id)
