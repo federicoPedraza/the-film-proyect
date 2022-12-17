@@ -1,16 +1,22 @@
-import { FC, useEffect } from "react";
-import { login } from "../services/authentication.service";
-import { getGenresList, getMovie } from "../services/movies.service";
-import useSession from "../store";
+import { FC, useEffect, useState } from "react";
+import { FilmViewer } from "../components/viewer/film-viewer";
+import { IFilm } from "../interfaces/film.interface";
+import { getTrendingFilms } from "../services/film.service";
 
 const Welcome: FC<{}> = () => {
-  const { setSession } = useSession();
-  const handleClick = async () => {
-    const response = await getGenresList();
-    console.log(response)
-  };
+  const [trendingFilms, setTrendingFilms] = useState<IFilm[]>([]);
+
+  const handleInitialCall = async () => {
+    const films = await getTrendingFilms();
+    setTrendingFilms(films);
+  } 
+
+  useEffect(() => {
+    handleInitialCall();
+  }, []);
+
   return (
-    <h1 onClick={handleClick}>Home</h1>
+    <FilmViewer label="Trending" films={trendingFilms}></FilmViewer>
   );
 };
 export default Welcome
