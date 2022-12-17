@@ -6,6 +6,7 @@ export enum HttpMethod {
   PUT = "PUT",
   DELETE = "DELETE",
 }
+
 export interface ApiResponse<T> {
   data: T;
   status: number;
@@ -14,6 +15,12 @@ export interface ApiResponse<T> {
   expires_at?: string;
 }
 
+export interface GetTrendingResponse {
+  results: [],
+  page: number,
+  total_pages: number,
+  total_results: number
+}
 
 export interface SessionResponse {
   session_id: string,

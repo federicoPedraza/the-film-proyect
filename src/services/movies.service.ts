@@ -13,3 +13,15 @@ export async function getMovie(query: string, year: string) {
     console.error(error);
   }
 }
+
+export async function getGenresList() {
+  const apiKey = process.env.REACT_APP_API_V3_AUTH;
+  const url = `/authentication/token/new?api_key=${apiKey}`;
+
+  try {
+    const response = await rest<Movie>(HttpMethod.GET, url);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
