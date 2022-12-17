@@ -8,5 +8,6 @@ export interface IFilm {
     title?: string;
     name?: string;
     popularity?: number;
+    poster_path?: string;
 }
   

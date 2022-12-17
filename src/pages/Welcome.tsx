@@ -16,7 +16,9 @@ const Welcome: FC<{}> = () => {
   }, []);
 
   return (
-    <FilmViewer label="Trending" films={trendingFilms}></FilmViewer>
+    <>
+      <FilmViewer label="Trending" films={trendingFilms} />
+    </>
   );
 };
 export default Welcome

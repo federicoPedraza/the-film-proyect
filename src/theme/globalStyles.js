@@ -1,5 +1,4 @@
 import { createTheme, makeStyles } from '@material-ui/core/styles'
-import { height } from '@material-ui/system';
 
 export const Theme = createTheme({
     palette: {
@@ -19,7 +18,42 @@ export const GlobalStyles = makeStyles({
     }
 });
 
+export const CardStyles = makeStyles({
+    card: {
+        width: 180, 
+        height: 260,
+        transition: "transform 2s, height 2s",
+        transform: "scale(1)",
+        position: "relative",
+        zIndex: "0",
+        "&:hover": {
+            position: "relative",
+            height: 320,
+            transform: "scale(1.5)",
+            zIndex: "1",
+        }
+    },
+})
+
 export const UIStyles = makeStyles({
+    //Film viewer
+    filmViewerTitle: {
+        display: "block",
+        marginBottom: "16px",
+    },
+
+    filmViewerContainer: {
+        overflowX: "scroll",
+    },
+
+    filmViewer: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "nowrap",
+        justifyContent: "flex-start",
+    },
+
     //UI
     button: {
         '&:hover': {
