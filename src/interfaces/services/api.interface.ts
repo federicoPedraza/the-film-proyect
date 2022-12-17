@@ -5,3 +5,10 @@ export interface Movie {
   release_date: string;
   poster_path: string;
 };
+
+
+export interface RequestTokenResponse {
+  expires_at: string,
+  success:boolean,
+  request_token: string
+}
