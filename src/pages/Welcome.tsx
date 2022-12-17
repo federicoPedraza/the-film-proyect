@@ -1,23 +1,18 @@
 import { FC, useEffect } from "react";
 import { login } from "../services/authentication.service";
-import { getMovie } from "../services/movies.service";
+import useSession from "../store";
 
 const Welcome: FC<{}> = () => {
-  const getInitial = async() => {
-    try {
-      const movie = await getMovie(550);
-      console.log(`Título: ${movie.title}`);
-      console.log(`Sinopsis: ${movie.overview}`);
-      console.log(`Fecha de estreno: ${movie.release_date}`);
-    } catch (error) {
-      console.error(error);
+  const { setSession } = useSession();
+  const handleClick = async () => {
+    const response = await login();
+    console.log(response)
+    if (response.success) {
+      setSession(response.request_token, response.expires_at);
     }
-    }
-  useEffect(()=>{
-    getInitial()
-  },[])
+  };
   return (
-    <h1 onClick={()=>login()}>Home</h1>
+    <h1 onClick={handleClick}>Home</h1>
   );
 };
 export default Welcome

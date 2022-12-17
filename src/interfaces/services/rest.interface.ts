@@ -10,8 +10,13 @@ export interface ApiResponse<T> {
   data: T;
   status: number;
   headers: AxiosResponseHeaders | Partial<Record<string, string> & { "set-cookie"?: string[] | undefined; }>;
+  request_token?: string;
+  expires_at?: string;
 }
 
+
 export interface TokenResponse {
-  token: string;
+  request_token: string,
+  expires_at: string,
+  success: string
 };
