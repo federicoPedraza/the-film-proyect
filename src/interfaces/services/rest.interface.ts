@@ -26,3 +26,14 @@ export interface AuthFailure {
   status_message: string,
   success: boolean
 }
+
+export interface AccountResponse {
+  id: number;
+  username: string;
+  name: string;
+  avatar: {
+    gravatar: {
+      hash: string;
+    }
+  }
+}

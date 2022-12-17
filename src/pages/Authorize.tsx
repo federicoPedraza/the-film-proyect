@@ -16,11 +16,12 @@ const Authorize: FC<{}> = () => {
     success: false
   })
 
-  const { setSession, session_id , expiresAt } = useSession();
+  const { setSession } = useSession();
   const initialStep = (approved && requestToken) ? 1 : 0
 
   const handleApproved = async() => {
       const loginResult = await login(requestToken)
+      console.log(loginResult)
       if ( loginResult.success ){
         setSession(loginResult.session_id, 'never')
         setCecion(loginResult.session_id)
@@ -29,10 +30,11 @@ const Authorize: FC<{}> = () => {
 
 
   useEffect(()=>{
-    if (approved){
+    if (approved && requestToken){
+      console.log('ainda bem')
      handleApproved()
     } 
-  },[requestToken])
+  },[requestToken,approved])
 
   const [currentStep, setCurrentStep] = useState<number>(initialStep);
   const steps:string[] = ["Conceda permisos", "Validar usuario", "Paso 3"];

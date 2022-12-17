@@ -6,7 +6,6 @@ import { Typography } from "@material-ui/core";
 
 const API_KEY = process.env.REACT_APP_API_V3_AUTH;
 const RequestTokenLoader: FC<{}> = () => {
-  const { setSession } = useSession();
   const [loading, setLoading] = useState(true);
   const handleRequestToken = async () => {
     setLoading(true); 
@@ -14,14 +13,11 @@ const RequestTokenLoader: FC<{}> = () => {
     console.log(response);
     if (response) {
       if (response.success) {
-        setSession(response.request_token, response.expires_at);
         const url = `https://www.themoviedb.org/authenticate/${response.request_token}?redirect_to=http://localhost:3000/authorize`;
         window.location.replace(url);
         }
     }
-    setTimeout(() => {
-      setLoading(false);
-    }, 5000);
+    setLoading(false);
   };
   useEffect(() => {
     handleRequestToken();

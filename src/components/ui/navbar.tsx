@@ -2,10 +2,12 @@ import { AppBar, Avatar, Box, Button, ButtonGroup, IconButton, Toolbar, Typograp
 import { UIStyles } from "../../theme/globalStyles";
 import { FC } from "react";
 import { SmallMenu } from "./menu";
+import useSession from "../../store";
+import { useUser } from "../../services/hooks/useUser";
 
 export const Navbar: FC<{}> = () => {
     const { appBar, pageHeader, appBarButtons, button } = UIStyles();
-
+    const { isValid } = useUser()
     return (
         <AppBar position="static" elevation={4} color="primary">
             <Toolbar className={appBar}>
