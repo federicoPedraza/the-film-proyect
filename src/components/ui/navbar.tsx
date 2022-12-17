@@ -1,6 +1,7 @@
 import { AppBar, Avatar, Box, Button, ButtonGroup, IconButton, Toolbar, Typography } from "@material-ui/core";
 import { UIStyles } from "../../theme/globalStyles";
 import { FC } from "react";
+import { SmallMenu } from "./menu";
 
 export const Navbar: FC<{}> = () => {
     const { appBar, pageHeader, appBarButtons, button } = UIStyles();
@@ -17,7 +18,7 @@ export const Navbar: FC<{}> = () => {
                     <Button className={button} href="/">TV</Button>
                 </ButtonGroup>
                 <div>
-                    <Button className={button} href="/onboarding/login">Login</Button>
+                    <SmallMenu menuText='Login' />
                     <IconButton href="/onboarding/login" color="inherit" aria-label="Login icon">
                         {false ? 
                         <Avatar alt="Guest">G</Avatar> :

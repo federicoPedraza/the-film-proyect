@@ -1,5 +1,5 @@
 export interface StoreTokenState {
-  setSession(request_token: any, expires_at: any): any;
-  sessionToken: string | null;
+  setSession(session_id: string, expires_at: string): any;
+  session_id: string | null;
   expiresAt: string | null;
 }

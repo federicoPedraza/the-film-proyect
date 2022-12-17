@@ -20,6 +20,9 @@ export const GlobalStyles = makeStyles({
 });
 
 export const UIStyles = makeStyles({
+    root: {
+        width: "100%",
+    },
     //UI
     button: {
         '&:hover': {
@@ -29,6 +32,11 @@ export const UIStyles = makeStyles({
         }
     },
 
+    stepper: {
+        display: "flex",
+        width: "50%",
+        justifyContent: "center",
+    },
     appBar: {
         display: 'flex',
         justifyContent: 'space-between',

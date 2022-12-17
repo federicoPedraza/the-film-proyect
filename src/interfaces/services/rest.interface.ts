@@ -15,8 +15,14 @@ export interface ApiResponse<T> {
 }
 
 
-export interface TokenResponse {
-  request_token: string,
-  expires_at: string,
-  success: string
+export interface SessionResponse {
+  session_id: string,
+  success: boolean
 };
+
+export interface AuthFailure {
+  failure:boolean,
+  status_code: number
+  status_message: string,
+  success: boolean
+}
