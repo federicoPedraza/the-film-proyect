@@ -7556,6 +7556,11 @@ node-releases@^2.0.6:
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.7.tgz#593edbc7c22860ee4d32d3933cfebdfab0c0e0e5"
   integrity sha512-EJ3rzxL9pTWPjk5arA0s0dgXpnyiAbJDE6wHT62g7VsgrgQgmmZ+Ru++M1BFofncWja+Pnn3rEr3fieRySAdKQ==
 
+node-uuid@1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/node-uuid/-/node-uuid-1.4.3.tgz#319bb7a56e7cb63f00b5c0cd7851cd4b4ddf1df9"
+  integrity sha512-82s+QA06PzmHnbOecisurNKyNumkiYzGUZpOGsuLJOeQZVx2gJZtESb/1F7PCoU2SOUffrgMLIdofMMivFYlNg==
+
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
@@ -7596,6 +7601,13 @@ nwsapi@^2.2.0:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.2.tgz#e5418863e7905df67d51ec95938d67bf801f0bb0"
   integrity sha512-90yv+6538zuvUMnN+zCr8LuV6bPFdq50304114vJYJ8RDyK8D5O9Phpbd6SZWgI7PwzmmfN1upeOJlvybDSgCw==
+
+oauth2-client-js@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/oauth2-client-js/-/oauth2-client-js-0.0.15.tgz#1fefae540151028fba07f55f2217d393a9a8ae5d"
+  integrity sha512-XPwlaLHB4HhSC4mw+LtffqkWXle0woAvEMbMSZQwFcjOhFBJD2a0ntvKE5IhPem+lF00R1qa62PH5Vqtd+dOdw==
+  dependencies:
+    node-uuid "1.4.3"
 
 object-assign@^4.1.1:
   version "4.1.1"

@@ -9,7 +9,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { Theme } from './theme/globalStyles';
 
 
-worker.start()
+// worker.start()
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
