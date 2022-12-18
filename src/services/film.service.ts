@@ -1,7 +1,5 @@
 import { IFilm, MediaType } from "../interfaces/film.interface";
-import { Movie } from "../interfaces/services/api.interface";
 import { GetTrendingResponse, HttpMethod } from "../interfaces/services/rest.interface";
-import { getDominantColor } from "../utils/poster-helper";
 import { rest } from "./shared/rest.service";
 
 export function mapFilmResults(results: []) {

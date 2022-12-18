@@ -7,7 +7,6 @@ const AVATAR_URL = process.env.REACT_APP_AVATAR_BASE_URL
 
 export const useUser = () => {
   const { session_id } = useSession();
-  
   const [loading, setLoading] = useState<boolean>(false)
   const [userData, setUserData ] = useState<UserData>(initialUserData)
 
