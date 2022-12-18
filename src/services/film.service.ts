@@ -1,7 +1,5 @@
 import { IFilm, MediaType } from "../interfaces/film.interface";
-import { Movie } from "../interfaces/services/api.interface";
 import { GetTrendingResponse, HttpMethod } from "../interfaces/services/rest.interface";
-import { getDominantColor } from "../utils/poster-helper";
 import { rest } from "./shared/rest.service";
 
 export async function getTrendingFilms(): Promise<IFilm[]> {
@@ -10,7 +8,6 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
 
     try {
         const response = await rest<GetTrendingResponse>(HttpMethod.GET, url);
-        console.log(response.data.results);
         const films = response.data.results.map((film: IFilm) => {
             const _title = film.media_type == MediaType.Movie ? film.title : film.name;
             return {
@@ -22,7 +19,6 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
                 poster_path: film.poster_path,
             }
         });
-        console.log(films);
         return films;
     } catch (error) {
         console.error(error);

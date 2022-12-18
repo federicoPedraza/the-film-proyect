@@ -8,7 +8,6 @@ const AVATAR_URL = process.env.REACT_APP_AVATAR_BASE_URL
 export const useUser = () => {
   const { session_id } = useSession();
   const [isValid, setIsValid] = useState<boolean>(false);
-  
   const [loading, setLoading] = useState<boolean>(false)
   const [userData, setUserData ] = useState<UserData>(initialUserData)
 
@@ -20,7 +19,6 @@ export const useUser = () => {
   const handleUserData = async(key:string) =>{
     try {
       const result = await getUserData(key)
-      console.log(result)
       const { id, include_adult, iso_639_1, iso_3166_1, name, username, avatar } = result
       const hashCompleteRoute:string = `${AVATAR_URL}${avatar?.gravatar?.hash}`
       setUserData({
