@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-      <Route element={<div style={{ background: 'red' }} ><Navbar/> <Outlet /> </div>}>
+      <Route element={<div><Navbar/> <Outlet /> </div>}>
         <Route path="/" element={<Welcome />} />
         <Route path="authorize" element={<Authorize/>} />
         <Route path='movies' element={<>movies</>}/>
