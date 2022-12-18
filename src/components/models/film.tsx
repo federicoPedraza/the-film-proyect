@@ -6,7 +6,6 @@ import { CardStyles } from "../../theme/globalStyles";
 import { getPoster } from "../../utils/poster-helper";
 import { FavoriteButton } from "../ui/favorite-button";
 
-
 export const Film = (props: IFilm) => {
     const { title, poster_path, id } = props;
     const [favorite, setFavorite] = useState(false);
