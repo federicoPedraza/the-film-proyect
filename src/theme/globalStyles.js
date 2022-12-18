@@ -59,16 +59,39 @@ export const CardStyles = makeStyles({
     }
 })
 
+export const FilmViewerStyles = makeStyles({
+    filmViewerSimplifiedContainer: {
+
+    }
+});
+
 export const UIStyles = makeStyles({
     //Film viewer
     filmViewerTitle: {
-        marginLeft: "38px",
-        marginBottom: "4px",
+        marginLeft: "12px",
+        marginBottom: "8px",
+        position: 'relative',
+        zIndex: 1,
     },
 
     filmViewerContainer: {
         marginBottom: "30px",
-        overflow: "visible",
+        display: "flex",
+        alignContent: "center",
+        flexDirection: "row",
+        alignItems: "center",
+        flexWrap: "wrap",
+
+        overflowX: "scroll",
+        overflowY: "hidden",
+        '&::-webkit-scrollbar': {
+            width: '10px',
+            height: '14px'
+        },
+        '&::-webkit-scrollbar-thumb': {
+            borderRadius: '30px',
+            background: 'linear-gradient(to top, red, rgba(255,0,0,0.5), rgba(255,0,0,0.25), transparent)'
+        }
     },
     
     filmViewer: {
