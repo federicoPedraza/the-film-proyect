@@ -1,11 +1,10 @@
-import { CardHeader, CardMedia, Grid, IconButton, Typography } from "@material-ui/core";
+import { CardMedia, Typography } from "@material-ui/core";
 import { Card, CardContent } from '@mui/material'
-import { FC, useRef, useState } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
 import { CardStyles } from "../../theme/globalStyles";
 import { getPoster } from "../../utils/poster-helper";
-import { FavoriteButton } from "../ui/favorite-button";
 
 export const Film:FC<{data: IFilm}> = ({data}) => {
     const {

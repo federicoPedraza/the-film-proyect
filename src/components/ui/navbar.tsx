@@ -1,5 +1,5 @@
 import { FC, memo, ReactNode } from 'react';
-import { AppBar, Avatar, Box, Button, ButtonGroup, Grid, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Button, ButtonGroup, Paper, Toolbar, Typography } from '@material-ui/core';
 import { useUser } from '../../services/hooks/useUser';
 import { AvatarMenu } from './menu';
 import { UIStyles } from '../../theme/globalStyles';
@@ -26,7 +26,7 @@ const Navbar: FC<{}> = ({ }) => {
   };
 
   return (
-    <AppBar position="static" elevation={20} color="secondary">
+    <AppBar style={{ zIndex: "99" }} position="static" elevation={20} color="primary">
       <Toolbar className={appBar}>
         <Button className={pageHeader} variant="contained" href="/">
           <Typography noWrap variant="h4" component="h1">

@@ -1,6 +1,6 @@
 import { createTheme, makeStyles } from '@material-ui/core/styles'
 
-export const Theme = createTheme({
+export const tfpTheme = createTheme({
     typography: {
         fontFamily: 'Rubik'
     },
@@ -10,24 +10,43 @@ export const Theme = createTheme({
             default: '#363537'
         },
         primary: {
-            main: '#FFFAFF',
-        },
-        secondary: {
-            main: '#BA1F33'
+            main: '#BA1F33',
+            contrastText: '#FFFAFF',
         }
     }
 })
 
 export const GlobalStyles = makeStyles({
     body: {
-        color: Theme.palette.primary.main,
-        backgroundColor: Theme.palette.primary.dark
+        color: tfpTheme.palette.primary.contrastText,
+        backgroundColor: tfpTheme.palette.primary.main
+    },
+
+    error404Container: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "400px",
+        width: "400px",
+    },
+
+    error404Card: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "space-evenly",
+        flexDirection: "column",
+        alignItems: "center",
     }
 });
 
 export const CardStyles = makeStyles({
     card: {
-        backgroundColor: Theme.palette.secondary.main,
+        backgroundColor: tfpTheme.palette.background,
         width: 120, 
         height: 180,
         transition: "transform 2s, height 2s",
@@ -47,8 +66,7 @@ export const CardStyles = makeStyles({
         }
     },
     cardContent: {
-        backgroundColor: Theme.palette.secondary.main,
-
+        backgroundColor: tfpTheme.palette.background,
     },
     cardMedia: {
         height: "100%",
@@ -126,7 +144,7 @@ export const UIStyles = makeStyles({
 
     //Search
     searchContainer: {
-        color: Theme.palette.primary.main,
+        color: tfpTheme.palette.primary.contrastText,
         height: '48px',
         marginBottom: '12px'
     },
@@ -135,8 +153,8 @@ export const UIStyles = makeStyles({
     button: {
         '&:hover': {
             opacity: 0.8,
-            color: Theme.palette.primary.main,
-            backgroundColor: Theme.palette.primary.dark
+            color: tfpTheme.palette.primary.contrastText,
+            backgroundColor: tfpTheme.palette.background
         }
     },
 
@@ -175,6 +193,6 @@ export const UIStyles = makeStyles({
     },
 
     input: {
-        marginBottom: Theme.spacing(2),
+        marginBottom: tfpTheme.spacing(2),
     },
 });
