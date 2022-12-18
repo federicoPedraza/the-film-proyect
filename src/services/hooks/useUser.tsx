@@ -7,20 +7,13 @@ const AVATAR_URL = process.env.REACT_APP_AVATAR_BASE_URL
 
 export const useUser = () => {
   const { session_id } = useSession();
-  const [isValid, setIsValid] = useState<boolean>(false);
   
   const [loading, setLoading] = useState<boolean>(false)
   const [userData, setUserData ] = useState<UserData>(initialUserData)
 
-  const handleValidation = async(key:string) =>{
-    const result = await validateSession(key)
-    setIsValid(result)
-  }
-
   const handleUserData = async(key:string) =>{
     try {
       const result = await getUserData(key)
-      console.log(result)
       const { id, include_adult, iso_639_1, iso_3166_1, name, username, avatar } = result
       const hashCompleteRoute:string = `${AVATAR_URL}${avatar?.gravatar?.hash}`
       setUserData({
@@ -48,7 +41,6 @@ export const useUser = () => {
   useEffect(() => {
     if (session_id) {
       setLoading(true)
-      handleValidation(session_id)
       handleUserData(session_id)
     }
     if (!session_id){
@@ -56,7 +48,13 @@ export const useUser = () => {
     }
   }, [session_id]);
 
-  return { isValid, loading, userData };
+  return { loading, userData };
+}
+
+export const isUserValidate = async(key?: string) => {
+  if (!key) return;
+
+  return await validateSession(key);
 }
 
 

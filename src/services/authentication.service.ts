@@ -50,11 +50,11 @@ export async function getUserData(sessionId: string): Promise<UserData> {
 export async function validateSession(sessionId: string): Promise<boolean> {
   const endpoint = `account?api_key=${API_KEY}&session_id=${sessionId}`
   try {
-    await rest<UserData>(
+    const result = await rest<UserData>(
       HttpMethod.GET,
       endpoint,
     );
-    return true;
+    return result?.status === 200;
   } catch (error) {
     // ON ERROR: TOKEN IS NOT GOOD
     return false;

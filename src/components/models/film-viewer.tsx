@@ -1,5 +1,5 @@
 import { Typography } from "@material-ui/core";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Skeleton } from "@mui/material";
 import { FC, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { UIStyles } from "../../theme/globalStyles";
@@ -31,8 +31,12 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     }
 
     return (
+        (!films ? 
+            <Box>
+                <Skeleton className={filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
+            </Box> :
         <Box className={filmViewerContainer} style={{ height: 240, zIndex: "-1" }}>
-            <Typography className={filmViewerTitle} variant="h4">{label}</Typography>
+            <Typography className={filmViewerTitle} variant="h5">{label}</Typography>
             <div className={filmViewer}>
                 <Grid container spacing={2}>
                     <Grid item>
@@ -52,6 +56,6 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
                     </Grid>
                 </Grid>
             </div>
-        </Box>
+        </Box>)
     );
 }   

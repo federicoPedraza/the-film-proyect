@@ -67,6 +67,7 @@ export const UIStyles = makeStyles({
     },
 
     filmViewerContainer: {
+        marginBottom: "30px",
         overflow: "visible",
     },
     
@@ -75,6 +76,7 @@ export const UIStyles = makeStyles({
         marginRight: "10px",
         display: "flex",
         flexDirection: "row",
+        justifyContent: "center",
         alignItems: "center",
     },
 
@@ -91,12 +93,11 @@ export const UIStyles = makeStyles({
         justifyContent: "center",
         alignItems: "center",
         height: "100%",
-        width: "100%"
     },
 
     navigationButton: {
-        width: 40, 
-        height: 40,
+        width: 10, 
+        height: 10,
         zIndex: "5",
     },
     

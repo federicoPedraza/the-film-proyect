@@ -2,14 +2,20 @@ import { Box } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { FilmViewer } from "../components/models/film-viewer";
 import { IFilm } from "../interfaces/film.interface";
-import { getTrendingFilms } from "../services/film.service";
+import { getDiscoverMovies, getDiscoverTVShows, getTrendingFilms } from "../services/film.service";
 
 const Welcome: FC<{}> = () => {
   const [trendingFilms, setTrendingFilms] = useState<IFilm[]>([]);
+  const [discoverMovies, setDiscoverMovies] = useState<IFilm[]>([]);
+  const [discoverTVShows, setDiscoverTVShows] = useState<IFilm[]>([]);
 
   const handleInitialCall = async () => {
-    const films = await getTrendingFilms();
-    setTrendingFilms(films);
+    const trendFilms = await getTrendingFilms();
+    const discoverMovies = await getDiscoverMovies();
+    const discoverTVShows = await getDiscoverTVShows();
+    setTrendingFilms(trendFilms);
+    setDiscoverMovies(discoverMovies);
+    setDiscoverTVShows(discoverTVShows);
   } 
 
   useEffect(() => {
@@ -18,7 +24,10 @@ const Welcome: FC<{}> = () => {
 
   return (
     <Box sx={{ margin: '30px' }}>
-      <FilmViewer label="Trending" films={trendingFilms} />
+      <FilmViewer label="Trendings" films={trendingFilms} />
+      <FilmViewer label="Latests movies" films={discoverMovies} />
+      <FilmViewer label="Latests tv shows" films={discoverTVShows} />
+      <FilmViewer label="Hey" films={null} />
     </Box>
   );
 };

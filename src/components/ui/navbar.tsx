@@ -10,7 +10,7 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 const Navbar: FC<{}> = ({ }) => {
   const navigate = useNavigate()
   const { appBar, pageHeader, appBarButtons, button } = UIStyles();
-  const { isValid, loading, userData } = useUser();
+  const { loading, userData } = useUser();
   const { hash: avatar } = userData.avatar.gravatar
   const { username } = userData
 

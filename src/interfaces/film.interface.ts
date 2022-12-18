@@ -9,6 +9,7 @@ export interface IFilm {
     name?: string;
     popularity?: number;
     poster_path?: string;
+    backdrop_path?: string;
     favorite?: boolean;
 }
   
