@@ -26,7 +26,7 @@ const Navbar: FC<{}> = ({ }) => {
     navigate(route);
   };
   return (
-    <AppBar position="static" elevation={4} color="primary">
+    <AppBar position="static" elevation={20} color="primary">
       <Toolbar className={appBar}>
         <Typography className={pageHeader} noWrap variant="h4">
           The <i>Film</i> Project
