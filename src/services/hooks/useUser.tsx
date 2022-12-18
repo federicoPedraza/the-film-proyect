@@ -42,9 +42,6 @@ export const useUser = () => {
       setLoading(true)
       handleUserData(session_id)
     }
-    if (!session_id){
-      console.log('HELL NO!!',)
-    }
   }, [session_id]);
 
   return { loading, userData };

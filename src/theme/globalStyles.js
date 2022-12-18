@@ -112,12 +112,11 @@ export const UIStyles = makeStyles({
         overflowX: "scroll",
         overflowY: "hidden",
         '&::-webkit-scrollbar': {
-            width: '10px',
-            height: '14px'
+            height: '12px'
         },
         '&::-webkit-scrollbar-thumb': {
-            borderRadius: '30px',
-            background: 'linear-gradient(to top, red, rgba(255,0,0,0.5), rgba(255,0,0,0.25), transparent)'
+            borderRadius: '20px',
+            background: '#BA1F33'
         }
     },
     

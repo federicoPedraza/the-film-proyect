@@ -9,6 +9,8 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label } = props;
     const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer } = UIStyles();
     const [ scrollPosition, setScrollPosition ] = useState(0);
+
+    //Scrolling
     let rafId: number | null = null;
 
     const handleScroll = (event: any) => {
@@ -38,11 +40,12 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
             <Box>
                 <Skeleton className={filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
             </Box> :
-        <Paper elevation={20} className={filmViewerContainer} style={{ height: 240, zIndex: "-1" }}>
+        <Paper elevation={20} className={filmViewerContainer} onScroll={handleScroll} 
+        style={{ height: 280, zIndex: "-1" }}>
             <Typography className={filmViewerTitle} style={{ left: `${scrollPosition}px`}} variant="h5">{label}</Typography>
             <div className={filmViewer}>
                 <Grid container spacing={2} >
-                    <Grid item xs>
+                    <Grid item>
                         <Grid className={filmClass} container spacing={2} wrap="nowrap">
                             {films?.map((film, index) => {
                                 return <Grid key={index} item>

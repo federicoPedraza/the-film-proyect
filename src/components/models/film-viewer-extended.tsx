@@ -1,6 +1,6 @@
 import { Paper, Typography } from "@material-ui/core";
 import { Box, Grid, Skeleton } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { UIStyles } from "../../theme/globalStyles";
 import { Film } from "./film";
@@ -15,7 +15,7 @@ export const FilmViewerExtended: FC<IFilmViewer> = (props: IFilmViewer) => {
 
     return (
         <>
-            <Typography className={filmViewerTitle} variant="h6">{label}</Typography>
+            <Typography className={filmViewerTitle} variant="h6">{hasFilms() ? label : alternativeLabel}</Typography>
             {!hasFilms() ?
             (
                 <Box>

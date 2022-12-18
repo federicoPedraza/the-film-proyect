@@ -26,11 +26,12 @@ const Welcome: FC<{}> = () => {
     ]);
   } 
   
-  const isSearching = searchValue.length > 2;
+  const minSearchValueLength = 2;
+  const isSearching = searchValue.length > minSearchValueLength;
   const handleSearchChange = async (event: any) => {
     setSearchValue(event.target.value);
 
-    if (!isSearching) {
+    if (searchValue.length < minSearchValueLength) {
       setSearchedFilms([]);
       return;
     }
@@ -48,11 +49,11 @@ const Welcome: FC<{}> = () => {
     <Box sx={{ margin: '30px' }}>
       <SearchField onSearchChange={handleSearchChange} />
       {(isSearching) ? (
-        <FilmViewerExtended alternativeLabel={`No results found (${ searchValue })`} label={`Searched: ${ searchValue }`} films={searchedFilms} />
+        <FilmViewerExtended alternativeLabel={`No results found (${ searchValue })`} label={`Searched: (${ searchValue })`} films={searchedFilms} />
       ) : (
         <Box>
-          {(filmCarrousel.map((film) => {
-            return <FilmViewer label={film.label} films={film.films}></FilmViewer>
+          {(filmCarrousel.map((film, index) => {
+            return <FilmViewer key={index} label={film.label} films={film.films}></FilmViewer>
           }))}
         </Box>
         )}
