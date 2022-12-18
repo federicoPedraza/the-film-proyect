@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { FilmViewer } from "../components/models/film-viewer";
+import { FilmViewerExtended } from "../components/models/film-viewer-extended";
 import { FilmViewerSimplified } from "../components/models/film-viewer-simplified";
 import { IFilm } from "../interfaces/film.interface";
 import { getDiscoverMovies, getDiscoverTVShows, getTrendingFilms } from "../services/film.service";
@@ -25,6 +26,7 @@ const Welcome: FC<{}> = () => {
 
   return (
     <Box sx={{ margin: '30px' }}>
+      <FilmViewerExtended label="Searched: hola" films={[]} />
       <FilmViewer label="Trendings" films={trendingFilms} />
       <FilmViewer label="Latests movies" films={discoverMovies} />
       <FilmViewer label="Latests tv shows" films={discoverTVShows} />
