@@ -4,7 +4,7 @@ import { FilmViewer } from "../components/models/film-viewer";
 import { FilmViewerExtended } from "../components/models/film-viewer-extended";
 import { SearchField } from "../components/ui/search-field";
 import { IFilmViewer } from "../interfaces/film-viewer.interface";
-import { IFilm } from "../interfaces/film.interface";
+import { IFilm, MediaType } from "../interfaces/film.interface";
 import { getDiscoverMovies, getDiscoverTVShows, getFilmsByName, getTrendingFilms } from "../services/film.service";
 
 const Welcome: FC<{}> = () => {
@@ -21,7 +21,7 @@ const Welcome: FC<{}> = () => {
     setFilmCarrousel([ 
       { label: "Trendings", films: _trendingFilms },  
       { label: "Latests movies", films: _discoverMovies },  
-      { label: "Latests tv shows", films: _discoverTVShows },
+      { label: "Latests tv shows", films: _discoverTVShows, options: { } },
       { label: "Hey", films: null },
     ]);
   } 
@@ -37,7 +37,6 @@ const Welcome: FC<{}> = () => {
     }
 
     const matchingFilms = await getFilmsByName(searchValue);
-    console.log(matchingFilms);
     setSearchedFilms(matchingFilms);
   }
 
@@ -52,8 +51,8 @@ const Welcome: FC<{}> = () => {
         <FilmViewerExtended alternativeLabel={`No results found (${ searchValue })`} label={`Searched: (${ searchValue })`} films={searchedFilms} />
       ) : (
         <Box>
-          {(filmCarrousel.map((film, index) => {
-            return <FilmViewer key={index} label={film.label} films={film.films}></FilmViewer>
+          {(filmCarrousel.map((filmViewers, index) => {
+            return <FilmViewer key={index} options={filmViewers.options} label={filmViewers.label} films={filmViewers.films}></FilmViewer>
           }))}
         </Box>
         )}

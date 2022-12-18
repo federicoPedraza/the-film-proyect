@@ -1,5 +1,6 @@
 import { IFilm, MediaType } from "../interfaces/film.interface";
 import { GetFilmsResponse, HttpMethod } from "../interfaces/services/rest.interface";
+import { sortByPopularity } from "../utils/film-helper";
 import { rest } from "./shared/rest.service";
 
 export function mapFilmResults(results: []) {
@@ -46,13 +47,7 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
     const url = `/trending/all/week?api_key=${apiKey}`;
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
-        return mapFilmResults(response.data.results)
-            .sort((a, b) => {
-                const aPop = a.popularity || 0;
-                const bPop = b.popularity || 0;
-                return aPop - bPop
-            }
-            );
+        return sortByPopularity(mapFilmResults(response.data.results));
     } catch (error) {
         console.error(error);
         return [];

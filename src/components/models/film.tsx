@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
 import { CardStyles } from "../../theme/globalStyles";
-import { getPoster } from "../../utils/poster-helper";
+import { getPoster } from "../../utils/film-helper";
 
 export const Film:FC<{data: IFilm}> = ({data}) => {
     const {
