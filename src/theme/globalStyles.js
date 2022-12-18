@@ -4,10 +4,9 @@ export const Theme = createTheme({
     palette: {
         primary: {
             main: '#FFFAFF',
-            dark: '#D8315B'
         },
         secondary: {
-            main: '#D8315B'
+            main: '#BA1F33'
         }
     }
 })
@@ -20,19 +19,36 @@ export const GlobalStyles = makeStyles({
 
 export const CardStyles = makeStyles({
     card: {
+        backgroundColor: Theme.palette.secondary.main,
         width: 180, 
-        height: 260,
-        transition: "transform 2s, height 2s ease-in-out",
+        height: 270,
+        transition: "transform 2s, height 2s",
         transform: "scale(1)",
         position: "relative",
         zIndex: "0",
+        transformOrigin: "center",
         "&:hover": {
             position: "relative",
-            height: 320,
             transform: "scale(1.5)",
             zIndex: "1",
         }
     },
+    cardContent: {
+        backgroundColor: Theme.palette.secondary.main,
+
+    },
+    cardMedia: {
+        height: "100%",
+        width: "100%",
+        transition: "height 0.1s",
+        objectFit: "contain",
+    },
+    cardMediaHover: {
+        height: "75%",
+        width: "100%",
+        transition: "height 0.1s",
+        objectFit: "cover",
+    }
 })
 
 export const UIStyles = makeStyles({
@@ -42,15 +58,33 @@ export const UIStyles = makeStyles({
     },
 
     filmViewerContainer: {
-        overflowX: "scroll",
+        overflow: "hidden",
+    },
+    
+    filmViewer: {
+        marginLeft: "40px",
+        marginRight: "40px",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
     },
 
-    filmViewer: {
+    filmClass: {
         width: "100%",
         display: "flex",
         flexDirection: "row",
         flexWrap: "nowrap",
         justifyContent: "flex-start",
+    },
+
+    navigationButton: {
+        width: 40, 
+        height: 270,
+        transition: "transform 2s, height 2s",
+        transform: "scale(1)",
+        position: "relative",
+        zIndex: "2",
+        transformOrigin: "center",
     },
     
     root: {
