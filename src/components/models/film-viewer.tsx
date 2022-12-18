@@ -4,7 +4,6 @@ import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { UIStyles } from "../../theme/globalStyles";
 import { Film } from "./film";
-import { NavigationButton, NavigationDirection } from "../ui/navigation-button";
 
 export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label } = props;
@@ -30,8 +29,12 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
         }
     }, [])
 
+    const hasFilms = () => {
+        return films ? films.length > 0 : false;
+    }
+
     return (
-        (!films ? 
+        (!hasFilms() ?
             <Box>
                 <Skeleton className={filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
             </Box> :

@@ -116,21 +116,13 @@ export const UIStyles = makeStyles({
         justifyContent: "flex-start",
     },
 
-    navigationButtonContainer: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-    },
-
-    navigationButton: {
-        width: 10, 
-        height: 10,
-        zIndex: "5",
-    },
-    
     root: {
         width: "100%",
+    },
+
+    //Search
+    searchContainer: {
+        color: Theme.palette.primary.main,
     },
     
     //UI
@@ -147,6 +139,8 @@ export const UIStyles = makeStyles({
         width: "50%",
         justifyContent: "center",
     },
+
+    //Nav bar
     appBar: {
         display: 'flex',
         justifyContent: 'space-between',

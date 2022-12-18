@@ -1,10 +1,11 @@
 import { FC, memo, ReactNode } from 'react';
-import { AppBar, Avatar, Box, Button, ButtonGroup, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Box, Button, ButtonGroup, Grid, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { useUser } from '../../services/hooks/useUser';
 import { AvatarMenu } from './menu';
 import { UIStyles } from '../../theme/globalStyles';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { Search } from './search-field';
 
 
 const Navbar: FC<{}> = ({ }) => {
@@ -25,12 +26,22 @@ const Navbar: FC<{}> = ({ }) => {
   const handleButtonClick = (route: string) => {
     navigate(route);
   };
+
   return (
-    <AppBar position="static" elevation={20} color="primary">
+    <AppBar position="static" elevation={20} color="secondary">
       <Toolbar className={appBar}>
-        <Typography className={pageHeader} noWrap variant="h4">
-          The <i>Film</i> Project
-        </Typography>
+        <Grid container alignContent='center' spacing={4}>
+          <Grid item>
+            <Typography className={pageHeader} noWrap variant="h4">
+              The <i>Film</i> Project
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Search />
+          </Grid>
+        </Grid>
+
+
         <ButtonGroup size="large" variant="text" className={appBarButtons}>
 
           <Button
