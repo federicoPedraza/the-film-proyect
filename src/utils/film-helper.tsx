@@ -21,6 +21,7 @@ export const sortByDate = (films: IFilm[] | null): IFilm[] => {
         return [];
     }
 
+    //to do, but the api has no dates.
     return films.sort((a, b) => {
         const aPop = a.popularity || 0;
         const bPop = b.popularity || 0;
