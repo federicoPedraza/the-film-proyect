@@ -7,12 +7,22 @@ export function mapFilmResults(results: []) {
         const _title = film.media_type == MediaType.Movie ? film.title : film.name;
         const _poster_path = film.poster_path ? film.poster_path : film.backdrop_path;
         return {
-            media_type: film.media_type,
-            title: _title,
-            name: _title,
-            popularity: film.popularity,
-            id: film.id,
             poster_path: _poster_path,
+            adult: film.adult,
+            overview: film.overview,
+            release_date: film.release_date,
+            genre_id: film.genre_id,
+            origin_title: film.original_title,
+            original_language: film.original_language,
+            vote_count: film.vote_count,
+            vote_average: film.vote_average,
+            video: film.video,
+            id: film.id,
+            media_type: film.media_type || MediaType.Other,
+            title: film.title,
+            name: film.name,
+            backdrop_path: film.backdrop_path,
+            popularity: film.popularity,
         }
     });
 
@@ -22,18 +32,19 @@ export function mapFilmResults(results: []) {
 export async function getTrendingFilms(): Promise<IFilm[]> {
     const apiKey = process.env.REACT_APP_API_V3_AUTH;
     const url = `/trending/all/week?api_key=${apiKey}`;
-
     try {
         const response = await rest<GetTrendingResponse>(HttpMethod.GET, url);
+        console.log(response)
         return mapFilmResults(response.data.results)
             .sort((a, b) => {
                 const aPop = a.popularity || 0;
                 const bPop = b.popularity || 0;
-                return aPop - bPop}
+                return aPop - bPop
+            }
             );
     } catch (error) {
         console.error(error);
-        return[];
+        return [];
     }
 }
 
@@ -46,7 +57,7 @@ export async function getDiscoverMovies(): Promise<IFilm[]> {
         return mapFilmResults(response.data.results);
     } catch (error) {
         console.error(error);
-        return[];
+        return [];
     }
 }
 
@@ -59,6 +70,6 @@ export async function getDiscoverTVShows(): Promise<IFilm[]> {
         return mapFilmResults(response.data.results);
     } catch (error) {
         console.error(error);
-        return[];
+        return [];
     }
 }

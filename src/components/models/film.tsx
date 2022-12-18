@@ -1,22 +1,39 @@
 import { CardHeader, CardMedia, Grid, IconButton, Typography } from "@material-ui/core";
 import { Card, CardContent } from '@mui/material'
-import { useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
 import { CardStyles } from "../../theme/globalStyles";
 import { getPoster } from "../../utils/poster-helper";
 import { FavoriteButton } from "../ui/favorite-button";
 
-export const Film = (props: IFilm) => {
-    const { title, poster_path, id } = props;
-    const [favorite, setFavorite] = useState(false);
+export const Film:FC<{data: IFilm}> = ({data}) => {
+    const {
+    poster_path,
+    adult,
+    overview,
+    release_date,
+    genre_id,
+    original_title,
+    original_language,
+    vote_count,
+    vote_average,
+    video,
+    id,
+    media_type,
+    title,
+    name,
+    popularity,
+    backdrop_path,
+} = data;
     const [showInfo, setShowInfo] = useState(false);
     const { card, cardContent, cardMediaHover, cardMedia } = CardStyles();
-
     const [backdrop, setBackdrop ] = useState()
+    const navigate = useNavigate()
 
-
-
-    const imgRef = useRef()
+    const enterDetail = () =>{
+        navigate(`details/${id}`)
+    }
     const handleMouseEnter = () => {
         setShowInfo(true);
     }
@@ -25,20 +42,13 @@ export const Film = (props: IFilm) => {
         setShowInfo(false);
     }
 
-    const handleFavoriteClick = () => {
-        setFavorite(!favorite);
-    }
-
-
     return (
-        <Card className={card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <Card onClick={enterDetail} className={card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <CardMedia className={showInfo ? cardMediaHover : cardMedia} component="img" image={getPoster(poster_path)} />
             <CardContent className={cardContent} sx={{ backgroundColor: ' MI COLOR' }}>
                 <Typography variant="body1" align="center">
-                    {title}
+                    {title || name || original_title } 
                 </Typography>
-                <FavoriteButton active={favorite} onButtonClick={handleFavoriteClick} />
-
             </CardContent>
         </Card>
     )

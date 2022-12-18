@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { Box, Grid, Skeleton } from "@mui/material";
 import { FC, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
@@ -35,10 +35,10 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
             <Box>
                 <Skeleton className={filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
             </Box> :
-        <Box className={filmViewerContainer} style={{ height: 240, zIndex: "-1" }}>
+        <Paper elevation={20} className={filmViewerContainer} style={{ height: 240, zIndex: "-1" }}>
             <Typography className={filmViewerTitle} variant="h5">{label}</Typography>
             <div className={filmViewer}>
-                <Grid container spacing={2}>
+                <Grid container spacing={2} >
                     <Grid item>
                         <NavigationButton onButtonClick={handlePreviousClick} direction={NavigationDirection.LEFT} />
                     </Grid>
@@ -46,7 +46,7 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
                         <Grid className={filmClass} container spacing={2} wrap="nowrap">
                             {filmsToShow?.map((film, index) => {
                                 return <Grid key={index} item>
-                                        <Film poster_path={film.poster_path} title={film.title}></Film>
+                                        <Film data={film}/>
                                     </Grid>
                             })}
                         </Grid>
@@ -56,6 +56,6 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
                     </Grid>
                 </Grid>
             </div>
-        </Box>)
+        </Paper>)
     );
 }   

@@ -4,6 +4,7 @@ import { OnboardingLayout } from "./pages/onboarding";
 import { Authorize, Welcome } from "./pages";
 import Navbar from "./components/ui/navbar";
 import { Profile, ProfileLayout } from "./pages/profile";
+import Details from "./pages/Details";
 
 function App() {
   return (
@@ -15,11 +16,10 @@ function App() {
           </>}>
           <Route path="/" element={<Welcome />} />
           <Route path="authorize" element={<Authorize />} />
-          <Route path='movies' element={<>movies</>} />
-          <Route path='shows' element={<>shows</>} />
           <Route path="profile/*" element={<ProfileLayout/>}>
             <Route path="overview" element={<Profile />} />
           </Route>
+          <Route path="details/:movieId" element={<Details />}/>
         </Route>
       </Routes>
     </Router>

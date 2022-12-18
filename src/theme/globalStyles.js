@@ -34,10 +34,11 @@ export const CardStyles = makeStyles({
         transform: "scale(1)",
         position: "relative",
         zIndex: "0",
-        transformOrigin: "center",
         "&:hover": {
+            cursor:'pointer',
             position: "relative",
-            transform: "scale(1.5)",
+            width: 240, 
+            height: 360,
             zIndex: "4",
         }
     },
@@ -60,6 +61,10 @@ export const CardStyles = makeStyles({
 })
 
 export const UIStyles = makeStyles({
+    //Comment viewer
+    commentViewerContainer: {
+        padding: '8px'
+    },
     //Film viewer
     filmViewerTitle: {
         marginLeft: "38px",
@@ -69,6 +74,7 @@ export const UIStyles = makeStyles({
     filmViewerContainer: {
         marginBottom: "30px",
         overflow: "visible",
+        padding: "8px",
     },
     
     filmViewer: {
