@@ -22,7 +22,7 @@ export const CardStyles = makeStyles({
     card: {
         width: 180, 
         height: 260,
-        transition: "transform 2s, height 2s",
+        transition: "transform 2s, height 2s ease-in-out",
         transform: "scale(1)",
         position: "relative",
         zIndex: "0",
@@ -38,7 +38,6 @@ export const CardStyles = makeStyles({
 export const UIStyles = makeStyles({
     //Film viewer
     filmViewerTitle: {
-        display: "block",
         marginBottom: "16px",
     },
 
@@ -92,7 +91,7 @@ export const UIStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '50vh',
+        height: '50vh', // TODO: this is bad!
     },
 
     loginForm: {

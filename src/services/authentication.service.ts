@@ -1,5 +1,5 @@
 import { RequestTokenResponse } from "../interfaces/services/api.interface";
-import { AccountResponse, HttpMethod, SessionResponse, } from "../interfaces/services/rest.interface";
+import { HttpMethod, SessionResponse, UserData, } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
 
 const badEndMessage = 'Unable to read ENV';
@@ -30,10 +30,27 @@ export async function login(request_token: string): Promise<SessionResponse> {
 }
 
 
+export async function getUserData(sessionId: string): Promise<UserData> {
+  const endpoint = `account?api_key=${API_KEY}&session_id=${sessionId}`
+  try {
+    const response = await rest<UserData>(
+      HttpMethod.GET,
+      endpoint,
+    );
+    return response.data
+  } catch (error) {
+    // ON ERROR: TOKEN IS NOT GOOD
+    console.log(error)
+    throw error
+  }
+}
+
+
+
 export async function validateSession(sessionId: string): Promise<boolean> {
   const endpoint = `account?api_key=${API_KEY}&session_id=${sessionId}`
   try {
-    await rest<AccountResponse>(
+    await rest<UserData>(
       HttpMethod.GET,
       endpoint,
     );
