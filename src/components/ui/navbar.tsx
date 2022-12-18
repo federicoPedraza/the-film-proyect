@@ -5,8 +5,6 @@ import { AvatarMenu } from './menu';
 import { UIStyles } from '../../theme/globalStyles';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import { Search } from './search-field';
-
 
 const Navbar: FC<{}> = ({ }) => {
   const navigate = useNavigate()
@@ -30,17 +28,11 @@ const Navbar: FC<{}> = ({ }) => {
   return (
     <AppBar position="static" elevation={20} color="secondary">
       <Toolbar className={appBar}>
-        <Grid container alignContent='center' spacing={4}>
-          <Grid item>
-            <Typography className={pageHeader} noWrap variant="h4">
-              The <i>Film</i> Project
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Search />
-          </Grid>
-        </Grid>
-
+        <Button className={pageHeader} variant="contained" href="/">
+          <Typography noWrap variant="h4" component="h1">
+            The Film Project
+          </Typography>
+        </Button>
 
         <ButtonGroup size="large" variant="text" className={appBarButtons}>
 

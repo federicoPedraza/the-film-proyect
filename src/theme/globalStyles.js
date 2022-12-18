@@ -127,6 +127,8 @@ export const UIStyles = makeStyles({
     //Search
     searchContainer: {
         color: Theme.palette.primary.main,
+        height: '48px',
+        marginBottom: '12px'
     },
     
     //UI
@@ -156,8 +158,7 @@ export const UIStyles = makeStyles({
     },
 
     pageHeader: {
-        letterSpacing: '0px',
-        wordSpacing: '-5px',
+        borderRadius: '25px'
     },
 
     //Login

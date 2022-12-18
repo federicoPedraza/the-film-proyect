@@ -15,7 +15,7 @@ export interface ApiResponse<T> {
   expires_at?: string;
 }
 
-export interface GetTrendingResponse {
+export interface GetFilmsResponse {
   results: [],
   page: number,
   total_pages: number,
