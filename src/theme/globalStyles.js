@@ -1,7 +1,14 @@
 import { createTheme, makeStyles } from '@material-ui/core/styles'
 
 export const Theme = createTheme({
+    typography: {
+        fontFamily: 'Rubik'
+    },
     palette: {
+        type: 'dark',
+        background: {
+            default: '#363537'
+        },
         primary: {
             main: '#FFFAFF',
         },
@@ -14,14 +21,15 @@ export const Theme = createTheme({
 export const GlobalStyles = makeStyles({
     body: {
         color: Theme.palette.primary.main,
+        backgroundColor: Theme.palette.primary.dark
     }
 });
 
 export const CardStyles = makeStyles({
     card: {
         backgroundColor: Theme.palette.secondary.main,
-        width: 180, 
-        height: 270,
+        width: 120, 
+        height: 180,
         transition: "transform 2s, height 2s",
         transform: "scale(1)",
         position: "relative",
@@ -30,7 +38,7 @@ export const CardStyles = makeStyles({
         "&:hover": {
             position: "relative",
             transform: "scale(1.5)",
-            zIndex: "1",
+            zIndex: "4",
         }
     },
     cardContent: {
@@ -44,7 +52,7 @@ export const CardStyles = makeStyles({
         objectFit: "contain",
     },
     cardMediaHover: {
-        height: "75%",
+        height: "65%",
         width: "100%",
         transition: "height 0.1s",
         objectFit: "cover",
@@ -54,16 +62,17 @@ export const CardStyles = makeStyles({
 export const UIStyles = makeStyles({
     //Film viewer
     filmViewerTitle: {
-        marginBottom: "16px",
+        marginLeft: "38px",
+        marginBottom: "4px",
     },
 
     filmViewerContainer: {
-        overflow: "hidden",
+        overflow: "visible",
     },
     
     filmViewer: {
-        marginLeft: "40px",
-        marginRight: "40px",
+        marginLeft: "10px",
+        marginRight: "10px",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -77,14 +86,18 @@ export const UIStyles = makeStyles({
         justifyContent: "flex-start",
     },
 
+    navigationButtonContainer: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        width: "100%"
+    },
+
     navigationButton: {
         width: 40, 
-        height: 270,
-        transition: "transform 2s, height 2s",
-        transform: "scale(1)",
-        position: "relative",
-        zIndex: "2",
-        transformOrigin: "center",
+        height: 40,
+        zIndex: "5",
     },
     
     root: {

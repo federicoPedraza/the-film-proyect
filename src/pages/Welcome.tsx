@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { FC, useEffect, useState } from "react";
-import { FilmViewer } from "../components/viewer/film-viewer";
+import { FilmViewer } from "../components/models/film-viewer";
 import { IFilm } from "../interfaces/film.interface";
 import { getTrendingFilms } from "../services/film.service";
 
@@ -17,7 +17,7 @@ const Welcome: FC<{}> = () => {
   }, []);
 
   return (
-    <Box sx={{ margin: '20px' }}>
+    <Box sx={{ margin: '30px' }}>
       <FilmViewer label="Trending" films={trendingFilms} />
     </Box>
   );

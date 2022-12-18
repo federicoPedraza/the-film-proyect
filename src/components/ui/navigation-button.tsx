@@ -1,7 +1,7 @@
 import NavigateBeforeRoundedIcon from '@mui/icons-material/NavigateBeforeRounded';
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import { UIStyles } from '../../theme/globalStyles';
-import { IconButton } from '@material-ui/core';
+import { Box, IconButton } from '@material-ui/core';
 import { MouseEventHandler } from 'react';
 
 export enum NavigationDirection {
@@ -18,7 +18,6 @@ export const NavigationButton = (props: INavigationButton) => {
     const { direction, onButtonClick } = props; 
 
     let icon;
-
     switch (direction) {
         case NavigationDirection.RIGHT:
           icon = <NavigateNextRoundedIcon />;
@@ -31,8 +30,10 @@ export const NavigationButton = (props: INavigationButton) => {
       }
 
     return (
-        <IconButton size="medium" color="primary" className={UIStyles().navigationButton} onClick={onButtonClick}>
-           {icon}
-        </IconButton>
+        <div className={UIStyles().navigationButtonContainer}> 
+            <IconButton size="medium" color="primary" className={UIStyles().navigationButton} onClick={onButtonClick}>
+                {icon}
+            </IconButton>
+        </div>
     )
 };

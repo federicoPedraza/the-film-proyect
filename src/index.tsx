@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { worker } from './mocks/browser';
-import { ThemeProvider } from '@material-ui/core';
+import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { Theme } from './theme/globalStyles';
-import Navbar from './components/ui/navbar';
 
 
 // worker.start()
@@ -17,6 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>
+        <CssBaseline />
         <App />
     </ThemeProvider>
   </React.StrictMode>

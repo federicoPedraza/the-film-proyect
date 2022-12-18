@@ -10,7 +10,6 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
 
     try {
         const response = await rest<GetTrendingResponse>(HttpMethod.GET, url);
-        console.log(response.data.results);
         const films = response.data.results.map((film: IFilm) => {
             const _title = film.media_type == MediaType.Movie ? film.title : film.name;
             return {
@@ -22,7 +21,6 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
                 poster_path: film.poster_path,
             }
         });
-        console.log(films);
         return films;
     } catch (error) {
         console.error(error);
