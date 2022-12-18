@@ -28,8 +28,9 @@ export const FilmViewerExtended: FC<IFilmViewer> = (props: IFilmViewer) => {
                         <Grid item xs>
                             <Grid className={filmClass} container spacing={2} wrap="nowrap">
                                 {films?.map((film, index) => {
+                                    if (film.poster_path)
                                     return <Grid key={index} item>
-                                            <Film poster_path={film.poster_path} title={film.title}></Film>
+                                            <Film data={film}></Film>
                                         </Grid>
                                 })}
                             </Grid>

@@ -23,7 +23,7 @@ export const FilmViewerSimplified: FC<IFilmViewer> = (props: IFilmViewer) => {
                         <Grid className={filmClass} container spacing={2} wrap="nowrap">
                             {films?.map((film, index) => {
                                 return <Grid key={index} item>
-                                        <Film poster_path={film.poster_path} title={film.title}></Film>
+                                        <Film data={film}/>
                                     </Grid>
                             })}
                         </Grid>

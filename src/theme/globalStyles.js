@@ -34,11 +34,15 @@ export const CardStyles = makeStyles({
         transform: "scale(1)",
         position: "relative",
         zIndex: "0",
+            "img": {
+                "&:hover":{
+                    scale: "1.5",
+
+                },
+            },
         "&:hover": {
             cursor:'pointer',
             position: "relative",
-            width: 240, 
-            height: 360,
             zIndex: "4",
         }
     },
