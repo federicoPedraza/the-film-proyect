@@ -12,7 +12,7 @@ const AVATAR_URL = process.env.react_app_avatar_base_url
 const Comment:FC<{comment:ReviewResults}> = ({ comment }) =>{
   moment.locale('es')
   const commentOwner = comment.author_details.name || 'Anónimo'
-  const avatar:string = `${AVATAR_URL}${comment.author_details.avatar_path}`
+  const avatar:string = `${'https://secure.gravatar.com/avatar/'}${comment.author_details.avatar_path}`
   return ( 
      <Paper style={{ padding: "8px 16px", maxWidth: '80%', overflow:'hidden' }}>
         <Grid container wrap="nowrap" spacing={2}>

@@ -14,7 +14,7 @@ export const useUser = () => {
     try {
       const result = await getUserData(key)
       const { id, include_adult, iso_639_1, iso_3166_1, name, username, avatar } = result
-      const hashCompleteRoute:string = `${AVATAR_URL}${avatar?.gravatar?.hash}`
+      const hashCompleteRoute:string = `${'https://secure.gravatar.com/avatar/'}${avatar?.gravatar?.hash}`
       const processedUser = {
         id: id,
         include_adult: include_adult,
