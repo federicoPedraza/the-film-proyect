@@ -1,6 +1,9 @@
 import { IFilm } from "../interfaces/film.interface";
 
 export const getImage = (posterUrl?: string) => {
+    if ( !posterUrl ){
+        return 'https://www.solidbackgrounds.com/images/1024x768/1024x768-gray-web-gray-solid-color-background.jpg'
+    }
     return `https://image.tmdb.org/t/p/w500${posterUrl}`;
 }
 

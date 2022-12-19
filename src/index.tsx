@@ -5,9 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { tfpTheme } from './theme/globalStyles';
-
-
-// worker.start()
+import '@material-ui/core/styles';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -9,6 +9,7 @@ export interface IFavoriteButton {
 export const FavoriteButton = ({active, favoriteFn}: IFavoriteButton) => {
     const { favoriteHearthFilled, favoriteHearth } = UIStyles()
     return <FavoriteIcon 
+    fontSize='large'
     className={active ? favoriteHearthFilled : favoriteHearth} 
     onClick={favoriteFn} />
 };

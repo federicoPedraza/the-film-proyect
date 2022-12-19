@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import { PaginatedResponse } from "./services/rest.interface";
 import { IFilm, MediaType } from "./film.interface";
 
@@ -135,4 +134,26 @@ export interface AccountOptionsInterface {
     id?: number;
     rated?: boolean;
     watchlist?: boolean;
+}
+
+export interface ProviderResults {
+    results?: Record<string, ProviderOptions>
+}
+
+interface ProviderOptions {
+    flatrate: Provider[];
+    rent: Provider[];
+    buy: Provider[];
+}
+
+export interface Provider{
+    display_priority?: number;
+    logo_path?: string;
+    provider_id?: number;
+    provider_name?: string;
+}
+
+export interface ProviderDetails {
+    operation: 'flatrate' | 'rent' | 'buy';
+    provider: Provider
 }
