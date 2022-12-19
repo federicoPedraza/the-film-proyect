@@ -38,9 +38,9 @@ const Authorize: FC<{}> = () => {
   if ( operationResult ){
         return <CallToAction 
         title='SUCCESS'
-        redirect='profile/overview'
+        redirect='/'
         subtitle='Your account was connected successfully'
-        redirectMessage='Profile'
+        redirectMessage='Go home'
         />
   }
   if ( !approved ){

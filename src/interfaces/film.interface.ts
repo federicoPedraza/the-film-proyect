@@ -13,6 +13,7 @@ export interface IFilm {
     original_language?: string,
     vote_count?: number,
     vote_average?: number,
+    tagline?: string;
     video?: boolean,
     id?: number;
     media_type?: MediaType;

@@ -5,21 +5,14 @@ import { Genres as GernesInterface } from "../../interfaces/ui.interface";
 import { UIStyles } from "../../theme/globalStyles";
 
 const Genres: FC<GernesInterface> = ({ categories }) => {
-    const { favoriteHearth } = UIStyles()
     return (
         <>
             {categories.map(({ name, id }) => (
-                <Tooltip title="Añadir género a favorito" key={`tooltip-${id}`}>
-                    <Chip
-                        label={name}
-                        key={`label-${id}`}
-                        icon={
-                            <IconButton onClick={()=>console.log('a')}>
-                                <Favorite className={favoriteHearth} />
-                            </IconButton>
-                        }
-                    />
-                </Tooltip>
+                <Chip
+                    label={name}
+                    key={`label-${id}`}
+                    style={{padding: 12, marginRight: '1rem'}}
+                />
             ))}
         </>
     );

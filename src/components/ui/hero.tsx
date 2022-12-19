@@ -15,6 +15,7 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
   const {
     genres,
     id,
+    tagline,
     popularity,
     poster_path,
     title, name, overview, release_date
@@ -58,7 +59,7 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
               active={favorite || false}
               favoriteFn={() => handleFavorite(!favorite, id)}
             />
-            <Typography component='h1' variant='h5'>
+            <Typography component='h1' variant='h5' style={{marginBottom: '1rem'}}>
               {title || name}
             </Typography>
             <Typography component='h2' variant='h6'>
@@ -66,7 +67,10 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
             </Typography>
           </Box>
 
-          <Box className={titleStyle}>
+          <Box  style={{marginBottom: '2rem', }}>
+            <Typography component='h2' variant='caption'  color='secondary'>
+              {tagline}
+            </Typography>
             <Typography component='h3' variant='body1'>
               {overview}
             </Typography>

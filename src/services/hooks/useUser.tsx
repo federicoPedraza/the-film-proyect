@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserData } from "../../interfaces/services/rest.interface";
 import useSession  from "../../store";
-import { getUserData, validateSession } from "../authentication.service";
-
+import { logout as logoutRest, getUserData, validateSession } from "../authentication.service";
 const AVATAR_URL = process.env.REACT_APP_AVATAR_BASE_URL
 
 export const useUser = () => {
-  const { session_id, setUserData:setCacheUser } = useSession();
+  const { session_id, setSession, user_data:cacheUserData, setUserData:setCacheUser } = useSession();
   const [loading, setLoading] = useState<boolean>(false)
-  const [userData, setUserData ] = useState<UserData>(initialUserData)
-
+  const [userData, setUserData ] = useState<UserData>(cacheUserData || initialUserData)
+  const navigate = useNavigate()
   const handleUserData = async(key:string) =>{
     try {
       const result = await getUserData(key)
@@ -33,6 +33,28 @@ export const useUser = () => {
     } catch (error) {
       console.log(error)
       setUserData(initialUserData)
+      setCacheUser(initialUserData)
+    } finally{
+      setLoading(false)
+    }
+  }
+
+  const logout = async() => {
+    if ( !session_id ){
+      return null
+    }
+    try {
+      const result = await logoutRest(session_id)
+      if ( result.success ){
+        setUserData(initialUserData)
+        setSession('','')
+      const delayedNav = setTimeout(() => {
+          navigate('/')
+      }, 5000)
+        return ()=>clearTimeout(delayedNav)
+      }
+    } catch (error) {
+      console.log(error)
     } finally{
       setLoading(false)
     }
@@ -49,7 +71,7 @@ export const useUser = () => {
     }
   }, [session_id]);
 
-  return { loading, userData };
+  return { loading, userData, session_id, logout, cacheUserData };
 }
 
 export const isUserValidate = async(key?: string) => {

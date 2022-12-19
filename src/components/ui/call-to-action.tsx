@@ -9,7 +9,7 @@ import { boilerplateMotion, delayedAnimation, offsetApparition } from "../../ser
 const CardMotion = motion(Card)
 
 
-export const CallToAction: FC<Interface> = ({ title, subtitle, redirect, redirectMessage }) => {
+export const CallToAction: FC<Interface> = ({ title, subtitle, redirect, redirectMessage, onClickFn, onClickMessage }) => {
     const { error404Container, error404Card } = GlobalStyles()
     const navigate = useNavigate()
     return (
@@ -25,9 +25,15 @@ export const CallToAction: FC<Interface> = ({ title, subtitle, redirect, redirec
                     <Typography variant="h6" component="h3" align="center">
                         {subtitle}
                     </Typography>
+                    {redirect &&
                     <Button onClick={() => navigate(redirect)} color="secondary" variant="contained">
                         {redirectMessage}
+                    </Button>}
+                    {Boolean(onClickMessage) && onClickFn &&
+                    <Button onClick={() => onClickFn()} color="secondary" variant="contained">
+                        LOGOUT
                     </Button>
+                    }
                 </CardContent>
             </CardActionArea>
         </CardMotion>

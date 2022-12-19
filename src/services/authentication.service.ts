@@ -29,6 +29,16 @@ export async function login(request_token: string): Promise<SessionResponse> {
   }
 }
 
+export async function logout(session_id: string): Promise<{success:boolean}> {
+  const endpoint = `/authentication/session?session_id=${session_id}&api_key=${API_KEY}`;
+  try {
+    const response = await rest<SessionResponse>(HttpMethod.DELETE, endpoint);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 export async function getUserData(sessionId: string): Promise<UserData> {
   const endpoint = `account?api_key=${API_KEY}&session_id=${sessionId}`

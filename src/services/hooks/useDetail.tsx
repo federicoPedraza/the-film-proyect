@@ -4,14 +4,15 @@ import { AccountOptionsInterface, ProviderResults } from "../../interfaces/detai
 import { AccountStatesRes } from "../../interfaces/services/rest.interface";
 import { BooleanOptions } from "../../interfaces/ui.interface";
 import useSession from "../../store";
-import { addToFavorites, getIdMediaInformation } from "../lists.service";
+import { addToFavorites, addToWatchlist, getIdMediaInformation } from "../lists.service";
 
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import { getFilmProviders } from "../details.service";
 export function useDetail() {
-  const { film_type } = useParams();
+  const { film_type, film_id } = useParams();
   const [loadingFavorite, setLoadingFavorite] = useState<boolean>(false);
+  const [loadingWatchLater, setLoadingWatchLater] = useState<boolean>(false)
   const [loadingMedia, setLoadingMedia] = useState<boolean>(false)
   const [loadingProviders, setLoadingProviders] = useState<boolean>(false)
   const [accountOptions, setAccountOptions ] = useState<AccountStatesRes>(accountOptionsDefault)
@@ -24,7 +25,6 @@ export function useDetail() {
 
   const handleFavorite = async (favorite:boolean=false, id?: number, ) => {
     if ( loadingMedia ){
-      console.log( 'espera, esta cargandp')
       return 
     }
     setLoadingFavorite(true);
@@ -42,11 +42,29 @@ export function useDetail() {
       setLoadingFavorite(false);
     }
   };
+  const handleWatchLater = async (watchlater:boolean=false, id: number ) => {
+    if ( loadingMedia ){
+      return 
+    }
+    setLoadingWatchLater(true);
+    try {
+        if ( user_data?.id && session_id && id && film_type){
+            const result = await addToWatchlist(user_data.id, session_id,  film_type , id, watchlater);
+            if (result.status === 201 || result.status === 200){
+              // Update media if it was added sucesfully
+              await getMedia(id)
+            }
+          }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoadingWatchLater(false);
+    }
+  };
 
   const getProviders = async(id: number)=>{
      setLoadingProviders(true)
     try {
-      console.log(id, film_type)
         if ( id && film_type){
           const response = await getFilmProviders(id,film_type)
           setProviders(response?.data)
@@ -81,8 +99,8 @@ const actions = [
       icon: <LiveTvIcon 
       onClick={()=>setStreamingModalOpen(true)}
       fontSize='large' style={{
-        cursor: 'pointer',
-        fill: hover.streaming ? '#BA1F33' : '#FFF',
+        cursor: session_id ? 'pointer' : 'not-allowed',
+        fill:  hover.streaming ? '#BA1F33' : '#FFF',
         transition: 'fill 0.3s ease-out'
       }}
         onMouseEnter={() => setHover({ ...hover, streaming: true })}
@@ -93,9 +111,10 @@ const actions = [
     {
       icon: <WatchLaterIcon
         fontSize='large'
+        onClick={()=>handleWatchLater(!accountOptions.watchlist,Number(film_id))}
         style={{
-          cursor: 'pointer',
-          fill: hover.watchLater ? '#BA1F33' : '#FFF',
+          cursor: session_id ? 'pointer' : 'not-allowed',
+          fill: (session_id && ( accountOptions.watchlist || hover.watchLater )) ? '#BA1F33' : '#FFF',
           transition: 'fill 0.3s ease-out'
         }}
         onMouseEnter={() => setHover({ ...hover, watchLater: true })}
@@ -109,6 +128,8 @@ const actions = [
     getMedia,
     loadingMedia,
     handleFavorite,
+    handleWatchLater,
+    loadingWatchLater,
     loadingFavorite,
     actions,
     streamingModalOpen,

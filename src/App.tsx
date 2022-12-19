@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Authorize, Details, Error404, Layout, Welcome } from "./pages";
 import { Lists, Profile, ProfileLayout } from "./pages/profile";
+import Logout from "./pages/profile/Logout";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="profile/*" element={<ProfileLayout/>}>
             <Route path="overview" element={<Profile />} />
             <Route path="lists" element={<Lists />} />
+            <Route path='logout' element={<Logout />} />
           </Route>
           <Route path="details/:film_type/:film_id" element={<Details />}/>
           <Route path="*" element={<Error404 />} />

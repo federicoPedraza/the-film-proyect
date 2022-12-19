@@ -1,9 +1,9 @@
-import { Box, Container, IconButton, Paper, Typography } from "@material-ui/core";
+import { Box, CardMedia, Container, IconButton, Paper, Typography } from "@material-ui/core";
 import { Grid } from "@mui/material";
 import { FC } from "react";
 import { IFilm } from "../../interfaces/film.interface";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { isFilmPopular } from "../../utils/film-helper";
+import { getImage, isFilmPopular } from "../../utils/film-helper";
 import { FavoriteButton } from "../ui/favorite-button";
 
 export const CardFilmDetails:FC<{data: IFilm}> = ({data}) => {
@@ -27,9 +27,9 @@ export const CardFilmDetails:FC<{data: IFilm}> = ({data}) => {
     return (
         <Box style={{ width: '100%', height: '100%', display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-between'}}>
             <Container style={{ padding: '10px', width: '100%' }}>
-                        <Typography variant="caption" component="p">{title || name}</Typography>
+                <Typography variant="caption" component="p">{title || name}</Typography>
             </Container>
-            <Grid style={{ width: '100%', height: '100%', padding: '0px 10px 30px 10px'}} flexWrap="nowrap" flexDirection="column" justifyContent="flex-end" alignItems="stretch" container spacing={2}>
+            <Grid style={{ backgroundColor: '#19191940',width: '100%', height: '100%', padding: '0px 10px 30px 10px'}} flexWrap="nowrap" flexDirection="column" justifyContent="flex-end" alignItems="stretch" container spacing={2}>
                 <Grid item>
                     <Grid container display="flex" flexDirection="row" justifyContent='space-between' alignItems="center" flexWrap="nowrap">
                         <Grid item>
@@ -43,7 +43,7 @@ export const CardFilmDetails:FC<{data: IFilm}> = ({data}) => {
                         </Grid>
                     </Grid>
                     <Grid container display="flex" flexDirection="row" justifyContent='space-between' alignItems="center" flexWrap="nowrap">
-                        <Paper style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Paper style={{ display: 'flex', justifyContent: 'center',  }}>
                             <Typography variant="caption" style={{ padding: '0px 4px 0px 4px' }}>
                                 {original_language?.toUpperCase()}
                             </Typography>
@@ -54,6 +54,7 @@ export const CardFilmDetails:FC<{data: IFilm}> = ({data}) => {
                                 +18
                             </Typography>)}
                         </Paper>
+                    
                         <IconButton size="small">
                             <NavigateNextIcon fontSize="small" />
                         </IconButton>

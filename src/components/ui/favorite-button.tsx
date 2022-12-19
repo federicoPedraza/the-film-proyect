@@ -1,4 +1,5 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import useSession from '../../store';
 import { UIStyles } from '../../theme/globalStyles';
 
 export interface IFavoriteButton {
@@ -7,6 +8,7 @@ export interface IFavoriteButton {
 }
 
 export const FavoriteButton = ({active, favoriteFn}: IFavoriteButton) => {
+    const { session_id } = useSession()
     const { favoriteHearthFilled, favoriteHearth } = UIStyles()
     return <FavoriteIcon 
     fontSize='large'

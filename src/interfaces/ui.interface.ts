@@ -48,4 +48,6 @@ export interface CallToAction {
     subtitle: string;
     redirect: string;
     redirectMessage: string;
+    onClickFn?: ()=>void;
+    onClickMessage?: string;
 }

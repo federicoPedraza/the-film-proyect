@@ -1,23 +1,18 @@
-
-import { Grid, Box, Paper } from '@material-ui/core';
+import { Grid, Box } from '@material-ui/core';
 import { FC } from "react";
-import { BoxProps } from '@material-ui/core/Box';
 import { Outlet } from "react-router-dom";
 import { Menu } from "./Menu";
 
 const ProfileLayout: FC<{}> = () => {
-  return <Grid 
-  container 
-  direction='row' 
-  justifyContent='space-around' 
-  alignItems='center'
-  >
-      <Paper>
+  return (
+    <Grid style={{marginTop:'5rem'}}container direction="row" justifyContent="space-around" alignItems="center">
+      <Grid xs={3} style={{ height: '70vh' }}>
         <Menu />
-      </Paper>
-      <Paper>
+      </Grid>
+      <Grid xs={8} style={{ height: '70vh' }}>
         <Outlet />
-      </Paper>
-  </Grid>
+      </Grid>
+    </Grid>
+  );
 };
-export default ProfileLayout
+export default ProfileLayout;

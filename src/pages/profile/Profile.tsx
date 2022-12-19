@@ -16,12 +16,12 @@ const Profile: FC = () => {
         avatar,
     } = userData
     const cellInfo: Record<string, string | number | boolean | undefined>[] = [
-        { title: 'Usuario TMdb', value: username },
+        { title: 'TMdb username', value: username },
         { title: 'TMdb ID', value: id },
-        { title: 'Nombre real', value: name || 'Desconocido' },
-        { title: 'País', value: country || 'Pais no establecido'  },
-        { title: 'Lenguaje', value: language || 'Lenguaje no establecido' },
-        { title: 'Apto +18', value: include_adult ? 'Si' : 'No' },
+        { title: 'Real name', value: name || 'Not configurated' },
+        { title: 'Country', value: country || 'Unknown country'  },
+        { title: 'Language', value: language || 'Language not configurated' },
+        { title: '+18 visible', value: include_adult ? 'Yes' : 'No' },
     ]
     return (
         <Paper>
