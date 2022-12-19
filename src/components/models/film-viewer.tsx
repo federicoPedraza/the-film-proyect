@@ -4,7 +4,7 @@ import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
 import { UIStyles } from "../../theme/globalStyles";
-import { SIMPLIFIED_FILM_RANGE, sortByDate, sortByPopularity } from "../../utils/film-helper";
+import { applyOptions, SIMPLIFIED_FILM_RANGE, sortByDate, sortByPopularity } from "../../utils/film-helper";
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import { Film } from "./film";
 import { FilmViewerSimplified } from "./film-viewer-simplified";
@@ -18,18 +18,7 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     //Filtering and sorting
     useEffect(() => {
         if (options && films) {
-            let _films = films;
-            if ((options?.media ?? 'all') !== 'all')  {
-                _films = _films?.filter((film) => film.media_type == options?.media);
-            }
-    
-            if (options?.sortByPopularity)
-                _films = sortByPopularity(_films);
-
-            if (options?.sortByDate)
-                _films = sortByDate(_films);
-            
-            setFilmsToShow(_films);
+            setFilmsToShow(applyOptions(options, films));
         } else {
             setFilmsToShow(films);
         }

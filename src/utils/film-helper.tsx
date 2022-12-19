@@ -1,4 +1,6 @@
+import { IFilmViewerOptions } from "../interfaces/film-viewer-options.interface";
 import { IFilm } from "../interfaces/film.interface";
+import { IGenre } from "../interfaces/genre.interface";
 
 export const getImage = (posterUrl?: string) => {
     if ( !posterUrl ){
@@ -17,6 +19,22 @@ export const sortByPopularity = (films: IFilm[] | null): IFilm[] => {
         const bPop = b.popularity || 0;
         return bPop - aPop
     });
+}
+
+export const applyOptions = (options: IFilmViewerOptions, films: IFilm[]): IFilm[] => {
+    let _films = films;
+    
+    if ((options?.media ?? 'all') !== 'all')  {
+        _films = _films?.filter((film) => film.media_type == options?.media);
+    }
+
+    if (options?.sortByPopularity)
+        _films = sortByPopularity(_films);
+
+    if (options?.sortByDate)
+        _films = sortByDate(_films);
+
+    return _films;
 }
 
 export const SCROLLCAP_PER_REINFORCMENT = 200;

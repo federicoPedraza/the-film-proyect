@@ -25,7 +25,7 @@ export const CardFilmDetails:FC<{data: IFilm}> = ({data}) => {
     popularity,
     backdrop_path } = data;
     return (
-        <Box style={{ width: '100%', height: '80%', display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-between'}}>
+        <Box style={{ width: '100%', height: '100%', display: 'flex', flexWrap: 'nowrap', flexDirection: 'column', justifyContent: 'space-between'}}>
             <Container style={{ padding: '10px', width: '100%' }}>
                         <Typography variant="caption" component="p">{title || name}</Typography>
             </Container>

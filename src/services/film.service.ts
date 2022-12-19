@@ -67,7 +67,6 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
 export async function getDiscoverMovies(gnres?: string[]): Promise<IFilm[]> {
     const joinedGnres = gnres?.join(',');
     const url = `/discover/movie?api_key=${API_KEY}${gnres ? `&with_genres=${joinedGnres}` : ''}` ;
-    console.log(url);
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results);
@@ -77,9 +76,9 @@ export async function getDiscoverMovies(gnres?: string[]): Promise<IFilm[]> {
     }
 }
 
-export async function getDiscoverTVShows(): Promise<IFilm[]> {
-    const url = `/discover/tv?api_key=${API_KEY}`;
-
+export async function getDiscoverTVShows(gnres?: string[]): Promise<IFilm[]> {
+    const joinedGnres = gnres?.join(',');
+    const url = `/discover/tv?api_key=${API_KEY}${gnres ? `&with_genres=${joinedGnres}` : ''}` ;
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results);

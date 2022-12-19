@@ -1,3 +1,5 @@
+import { Typography } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import { Box } from "@mui/material";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { FilmViewer } from "../components/models/film-viewer";
@@ -16,26 +18,49 @@ const Welcome: FC<{}> = () => {
   const [searchValue, setSearchValue] = useState<string>('');
   
   const [filmCarrousel, setFilmCarrousel] = useState<IFilmViewer[]>([]);
-  
-  const [trendingFilms, setTrendingFilms] = useState<IFilm[]>([]);
-  const [discoverMovies, setDiscoverMovies] = useState<IFilm[]>([]);
-  const [discoverTVShows, setDiscoverTVShows] = useState<IFilm[]>([]);
 
-  const [ genres, setGenres ] = useState<IGenre[]>([]);
+  const [ displayedGenres, setDisplayedGenres ] = useState<IGenre[]>([]);
 
   const handleInitialCall = async () => {
     const _trendingFilms = await getTrendingFilms();
     const _discoverMovies = await getDiscoverMovies();
     const _discoverTVShows = await getDiscoverTVShows();
-    const _genres = await getMovieGenresList();
 
-    setGenres(_genres);
-    setTrendingFilms(_trendingFilms);
-    setDiscoverMovies(_discoverMovies);
-    setDiscoverTVShows(_discoverTVShows);
+    const _newFilms = await getNewFilmViewers(2);
+    setFilmCarrousel([
+      { films: _trendingFilms, label: "Trending" },
+      { films: _discoverMovies, label: "Movies" },
+      { films: _discoverTVShows, label: "TV Shows" },
+      ..._newFilms
+    ])
 
     setFilterValue(MediaType.All);
   } 
+
+  const getNewFilmViewers = async (amount: number): Promise<IFilmViewer[]>  => {
+      const genres = await getMovieGenresList();
+      const availableGenres = genres.filter((genre) => !displayedGenres.includes(genre) );
+      const promises = ([
+        Array.from({ length: amount }, () => {
+            const randomGenre = availableGenres[Math.floor(Math.random() * availableGenres.length)];
+            setDisplayedGenres([...displayedGenres, randomGenre]);
+            return getDiscoverMovies([randomGenre.id?.toString() || '0']).then(films => ({
+              films, label: `${randomGenre.name} movies`, genre: randomGenre, media_type: MediaType.Movie
+            }))
+        }),
+        Array.from({ length: amount }, () => {
+          const randomGenre = availableGenres[Math.floor(Math.random() * availableGenres.length)];
+          setDisplayedGenres([...displayedGenres, randomGenre]);
+          return getDiscoverTVShows([randomGenre.id?.toString() || '0']).then(films => ({
+            films, label: `${randomGenre.name} tv shows`, genre: randomGenre, media_type: MediaType.TV
+          }))
+        }),
+      ]).flat();
+
+      const newFilms = await Promise.all(promises);
+      
+      return newFilms as IFilmViewer[];
+  }
 
   //Filter
   const handleFilterChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -76,12 +101,15 @@ const Welcome: FC<{}> = () => {
   */
 
   useEffect(() => {
-    setFilmCarrousel([ 
-      { label: "Trendings", films: trendingFilms, options: { media: filterValue }},  
-      { label: "Latests movies", films: discoverMovies, options: { media: filterValue } },  
-      { label: "Latests tv shows", films: discoverTVShows, options: { media: filterValue } },
-    ]);
-  }, [filterValue])
+    const updatedCarrousel = filmCarrousel.map((film) => {
+      return {
+        ...film,
+        options: { media: filterValue}
+      };      
+    });
+
+    setFilmCarrousel(updatedCarrousel);
+  }, [filterValue]);
 
   useEffect(() => {
     handleInitialCall();
@@ -92,7 +120,7 @@ const Welcome: FC<{}> = () => {
       <SearchField onSearchChange={handleSearchChange} />
       <HomeFilterField onFilterChange={handleFilterChange} />
       {(isSearching) ? (
-        <FilmViewerExtended alternativeLabel={`No results found (${ searchValue })`} label={`Searched: (${ searchValue })`} films={searchedFilms} />
+        <FilmViewerExtended alternativeLabel={`No results found (${ searchValue })`} label={`Searched: (${ searchValue })`} films={searchedFilms} options={ { media: filterValue } } />
       ) : (
         <Box>
           {(filmCarrousel.map((filmViewers, index) => {
