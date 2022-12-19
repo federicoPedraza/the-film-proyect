@@ -1,5 +1,5 @@
-import { IFilm } from "../interfaces/film.interface";
-import { GetTrendingResponse, HttpMethod } from "../interfaces/services/rest.interface";
+import { IFilm, MediaType } from "../interfaces/film.interface";
+import { GetFilmsResponse, HttpMethod } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
 
 export function mapFilmResults(results: []) {
@@ -28,12 +28,23 @@ export function mapFilmResults(results: []) {
     return films;
 }
 
+export async function getFilmsByName(searchValue: string): Promise<IFilm[]> {
+    const apiKey = process.env.REACT_APP_API_V3_AUTH;
+    const url = `/search/multi?api_key=${apiKey}&query=${searchValue}`;
+    try {
+        const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
+        return mapFilmResults(response.data.results);
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
 export async function getTrendingFilms(): Promise<IFilm[]> {
     const apiKey = process.env.REACT_APP_API_V3_AUTH;
     const url = `/trending/all/week?api_key=${apiKey}`;
     try {
-        const response = await rest<GetTrendingResponse>(HttpMethod.GET, url);
-        console.log(response)
+        const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results)
             .sort((a, b) => {
                 const aPop = a.popularity || 0;
@@ -52,7 +63,7 @@ export async function getDiscoverMovies(): Promise<IFilm[]> {
     const url = `/discover/movie?api_key=${apiKey}`;
 
     try {
-        const response = await rest<GetTrendingResponse>(HttpMethod.GET, url);
+        const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results);
     } catch (error) {
         console.error(error);
@@ -65,7 +76,7 @@ export async function getDiscoverTVShows(): Promise<IFilm[]> {
     const url = `/discover/tv?api_key=${apiKey}`;
 
     try {
-        const response = await rest<GetTrendingResponse>(HttpMethod.GET, url);
+        const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results);
     } catch (error) {
         console.error(error);

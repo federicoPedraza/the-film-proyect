@@ -1,6 +1,6 @@
 import { createTheme, makeStyles } from '@material-ui/core/styles'
 
-export const Theme = createTheme({
+export const tfpTheme = createTheme({
     typography: {
         fontFamily: 'Rubik'
     },
@@ -10,18 +10,37 @@ export const Theme = createTheme({
             default: '#363537'
         },
         primary: {
-            main: '#FFFAFF',
-        },
-        secondary: {
-            main: '#BA1F33'
+            main: '#BA1F33',
+            contrastText: '#FFFAFF',
         }
     }
 })
 
 export const GlobalStyles = makeStyles({
     body: {
-        color: Theme.palette.primary.main,
-        backgroundColor: Theme.palette.primary.dark
+        color: tfpTheme.palette.primary.contrastText,
+        backgroundColor: tfpTheme.palette.primary.main
+    },
+
+    error404Container: {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "400px",
+        width: "400px",
+    },
+
+    error404Card: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "space-evenly",
+        flexDirection: "column",
+        alignItems: "center",
     }
 });
 
@@ -40,7 +59,7 @@ export const HeroStyle = makeStyles({
 
 export const CardStyles = makeStyles({
     card: {
-        backgroundColor: Theme.palette.secondary.main,
+        backgroundColor: tfpTheme.palette.background,
         width: 120, 
         height: 180,
         transition: "transform 2s, height 2s",
@@ -60,8 +79,7 @@ export const CardStyles = makeStyles({
         }
     },
     cardContent: {
-        backgroundColor: Theme.palette.secondary.main,
-
+        backgroundColor: tfpTheme.palette.background,
     },
     cardMedia: {
         height: "100%",
@@ -114,12 +132,11 @@ export const UIStyles = makeStyles({
         overflowX: "scroll",
         overflowY: "hidden",
         '&::-webkit-scrollbar': {
-            width: '10px',
-            height: '14px'
+            height: '12px'
         },
         '&::-webkit-scrollbar-thumb': {
-            borderRadius: '30px',
-            background: 'linear-gradient(to top, red, rgba(255,0,0,0.5), rgba(255,0,0,0.25), transparent)'
+            borderRadius: '20px',
+            background: '#BA1F33'
         }
     },
     
@@ -146,15 +163,17 @@ export const UIStyles = makeStyles({
 
     //Search
     searchContainer: {
-        color: Theme.palette.primary.main,
+        color: tfpTheme.palette.primary.contrastText,
+        height: '48px',
+        marginBottom: '12px'
     },
     
     //UI
     button: {
         '&:hover': {
             opacity: 0.8,
-            color: Theme.palette.primary.main,
-            backgroundColor: Theme.palette.primary.dark
+            color: tfpTheme.palette.primary.contrastText,
+            backgroundColor: tfpTheme.palette.background
         }
     },
 
@@ -176,8 +195,7 @@ export const UIStyles = makeStyles({
     },
 
     pageHeader: {
-        letterSpacing: '0px',
-        wordSpacing: '-5px',
+        borderRadius: '25px'
     },
 
     //Login
@@ -194,6 +212,6 @@ export const UIStyles = makeStyles({
     },
 
     input: {
-        marginBottom: Theme.spacing(2),
+        marginBottom: tfpTheme.spacing(2),
     },
 });

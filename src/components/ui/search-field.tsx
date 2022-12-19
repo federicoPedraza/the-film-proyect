@@ -1,29 +1,30 @@
 import { useState } from "react";
 import { UIStyles } from "../../theme/globalStyles"
-import { FormControl, Input } from "@material-ui/core";
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, Input, InputAdornment, Paper } from "@material-ui/core";
 
-export const Search = (props: any) => {
+export interface ISearchField {
+    onSearchChange: any | null;
+} 
+
+export const SearchField = (props: ISearchField) => {
+    const { onSearchChange } = props;
     const { searchContainer } = UIStyles();
-    const [ searchValue, setSearchValue ] = useState('');
-    
-    const handleSearchInputChange = (event: any) => {
-        setSearchValue(event.target.value);
-        if (event.target.value.length >= 3) {
-            props.onSearch(event.target.value);
-        }
-    }
 
     return (
-        <FormControl className={searchContainer}>
-            <Input
-                color="primary"
-                defaultValue=''
-                fullWidth
-                type="search"
-                onChange={handleSearchInputChange}
-                value={searchValue}
-                id="search-element"
-                />
-        </FormControl>
+        <Paper variant="elevation" elevation={15} className={searchContainer}>
+            <Input 
+                style={{ height: '100%'}}
+                fullWidth 
+                type="text" 
+                placeholder="Search movies or TV shows"
+                startAdornment={(
+                    <InputAdornment position="start">
+                        <SearchIcon sx={{ marginLeft: '14px' }} fontSize="small" />
+                    </InputAdornment>
+                )}   
+                onChange={onSearchChange} 
+             />
+        </Paper>
     )
 }

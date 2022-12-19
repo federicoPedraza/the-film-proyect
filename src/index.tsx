@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
-import { Theme } from './theme/globalStyles';
+import { tfpTheme } from './theme/globalStyles';
 
 
 // worker.start()
@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={Theme}>
+    <ThemeProvider theme={tfpTheme}>
         <CssBaseline />
         <App />
     </ThemeProvider>
