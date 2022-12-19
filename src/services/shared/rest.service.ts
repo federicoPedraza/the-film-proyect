@@ -11,7 +11,7 @@ export async function rest<T>(
   headers?: Record<string, string>,
   data?: any
 ): Promise<ApiResponse<T>> {
-  const fullUrl = `${BASE_URL}${url}`
+  const fullUrl = `https://api.themoviedb.org/3/${url}`
   try {
     const response: AxiosResponse<T> = await axios({
       method,
