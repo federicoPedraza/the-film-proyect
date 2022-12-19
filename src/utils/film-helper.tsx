@@ -16,8 +16,8 @@ export const sortByPopularity = (films: IFilm[] | null): IFilm[] => {
     });
 }
 
+export const SCROLLCAP_PER_REINFORCMENT = 200;
 export const POPULAR_THRESHOLD = 4000;
-
 export const SIMPLIFIED_FILM_RANGE = [ 0, 5 ]
 
 export const isFilmPopular = (popularity?: number): boolean => (popularity || 0) > POPULAR_THRESHOLD;

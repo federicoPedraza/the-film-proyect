@@ -6,7 +6,8 @@ import { HomeFilterField } from "../components/ui/home-filter-field";
 import { SearchField } from "../components/ui/search-field";
 import { IFilmViewer } from "../interfaces/film-viewer.interface";
 import { IFilm, MediaType } from "../interfaces/film.interface";
-import { getDiscoverMovies, getDiscoverTVShows, getFilmsByName, getTrendingFilms } from "../services/film.service";
+import { IGenre } from "../interfaces/genre.interface";
+import { getDiscoverMovies, getDiscoverTVShows, getFilmsByName, getMovieGenresList, getTrendingFilms } from "../services/film.service";
 
 const Welcome: FC<{}> = () => {
   const [filterValue, setFilterValue] = useState<MediaType | null>(null);
@@ -20,11 +21,15 @@ const Welcome: FC<{}> = () => {
   const [discoverMovies, setDiscoverMovies] = useState<IFilm[]>([]);
   const [discoverTVShows, setDiscoverTVShows] = useState<IFilm[]>([]);
 
+  const [ genres, setGenres ] = useState<IGenre[]>([]);
+
   const handleInitialCall = async () => {
     const _trendingFilms = await getTrendingFilms();
     const _discoverMovies = await getDiscoverMovies();
     const _discoverTVShows = await getDiscoverTVShows();
+    const _genres = await getMovieGenresList();
 
+    setGenres(_genres);
     setTrendingFilms(_trendingFilms);
     setDiscoverMovies(_discoverMovies);
     setDiscoverTVShows(_discoverTVShows);

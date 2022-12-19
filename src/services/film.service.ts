@@ -2,6 +2,7 @@ import { IFilm, MediaType } from "../interfaces/film.interface";
 import { sortByPopularity } from "../utils/film-helper";
 import { ApiResponse, GetFilmsResponse, HttpMethod, PaginatedResponse } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
+import { IGenre } from "../interfaces/genre.interface";
 const API_KEY = process.env.REACT_APP_API_V3_AUTH;
 
 export function mapFilmResults(results: IFilm[]) {
@@ -63,9 +64,10 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
     }
 }
 
-export async function getDiscoverMovies(): Promise<IFilm[]> {
-    const url = `/discover/movie?api_key=${API_KEY}`;
-
+export async function getDiscoverMovies(gnres?: string[]): Promise<IFilm[]> {
+    const joinedGnres = gnres?.join(',');
+    const url = `/discover/movie?api_key=${API_KEY}${gnres ? `&with_genres=${joinedGnres}` : ''}` ;
+    console.log(url);
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results);
@@ -81,6 +83,18 @@ export async function getDiscoverTVShows(): Promise<IFilm[]> {
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results);
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+export async function getMovieGenresList(): Promise<IGenre[]> {
+    const url = `/genre/movie/list?api_key=${API_KEY}`;
+
+    try {
+        const response = await rest<any>(HttpMethod.GET, url);
+        return response.data.genres;
     } catch (error) {
         console.error(error);
         return [];
