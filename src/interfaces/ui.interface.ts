@@ -42,3 +42,10 @@ export interface DialogInterface {
 export interface IHomeFilterField {
     onFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
 } 
+
+export interface CallToAction {
+    title: string;
+    subtitle: string;
+    redirect: string;
+    redirectMessage: string;
+}

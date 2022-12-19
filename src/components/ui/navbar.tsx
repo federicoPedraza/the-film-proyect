@@ -21,40 +21,15 @@ const Navbar: FC<{}> = ({ }) => {
 
   const options:Record<string,string>[] = avatar ? loggedOptions : unloggedOptions
 
-  const handleButtonClick = (route: string) => {
-    navigate(route);
-  };
-
   return (
     <AppBar style={{ zIndex: "99" }} position="static" elevation={20} color="primary">
       <Toolbar className={appBar}>
-        <Button className={pageHeader} variant="contained" href="/">
+        <Button className={pageHeader} variant="contained" onClick={()=>navigate('/')}>
           <Typography noWrap variant="h4" component="h1">
             The Film Project
           </Typography>
         </Button>
 
-        <ButtonGroup size="large" variant="text" className={appBarButtons}>
-
-          <Button
-            className={button}
-            onClick={() => handleButtonClick('')}
-          >
-            Home
-          </Button>
-          <Button
-            className={button}
-            onClick={() => handleButtonClick('movies')}
-          >
-            Movies
-          </Button>
-          <Button
-            className={button}
-            onClick={() => handleButtonClick('shows')}
-          >
-            TV
-          </Button>
-        </ButtonGroup>
         <div>
             <AvatarMenu
               avatar={avatarElement} 

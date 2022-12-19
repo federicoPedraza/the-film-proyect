@@ -3,50 +3,62 @@ import RequestTokenLoader from "../components/preloaders/RequestToken";
 import useSession from "../store";
 import { login } from "../services/authentication.service";
 import { AuthFailure } from "../interfaces/services/rest.interface";
+import { CallToAction } from "../components/ui/call-to-action";
 
 const Authorize: FC<{}> = () => {
   const params = new URLSearchParams(window.location.search);
   const approved = params.get('approved') || false;
+  const [loading, setLoading] = useState<boolean>(true)
   const requestToken = params.get('request_token') || 'invalid';
-  const [cecion, setCecion] = useState<string>('')
   const [failure, setFailure ] = useState<AuthFailure>({
     failure: false,
     status_code: 0,
     status_message: '',
     success: false
   })
+  const [operationResult, setOperationResult ] = useState<boolean | undefined>()
 
-  const { setSession } = useSession();
-  const initialStep = (approved && requestToken) ? 1 : 0
+  const { session_id, setSession } = useSession();
 
   const handleApproved = async() => {
       const loginResult = await login(requestToken)
       if ( loginResult.success ){
         setSession(loginResult.session_id, 'never')
-        setCecion(loginResult.session_id)
+        setOperationResult(Boolean(loginResult.session_id))
       }
+      setLoading(false)
   }
 
 
   useEffect(()=>{
     if (approved && requestToken){
-      console.log('ainda bem')
      handleApproved()
     } 
   },[requestToken,approved])
-
-  const [currentStep, setCurrentStep] = useState<number>(initialStep);
-  const steps:string[] = ["Conceda permisos", "Validar usuario", "Paso 3"];
-
-
+  if ( operationResult ){
+        return <CallToAction 
+        title='SUCCESS'
+        redirect='profile/overview'
+        subtitle='Your account was connected successfully'
+        redirectMessage='Profile'
+        />
+  }
   if ( !approved ){
     return <RequestTokenLoader/>
   }
 
-  return (
-    <> 
-    AUTORISO {cecion}
-    </>
-  );
+  if ( loading ){
+    <>Loading</>
+  }
+  if ( operationResult === false ) {
+    return ( <CallToAction 
+      title='FAILURE'
+      redirect='/'
+      subtitle='There was a problem while connecting your account. Try again later.'
+      redirectMessage='Return home'
+      />
+      );
+    }
+    return <></>
 };
 export default Authorize;

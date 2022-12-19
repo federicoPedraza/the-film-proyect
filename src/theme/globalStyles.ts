@@ -26,15 +26,11 @@ export const GlobalStyles = makeStyles({
         backgroundColor: 'none'
     },
     error404Container: {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
+        width: '100vw', // forgive me sweet Jesus
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         height: "400px",
-        width: "400px",
     },
 
     error404Card: {

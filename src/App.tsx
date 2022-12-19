@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Authorize, Layout, Welcome } from "./pages";
+import { Authorize, Details, Error404, Layout, Welcome } from "./pages";
 import { Lists, Profile, ProfileLayout } from "./pages/profile";
-import Details from "./pages/Details";
-import { Error404 } from "./pages/Error404";
 
 function App() {
   return (
