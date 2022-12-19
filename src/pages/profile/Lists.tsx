@@ -8,8 +8,8 @@ const Lists:FC<{}> = () => {
         return <>loading</>
     }
     return (<>
-    <FilmViewer films={favoriteMovies} label='Favorite movies'/>
-    <FilmViewer films={favoriteTV} label='Favorite shows'/>
+        <FilmViewer films={favoriteMovies} label='Favorite movies'/>
+        <FilmViewer films={favoriteTV} label='Favorite shows'/>
     </>)
 }
 

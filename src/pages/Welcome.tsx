@@ -6,11 +6,12 @@ import { SearchField } from "../components/ui/search-field";
 import { IFilmViewer } from "../interfaces/film-viewer.interface";
 import { IFilm, MediaType } from "../interfaces/film.interface";
 import { getDiscoverMovies, getDiscoverTVShows, getFilmsByName, getTrendingFilms } from "../services/film.service";
+import { useLists } from "../services/hooks/useLists";
 
 const Welcome: FC<{}> = () => {
   const [searchedFilms, setSearchedFilms] = useState<IFilm[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
-
+  const { favoriteMovies, favoriteTV, loading } = useLists();
   const [filmCarrousel, setFilmCarrousel] = useState<IFilmViewer[]>([]);
 
   const handleInitialCall = async () => {
@@ -22,7 +23,6 @@ const Welcome: FC<{}> = () => {
       { label: "Trendings", films: _trendingFilms },  
       { label: "Latests movies", films: _discoverMovies },  
       { label: "Latests tv shows", films: _discoverTVShows, options: { } },
-      { label: "Hey", films: null },
     ]);
   } 
   
@@ -39,6 +39,14 @@ const Welcome: FC<{}> = () => {
     const matchingFilms = await getFilmsByName(searchValue);
     setSearchedFilms(matchingFilms);
   }
+
+  /*
+  useEffect(() => {
+    if (favoriteMovies.length > 0) {
+      setFilmCarrousel([...filmCarrousel, {  label: "Favorite movies", films: favoriteMovies }]);
+    }
+  }, [favoriteMovies]);
+  */
 
   useEffect(() => {
     handleInitialCall();
