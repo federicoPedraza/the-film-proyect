@@ -43,7 +43,8 @@ export async function getFavoriteFilms(account_id: number, session_id: string, f
     }
 }
 export async function getWatchlist(account_id: number, session_id: string, film_type: MediaType  ):Promise<ApiResponse<PaginatedResponse<IFilm>>>{
-    const url = `account/${account_id}/watchlist/${film_type}?api_key=${API_KEY}&session_id=${session_id}`;
+    const isMovie = film_type === 'tv' ? 'tv' : 'movies'
+    const url = `account/${account_id}/watchlist/${isMovie}?api_key=${API_KEY}&session_id=${session_id}`;
     try {
         const response = await rest<PaginatedResponse<IFilm>>(HttpMethod.GET, url);
         return response
