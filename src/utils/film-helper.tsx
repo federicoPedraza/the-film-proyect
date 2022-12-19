@@ -1,6 +1,6 @@
 import { IFilm } from "../interfaces/film.interface";
 
-export const getPoster = (posterUrl?: string) => {
+export const getImage = (posterUrl?: string) => {
     return `https://image.tmdb.org/t/p/w500${posterUrl}`;
 }
 

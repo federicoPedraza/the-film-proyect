@@ -1,21 +1,14 @@
-import { UIStyles } from '../../theme/globalStyles';
-import { IconButton } from '@material-ui/core';
-import { MouseEventHandler, useState } from 'react';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { UIStyles } from '../../theme/globalStyles';
 
 export interface IFavoriteButton {
-    active?: boolean;
-    filmId?: number;
-    onButtonClick?: MouseEventHandler;
+    active: boolean;
+    favoriteFn: () => Promise<void>;
 }
 
-export const FavoriteButton = (props: IFavoriteButton) => {
-    const { active, onButtonClick } = props; 
-
-    return (
-        <IconButton size="small" color="primary" onClick={onButtonClick}>
-           {active ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-        </IconButton>
-    )
+export const FavoriteButton = ({active, favoriteFn}: IFavoriteButton) => {
+    const { favoriteHearthFilled, favoriteHearth } = UIStyles()
+    return <FavoriteIcon 
+    className={active ? favoriteHearthFilled : favoriteHearth} 
+    onClick={favoriteFn} />
 };

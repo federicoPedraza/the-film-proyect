@@ -7,11 +7,6 @@ export const Rating: FC<{ rating?: number }> = ({ rating }) => {
         return null
     }
     return <Box sx={{ position: 'relative', display: 'inline-flex' }}>
-        <MUIRating name='user-rating' value={rating} readOnly/>
-            <Typography
-                variant="caption"
-                component="div"
-                color="secondary"
-            >{rating}</Typography>
+        <MUIRating name='user-rating' value={rating} max={10} readOnly/>
     </Box>
 }

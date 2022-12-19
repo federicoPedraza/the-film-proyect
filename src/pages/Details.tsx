@@ -2,31 +2,45 @@ import { Box } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CommentViewer } from "../components/models/comment-viewer";
-import { FilmViewer } from "../components/models/film-viewer";
-import { ReviewResults } from "../interfaces/details.interface";
-import { IFilm } from "../interfaces/film.interface";
-import { getDetailReviews } from "../services/details.service";
-import { getDiscoverMovies, getDiscoverTVShows, getTrendingFilms } from "../services/film.service";
+import { Hero as MovieHero } from "../components/ui/hero";
+
+import { DetailsInterface, ReviewResults } from "../interfaces/details.interface";
+import { ApiResponse } from "../interfaces/services/rest.interface";
+import { getDetailReviews, getFilmDetails } from "../services/details.service";
 
 const Details: FC<{}> = () => {
-  const [loadingReviews, setLoadingReviews] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [heroDetails, setHeroDetails ] = useState<DetailsInterface>(defaultDetail)
   const [reviews, setReviews] = useState<ReviewResults[]>([]);
-  const { movieId } = useParams()
+  const { film_id, film_type } = useParams()
+
   const handleInitialCall = async () => {
-    const reviews = await getDetailReviews(String(movieId));
-    setReviews(reviews)
-    setLoadingReviews(false)
+    const result:ApiResponse<DetailsInterface> = await getFilmDetails(String(film_id), film_type);
+    const { status, data } = result
+    if ( status === 200 ){
+      const { reviews } = data
+      if ( reviews?.results ){
+        setReviews(reviews?.results)
+        setHeroDetails(data)
+      }
+    }
+    setLoading(false)
   } 
 
   useEffect(() => {
-    if(movieId)
+    if(film_id)
     handleInitialCall();
   }, []);
 
   return (
-    <Box sx={{ margin: '30px' }}>
-      <CommentViewer comments={reviews} loading={loadingReviews} />
+    <Box sx={{ margin: '70px'}}>
+      <MovieHero details={heroDetails} />
+      <CommentViewer comments={reviews} loading={loading} />
     </Box>
   );
 };
 export default Details
+
+const defaultDetail = {
+  title: '',
+}

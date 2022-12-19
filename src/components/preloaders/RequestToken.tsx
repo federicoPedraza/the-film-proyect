@@ -28,7 +28,7 @@ const RequestTokenLoader: FC<{}> = () => {
   }
   return (
     <>
-      Se ha validado con éxito
+      
     </>
   );
 };

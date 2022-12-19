@@ -17,9 +17,9 @@ export const CommentViewer: FC<{comments:ReviewResults[], loading:boolean}> = ({
     }
 
     return (
-        <Paper elevation={20} className={commentViewerContainer} style={{ height: 240, zIndex: "-1" }}>
-           {comments.map((comment)=>{
-            return <Comment comment={comment} />
+        <Paper elevation={20} className={commentViewerContainer} >
+           {comments.map((comment, index)=>{
+            return <Comment comment={comment} key={`comment-container-${index}`} />
            })}
         </Paper>)
 }   

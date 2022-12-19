@@ -45,6 +45,19 @@ export const GlobalStyles = makeStyles({
     }
 });
 
+export const HeroStyle = makeStyles({
+    title: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        gap: '2rem',
+    },
+    progress: {
+        color: '#21D07A'
+    }
+})
+
+
 export const CardStyles = makeStyles({
     card: {
         backgroundColor: tfpTheme.palette.background,
@@ -92,6 +105,20 @@ export const FilmViewerStyles = makeStyles({
 });
 
 export const UIStyles = makeStyles({
+    //Chips
+    favoriteHearth:{
+        "&:hover":{
+            transition: 'color ease-in-out .3s',
+            color: '#ff0080'
+        }
+    },
+    favoriteHearthFilled:{
+        color: '#ff0080',
+        "&:hover":{
+            transition: 'color ease-in-out .3s',
+            color: '#fff'
+        }
+    },
     //Comment viewer
     commentViewerContainer: {
         padding: '8px'
