@@ -1,9 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Grid, Box, CardMedia, Typography, Divider, Paper } from '@material-ui/core';
 import { HeroComponent } from '../../interfaces/details.interface';
-import { HeroStyle, tfpTheme } from '../../theme/globalStyles';
-import moment from 'moment'
-import { ProgressWithText } from './progress';
+import { HeroStyle } from '../../theme/globalStyles';
 import Genres from './chips-container';
 import { useDetail } from '../../services/hooks/useDetail';
 import { FavoriteButton } from './favorite-button';
@@ -12,6 +10,7 @@ import { ButtonWithTooltip } from './tooltipped-button'
 import { Dialog } from './dialog';
 import  Confetti  from 'react-confetti';
 import { WatchProvider } from '../models/watchprovider';
+import ReactSound from 'react-sound';
 export const Hero: FC<HeroComponent> = ({ details }) => {
   const {
     genres,
@@ -24,22 +23,23 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
   const {
     accountOptions,
     getMedia,
-    loadingMedia,
     handleFavorite,
-    loadingFavorite,
     actions,
     streamingModalOpen,
     handleStreamingModalClose,
     providers,
-    loadingProviders,
     getProviders
   } = useDetail()
 
+  const [ soundStatus, setSoundStatus ] = useState<any>("STOPPED")
   const [ isGodPresent, setIsGodPresent ] = useState<boolean>(id === 213762)
 
   useEffect(()=>{
     setIsGodPresent( id === 213762 )
-  },[id])
+    if ( id=== 213762 ){
+      setSoundStatus("PLAYING")
+    }
+  },[id, handleFavorite])
 
 
   const { favorite, rated, watchlist } = accountOptions
@@ -51,7 +51,7 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
 
   return (
     <Paper elevation={20} style={{ padding: '5px', overflowX: 'hidden' }}>
-      {isGodPresent && <Confetti colors={['#87CEEB', '#FFFFFF']} /> }
+      {isGodPresent && <><Confetti width={800} colors={['#87CEEB', '#FFFFFF']} /><ReactSound url='/song.mp3' playStatus={soundStatus}/></>}
       <Grid container style={{ margin: '10px', display: 'flex', flexDirection:'row'}}>
         <Grid item xs={11} md={3}>
           <Box>

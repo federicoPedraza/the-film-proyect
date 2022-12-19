@@ -1,9 +1,9 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@material-ui/core";
+import { Box, Card, CardMedia } from "@material-ui/core";
 import { FC, useState } from "react";
-import { matchPath, useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
-import { CardStyles, tfpTheme } from "../../theme/globalStyles";
-import { getImage, isFilmPopular, POPULAR_THRESHOLD } from "../../utils/film-helper";
+import { CardStyles } from "../../theme/globalStyles";
+import { getImage, isFilmPopular } from "../../utils/film-helper";
 import { CardFilmDetails } from "./card-film-details";
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 
@@ -26,12 +26,12 @@ export const Film : FC<{data: IFilm}> = ({data}) => {
     popularity,
     backdrop_path,
 } = data;
-  const location = useLocation();
     const [showInfo, setShowInfo] = useState(false);
     const { card, cardContent, cardMediaHover, cardMedia } = CardStyles();
     const navigate = useNavigate()
     const enterDetail = () =>{
-        navigate(`details/${media_type}/${id}`)
+       const _media_type = media_type ? media_type : ((title != null ? 'movie' : 'tv'))
+        navigate(`/details/${_media_type}/${id}`, { replace: true })
     }
     
     const handleMouseEnter = () => {
