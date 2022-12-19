@@ -14,6 +14,7 @@ Este proyecto se basa en el desarrollo de una aplicación web en torno a pelicul
 * Accede a la aplicación en: http://localhost:3000
 
 Puedes crear y vincular tu cuenta de [TMDB](https://www.themoviedb.org/) para acceder a más funciones.
+Aplicación deployada en: https://golball-brunompedraza.vercel.app/
 
 # Dependencias
 -   `react`: Una librería de JavaScript para crear interfaces de usuario.
