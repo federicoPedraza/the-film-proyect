@@ -29,8 +29,6 @@ export const Film : FC<{data: IFilm}> = ({data}) => {
     const [showInfo, setShowInfo] = useState(false);
     const { card, cardContent, cardMediaHover, cardMedia } = CardStyles();
     const navigate = useNavigate()
-    const header = title || name || original_title
-
     const enterDetail = () =>{
         navigate(`details/${media_type}/${id}`)
     }

@@ -21,9 +21,9 @@ export const Menu: FC = () => {
 }
 
 const tabs = [
-    { label: 'Mi perfil', path: 'overview' },
-    { label: 'Mis listas', path: 'lists' },
-    { label: 'Preferencias', path: 'preferences' },
+    { label: 'Overview', path: 'overview' },
+    { label: 'Lists', path: 'lists' },
+    { label: 'Settings', path: 'preferences' },
     { label: 'Ratings', path: 'ratings' },
-    { label: 'Cerrar sesión', path: 'logout' },
+    { label: 'Logout', path: 'logout' },
   ];

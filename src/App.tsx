@@ -1,7 +1,5 @@
-import { BrowserRouter as Router, Outlet, Route, Routes } from "react-router-dom";
-import { OnboardingLayout } from "./pages/onboarding";
-import { Authorize, Welcome } from "./pages";
-import Navbar from "./components/ui/navbar";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Authorize, Layout, Welcome } from "./pages";
 import { Lists, Profile, ProfileLayout } from "./pages/profile";
 import Details from "./pages/Details";
 import { Error404 } from "./pages/Error404";
@@ -10,10 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route element={<>
-            <Navbar />
-            <Outlet /> 
-          </>}>
+        <Route element={<Layout/>}>
           <Route path="/" element={<Welcome />} />
           <Route path="authorize" element={<Authorize />} />
           <Route path="profile/*" element={<ProfileLayout/>}>

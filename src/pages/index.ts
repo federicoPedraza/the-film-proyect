@@ -1,3 +1,4 @@
 import Authorize from './Authorize'
 import Welcome from './Welcome'
-export { Authorize, Welcome }
+import Layout from './Layout'
+export { Authorize, Welcome, Layout }

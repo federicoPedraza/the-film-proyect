@@ -15,7 +15,7 @@ const Details: FC<{}> = () => {
   const { film_id, film_type } = useParams()
 
   const handleInitialCall = async () => {
-    const result:ApiResponse<DetailsInterface> = await getFilmDetails(String(film_id), film_type);
+    const result:ApiResponse<DetailsInterface> = await getFilmDetails(Number(film_id), film_type);
     const { status, data } = result
     if ( status === 200 ){
       const { reviews } = data

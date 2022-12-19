@@ -75,7 +75,6 @@ const unloggedOptions:Record<string,string>[] = [
 ]
 
 const loggedOptions:Record<string,string>[] = [
-  { title: 'Mi perfil', target: 'profile/overview'},
-  { title: 'Mis listas', target: 'profile/lists'},
-  { title: 'Cerrar sesion', target: 'profile/logout'},
+  { title: 'Profile', target: 'profile/overview'},
+  { title: 'Logout', target: 'profile/logout'},
 ]

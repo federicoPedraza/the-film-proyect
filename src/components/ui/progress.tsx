@@ -10,7 +10,7 @@ export const ProgressWithText: FC<{ value: number }> = ({ value }) => {
                 <Typography
                     variant="caption"
                     component="div"
-                >IMdb popularity: {`${Math.round(value)}%`}</Typography>
+                ></Typography>
         </Box>
     )
 }

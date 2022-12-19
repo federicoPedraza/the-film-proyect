@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from "react";
+import { ReactElement, ReactNode, ChangeEvent } from "react";
 
 export interface SpeedDialMenu {
     actions: Actions[],
@@ -16,6 +16,11 @@ export interface ChipContainer {
     title: string
 }
 
+export interface BooleanOptions {
+    watchLater: boolean,
+    streaming: boolean;
+}
+
 export interface Genres {
     categories: {
         id?: number,
@@ -23,6 +28,17 @@ export interface Genres {
     }[]
 }
 
+export interface ButtonContainer {
+    icon: JSX.Element;
+    tooltipMessage: string;
+}
+
+export interface DialogInterface {
+    isOpen: boolean;
+    onOpen: ()=>void;
+    onClose: ()=>void;
+    content: ReactNode;
+}
 export interface IHomeFilterField {
     onFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
 } 
