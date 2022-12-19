@@ -98,9 +98,46 @@ export const CardStyles = makeStyles({
     }
 })
 
+export const SimplifiedCardStyles = makeStyles({
+    card: {
+        backgroundColor: tfpTheme.palette.background,
+        width: 400, 
+        height: 300,
+        position: "relative",
+        zIndex: "0",
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexWrap: 'nowrap',
+        alignItems: 'stretch'
+    },
+    cardContent: {
+        height: '100%',
+        width: '100%',
+        backgroundColor: tfpTheme.palette.primary.dark,
+    },
+    cardMedia: {
+    },
+})
+
 export const FilmViewerStyles = makeStyles({
     filmViewerSimplifiedContainer: {
-        
+        padding: "20px",
+        marginBottom: "30px",
+        display: "flex",
+        alignContent: "center",
+        justifyContent: 'space-evenly',
+        flexDirection: "row",
+        alignItems: "center",
+        flexWrap: "wrap",
+        overflowX: "scroll",
+        overflowY: "hidden",
+        '&::-webkit-scrollbar': {
+            height: '12px'
+        },
+        '&::-webkit-scrollbar-thumb': {
+            borderRadius: '20px',
+            background: '#BA1F33'
+        }
     }
 });
 

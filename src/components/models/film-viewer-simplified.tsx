@@ -1,35 +1,35 @@
-import { Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { Box, Grid, Skeleton } from "@mui/material";
 import { FC } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { FilmViewerStyles, UIStyles } from "../../theme/globalStyles";
 import { Film } from "./film";
+import { FilmSimplified } from "./film-simplified";
 
 export const FilmViewerSimplified: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label } = props;
-    const { filmViewerTitle, filmClass, filmViewer } = UIStyles();
     const { filmViewerSimplifiedContainer } = FilmViewerStyles();
+    const { filmViewerTitle, filmClass, filmViewer, filmViewerHeader } = UIStyles();
 
     return (
-        (!films ? 
-            <Box>
-                <Skeleton className={filmViewerSimplifiedContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
-            </Box> :
-        <Box className={filmViewerSimplifiedContainer} style={{ height: 240, zIndex: "-1" }}>
-            <Typography className={filmViewerTitle} variant="h5">{label}</Typography>
-            <div className={filmViewer}>
-                <Grid container spacing={4}>
-                    <Grid item xs>
-                        <Grid className={filmClass} container spacing={2} wrap="nowrap">
+        <Box className={filmViewerSimplifiedContainer} 
+        style={{ height: "400", zIndex: "-1" }}>
+            <Box className={filmViewerHeader}>
+                <Typography className={filmViewerTitle} variant="h5">{label?.toUpperCase()}</Typography>
+            </Box>
+            <Box className={filmViewer}>
+                <Grid container spacing={2} >
+                    <Grid item>
+                        <Grid className={filmClass} container spacing={5} wrap="nowrap">
                             {films?.map((film, index) => {
                                 return <Grid key={index} item>
-                                        <Film data={film}/>
+                                        <FilmSimplified data={film}/>
                                     </Grid>
                             })}
                         </Grid>
                     </Grid>
                 </Grid>
-            </div>
-        </Box>)
+            </Box>
+        </Box>
     );
 }   

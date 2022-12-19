@@ -19,10 +19,10 @@ export function useLists() {
         try {
             const { status, data } = await getFavoriteFilms(user_data?.id,session_id,media_type)
             if ( status === 200  && data.results){
-                if ( media_type === 'movies'){
+                if ( media_type === MediaType.Movie){
                     setFavoriteMovies(data.results)
                 }
-                if ( media_type === 'tv'){
+                if ( media_type === MediaType.TV){
                     setFavoriteTV(data.results)
                 }
             }

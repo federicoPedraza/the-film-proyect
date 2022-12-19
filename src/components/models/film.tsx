@@ -7,7 +7,7 @@ import { getImage, isFilmPopular, POPULAR_THRESHOLD } from "../../utils/film-hel
 import { CardFilmDetails } from "./card-film-details";
 import WhatshotIcon from '@mui/icons-material/Whatshot';
 
-export const Film:FC<{data: IFilm}> = ({data}) => {
+export const Film : FC<{data: IFilm}> = ({data}) => {
     const {
     poster_path,
     adult,
@@ -32,8 +32,7 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
     const header = title || name || original_title
 
     const enterDetail = () =>{
-        const alt_media_type = title ? 'movie' : 'tv'
-        navigate(`details/${media_type || alt_media_type}/${id}`)
+        navigate(`details/${media_type}/${id}`)
     }
     
     const handleMouseEnter = () => {

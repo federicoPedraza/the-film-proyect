@@ -7,6 +7,7 @@ const API_KEY = process.env.REACT_APP_API_V3_AUTH;
 export function mapFilmResults(results: IFilm[]) {
     const films = results.map((film: IFilm) => {
         const _poster_path = film.poster_path ? film.poster_path : film.backdrop_path;
+        const _media_type = film.media_type ? film.media_type : ((film.title != null ? MediaType.Movie : MediaType.TV))
         return {
             poster_path: _poster_path,
             adult: film.adult,
@@ -19,7 +20,7 @@ export function mapFilmResults(results: IFilm[]) {
             vote_average: film.vote_average,
             video: film.video,
             id: film.id,
-            media_type: film.media_type ,
+            media_type: _media_type ,
             title: film.title,
             name: film.name,
             backdrop_path: film.backdrop_path,

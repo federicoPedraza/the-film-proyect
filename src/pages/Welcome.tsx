@@ -1,31 +1,53 @@
 import { Box } from "@mui/material";
-import { FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { FilmViewer } from "../components/models/film-viewer";
 import { FilmViewerExtended } from "../components/models/film-viewer-extended";
+import { HomeFilterField } from "../components/ui/home-filter-field";
 import { SearchField } from "../components/ui/search-field";
 import { IFilmViewer } from "../interfaces/film-viewer.interface";
 import { IFilm, MediaType } from "../interfaces/film.interface";
 import { getDiscoverMovies, getDiscoverTVShows, getFilmsByName, getTrendingFilms } from "../services/film.service";
-import { useLists } from "../services/hooks/useLists";
 
 const Welcome: FC<{}> = () => {
+  const [filterValue, setFilterValue] = useState<MediaType | null>(null);
+
   const [searchedFilms, setSearchedFilms] = useState<IFilm[]>([]);
   const [searchValue, setSearchValue] = useState<string>('');
-  const { favoriteMovies, favoriteTV, loading } = useLists();
+  
   const [filmCarrousel, setFilmCarrousel] = useState<IFilmViewer[]>([]);
+  
+  const [trendingFilms, setTrendingFilms] = useState<IFilm[]>([]);
+  const [discoverMovies, setDiscoverMovies] = useState<IFilm[]>([]);
+  const [discoverTVShows, setDiscoverTVShows] = useState<IFilm[]>([]);
 
   const handleInitialCall = async () => {
     const _trendingFilms = await getTrendingFilms();
     const _discoverMovies = await getDiscoverMovies();
     const _discoverTVShows = await getDiscoverTVShows();
 
-    setFilmCarrousel([ 
-      { label: "Trendings", films: _trendingFilms },  
-      { label: "Latests movies", films: _discoverMovies },  
-      { label: "Latests tv shows", films: _discoverTVShows, options: { } },
-    ]);
+    setTrendingFilms(_trendingFilms);
+    setDiscoverMovies(_discoverMovies);
+    setDiscoverTVShows(_discoverTVShows);
+
+    setFilterValue(MediaType.All);
   } 
+
+  //Filter
+  const handleFilterChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    switch (event.target.defaultValue) {
+      case MediaType.Movie:
+        setFilterValue(MediaType.Movie);
+        break;
+      case MediaType.TV:
+        setFilterValue(MediaType.TV);
+        break;
+      default:
+        setFilterValue(null);
+        break;
+    }
+  }
   
+  //Search
   const minSearchValueLength = 2;
   const isSearching = searchValue.length > minSearchValueLength;
   const handleSearchChange = async (event: any) => {
@@ -49,12 +71,21 @@ const Welcome: FC<{}> = () => {
   */
 
   useEffect(() => {
+    setFilmCarrousel([ 
+      { label: "Trendings", films: trendingFilms, options: { media: filterValue }},  
+      { label: "Latests movies", films: discoverMovies, options: { media: filterValue } },  
+      { label: "Latests tv shows", films: discoverTVShows, options: { media: filterValue } },
+    ]);
+  }, [filterValue])
+
+  useEffect(() => {
     handleInitialCall();
   }, []);
 
   return (  
     <Box sx={{ margin: '30px' }}>
       <SearchField onSearchChange={handleSearchChange} />
+      <HomeFilterField onFilterChange={handleFilterChange} />
       {(isSearching) ? (
         <FilmViewerExtended alternativeLabel={`No results found (${ searchValue })`} label={`Searched: (${ searchValue })`} films={searchedFilms} />
       ) : (
