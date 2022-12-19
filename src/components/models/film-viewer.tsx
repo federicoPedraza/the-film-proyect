@@ -3,9 +3,8 @@ import { Box, Grid, Skeleton } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
-import { FilmViewerStyles, UIStyles } from "../../theme/globalStyles";
+import { FilmViewerStyles } from "../../theme/globalStyles";
 import { applyOptions, SIMPLIFIED_FILM_RANGE } from "../../utils/film-helper";
-import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import { Film } from "./film";
 import { FilmViewerSimplified } from "./film-viewer-simplified";
 import { AnimatePresence } from "framer-motion";
@@ -16,7 +15,8 @@ const MotionGrid = motion(Grid)
 export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label, options } = props;
     const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer, filmViewerHeader, filmViewerFilterButton } = FilmViewerStyles();
-    const [ filmsToShow, setFilmsToShow ] = useState<IFilm[] | null>([])
+    const [filmsToShow, setFilmsToShow] = useState<IFilm[] | null>([])
+    const [sortingVisible, setSortingVisible] = useState(false);
 
     //Filtering and sorting
     useEffect(() => {
@@ -46,17 +46,17 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
         const initialDelay = 0.2 + Math.random() * 1
         return films.map((film, index) => {
             return {
-            hidden: {
-                opacity: 0,
-            },
-            visible: {
-                opacity: 1,
-                transition: {
-                delay: index * 0.2 + initialDelay,
-                duration: 0.2,
-                ease: 'easeInOut'
+                hidden: {
+                    opacity: 0,
+                },
+                visible: {
+                    opacity: 1,
+                    transition: {
+                        delay: index * 0.2 + initialDelay,
+                        duration: 0.2,
+                        ease: 'easeInOut'
+                    }
                 }
-            }
             }
         })
     }
@@ -73,11 +73,11 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
                         <Grid className={filmClass} container spacing={2} wrap="nowrap">
                             <AnimatePresence>
 
-                            {filmsToShow?.map((film, index) => {
-                                return <MotionGrid key={index} item initial="hidden" animate="visible" variants={childrenVariants[index]}>
-                                        <Film data={film}/>
+                                {filmsToShow?.map((film, index) => {
+                                    return <MotionGrid key={index} item initial="hidden" animate="visible" variants={childrenVariants[index]}>
+                                        <Film data={film} />
                                     </MotionGrid>
-                            })}
+                                })}
                             </AnimatePresence>
                         </Grid>
                     </Grid>
@@ -90,7 +90,7 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
 export const FilmViewerSkeleton = () => {
     return (
         <Box style={{ height: "280px" }}>
-            <Skeleton className={FilmViewerStyles().filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
+            <Skeleton className={FilmViewerStyles().filmViewerContainer} variant="rectangular" sx={{ bgcolor: 'grey.900', height: "180px" }} />
         </Box>
     )
 }
