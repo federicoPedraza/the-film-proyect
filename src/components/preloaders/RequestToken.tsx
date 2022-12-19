@@ -43,7 +43,7 @@ const RequestTokenLoader: FC<{}> = () => {
   useEffect(() => {
     if (isSuccess && requestToken) {
       const delay = setTimeout(() => {
-        const url = `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=http://localhost:3000/authorize`
+        const url = `https://www.themoviedb.org/authenticate/${requestToken}?redirect_to=https://golball-brunompedraza.vercel.app/authorize`
         window.location.replace(url);
       }, 5000)
       return () => { clearTimeout(delay) }
