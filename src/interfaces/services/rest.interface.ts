@@ -23,7 +23,7 @@ export interface PaginatedResponse<T> {
   total_results?: number;
 }
 
-export interface GetTrendingResponse {
+export interface GetFilmsResponse {
   results: [],
   page: number,
   total_pages: number,
