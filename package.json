@@ -34,7 +34,6 @@
     "web-vitals": "^2.1.4",
     "zustand": "^4.1.5"
   },
-  "homepage": "https://federicopedraza.github.io/the-film-proyect/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
