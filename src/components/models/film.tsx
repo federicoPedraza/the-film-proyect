@@ -1,10 +1,10 @@
-import { CardMedia, Typography } from "@material-ui/core";
-import { Card, CardContent } from '@mui/material'
+import { Box, Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
-import { CardStyles } from "../../theme/globalStyles";
+import { CardStyles, tfpTheme } from "../../theme/globalStyles";
 import { getPoster } from "../../utils/film-helper";
+import { CardFilmDetails } from "./card-film-details";
 
 export const Film:FC<{data: IFilm}> = ({data}) => {
     const {
@@ -27,12 +27,12 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
 } = data;
     const [showInfo, setShowInfo] = useState(false);
     const { card, cardContent, cardMediaHover, cardMedia } = CardStyles();
-    const [backdrop, setBackdrop ] = useState()
     const navigate = useNavigate()
 
     const enterDetail = () =>{
         navigate(`details/${id}`)
     }
+    
     const handleMouseEnter = () => {
         setShowInfo(true);
     }
@@ -44,11 +44,9 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
     return (
         <Card onClick={enterDetail} className={card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <CardMedia className={showInfo ? cardMediaHover : cardMedia} component="img" image={getPoster(poster_path)} />
-            <CardContent className={cardContent} sx={{ backgroundColor: ' MI COLOR' }}>
-                <Typography variant="body1" align="center">
-                    {title || name || original_title } 
-                </Typography>
-            </CardContent>
+            <Box className={cardContent}>
+                <CardFilmDetails data={data} />
+            </Box>
         </Card>
     )
 };

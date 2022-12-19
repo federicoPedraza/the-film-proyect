@@ -55,9 +55,9 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
 
     return (
         <Paper onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}  elevation={20} className={filmViewerContainer} 
-        style={{ height: "280px", zIndex: "-1" }}>
+        style={{ height: "300px", zIndex: "-1" }}>
             <Box className={filmViewerHeader}>
-                <Typography className={filmViewerTitle} variant="h5">{label}</Typography>
+                <Typography className={filmViewerTitle} variant="h5">{label?.toUpperCase()}</Typography>
                 <Box style={{ visibility: sortingVisible ? "visible" : "hidden" }}>
                     <Fab size="small" className={filmViewerFilterButton}>
                         <FilterListRoundedIcon fontSize="small" />

@@ -7,11 +7,12 @@ export const tfpTheme = createTheme({
     palette: {
         type: 'dark',
         background: {
-            default: '#363537'
+            default: '#363537',
         },
         primary: {
             main: '#BA1F33',
             contrastText: '#FFFAFF',
+            dark: '#1D1C1D'
         }
     }
 })
@@ -47,26 +48,28 @@ export const GlobalStyles = makeStyles({
 export const CardStyles = makeStyles({
     card: {
         backgroundColor: tfpTheme.palette.background,
-        width: 120, 
-        height: 180,
-        transition: "transform 2s, height 2s",
-        transform: "scale(1)",
+        width: 140, 
+        height: 200,
+        transition: "transform .1s ease-in-out, translate .1s ease-in-out",
+        transform: "translate(0px, 0px) scale(1)",
         position: "relative",
         zIndex: "0",
             "img": {
                 "&:hover":{
                     scale: "1.5",
-
                 },
             },
         "&:hover": {
+            transform: "translate(0px, -20px) scale(1.3)",
             cursor:'pointer',
             position: "relative",
-            zIndex: "4",
+            zIndex: "99",
         }
     },
     cardContent: {
-        backgroundColor: tfpTheme.palette.background,
+        height: '100%',
+        width: '100%',
+        backgroundColor: tfpTheme.palette.primary.dark,
     },
     cardMedia: {
         height: "100%",
@@ -75,7 +78,7 @@ export const CardStyles = makeStyles({
         objectFit: "contain",
     },
     cardMediaHover: {
-        height: "65%",
+        height: "10%",
         width: "100%",
         transition: "height 0.1s",
         objectFit: "cover",
