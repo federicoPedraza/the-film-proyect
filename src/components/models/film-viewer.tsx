@@ -3,7 +3,7 @@ import { Box, Grid, Skeleton } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
-import { UIStyles } from "../../theme/globalStyles";
+import { FilmViewerStyles, UIStyles } from "../../theme/globalStyles";
 import { applyOptions, SIMPLIFIED_FILM_RANGE } from "../../utils/film-helper";
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import { Film } from "./film";
@@ -15,7 +15,7 @@ const MotionGrid = motion(Grid)
 
 export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label, options } = props;
-    const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer, filmViewerHeader, filmViewerFilterButton } = UIStyles();
+    const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer, filmViewerHeader, filmViewerFilterButton } = FilmViewerStyles();
     const [ filmsToShow, setFilmsToShow ] = useState<IFilm[] | null>([])
     const [ sortingVisible, setSortingVisible ] = useState(false);
 
@@ -104,7 +104,7 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
 export const FilmViewerSkeleton = () => {
     return (
         <Box style={{ height: "280px" }}>
-            <Skeleton className={UIStyles().filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
+            <Skeleton className={FilmViewerStyles().filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
         </Box>
     )
 }

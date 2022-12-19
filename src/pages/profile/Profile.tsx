@@ -1,5 +1,5 @@
 
-import { Paper, TableRow, TableCell, Avatar, Tab } from '@material-ui/core';
+import { Paper, TableRow, TableCell, Avatar, Tab, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { SkeletonRows } from '../../components/ui/skeletons';
 import Table from '../../components/ui/table';
@@ -13,22 +13,29 @@ const Profile: FC = () => {
         iso_639_1: language,
         name,
         username,
-        avatar,
     } = userData
     const cellInfo: Record<string, string | number | boolean | undefined>[] = [
         { title: 'TMdb username', value: username },
         { title: 'TMdb ID', value: id },
         { title: 'Real name', value: name || 'Not configurated' },
-        { title: 'Country', value: country || 'Unknown country'  },
+        { title: 'Country', value: country || 'Unknown country' },
         { title: 'Language', value: language || 'Language not configurated' },
         { title: '+18 visible', value: include_adult ? 'Yes' : 'No' },
     ]
     return (
-        <Paper>
-            { loading ? 
-            <SkeletonRows cellInfo={cellInfo}/> :
-            <Table cellInfo={cellInfo} />}
-        </Paper>
+        <>
+            <Paper>
+                {loading ?
+                    <SkeletonRows cellInfo={cellInfo} /> :
+                    <Table cellInfo={cellInfo} />}
+            </Paper>
+            <Typography style={{ marginTop: '1rem', color: '#fff' }}>
+                <a target='_blank'
+                    href='https://www.themoviedb.org/settings/profile'>
+                    Edit
+                </a>
+            </Typography>
+        </>
     )
 }
 

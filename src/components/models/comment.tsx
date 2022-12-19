@@ -19,7 +19,7 @@ const Comment:FC<{comment:ReviewResults}> = ({ comment }) =>{
           <Grid item>
             <Avatar alt={commentOwner} src={avatar} />
           </Grid>
-          <Grid justifyContent='flex-start' item xs zeroMinWidth>
+          <Grid item xs style={{ justifyContent:'flex-start' }} zeroMinWidth>
             <h4 style={{ margin: 0, textAlign: "left" }}>{commentOwner}</h4>
             <Rating rating={comment?.author_details.rating} />
             <p style={{ textAlign: "left" }}>

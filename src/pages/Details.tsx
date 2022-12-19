@@ -3,7 +3,6 @@ import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CommentViewer } from "../components/models/comment-viewer";
 import { Hero as MovieHero } from "../components/ui/hero";
-
 import { DetailsInterface, ReviewResults } from "../interfaces/details.interface";
 import { ApiResponse } from "../interfaces/services/rest.interface";
 import { getFilmDetails } from "../services/details.service";
@@ -14,6 +13,7 @@ const Details: FC<{}> = () => {
   const [heroDetails, setHeroDetails ] = useState<DetailsInterface>(defaultDetail)
   const [reviews, setReviews] = useState<ReviewResults[]>([]);
   const { film_id, film_type } = useParams()
+
 
   const handleInitialCall = async () => {
     const result:ApiResponse<DetailsInterface> = await getFilmDetails(Number(film_id), film_type);

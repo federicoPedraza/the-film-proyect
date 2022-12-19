@@ -47,7 +47,7 @@ export const HeroStyle = makeStyles({
     title: {
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'baseline',
+        alignItems: 'center',
         gap: '2rem',
     },
     progress: {
@@ -205,32 +205,10 @@ export const FilmViewerStyles = makeStyles({
             borderRadius: '20px',
             background: '#BA1F33'
         }
-    }
-});
-
-export const UIStyles = makeStyles({
-    //Chips
-    favoriteHearth: {
-        "&:hover": {
-            transition: 'color ease-in-out .3s',
-            color: '#ff0080'
-        }
     },
-    favoriteHearthFilled: {
-        color: '#ff0080',
-        "&:hover": {
-            transition: 'color ease-in-out .3s',
-            color: '#fff'
-        }
-    },
-    //Comment viewer
-    commentViewerContainer: {
-        padding: '8px'
-    },
-    //Film viewer
+    
     filmViewerTitle: {
         position: 'relative',
-        zIndex: 1,
     },
 
     filmViewerFilterButton: {
@@ -288,7 +266,28 @@ export const UIStyles = makeStyles({
         flexWrap: "nowrap",
         justifyContent: "flex-start",
     },
+});
 
+export const UIStyles = makeStyles({
+    //Chips
+    favoriteHearth: {
+        "&:hover": {
+            transition: 'color ease-in-out .3s',
+            color: '#ff0080'
+        }
+    },
+    favoriteHearthFilled: {
+        color: '#ff0080',
+        "&:hover": {
+            transition: 'color ease-in-out .3s',
+            color: '#fff'
+        }
+    },
+    //Comment viewer
+    commentViewerContainer: {
+        padding: '8px'
+    },
+    
     root: {
         width: "100%",
     },

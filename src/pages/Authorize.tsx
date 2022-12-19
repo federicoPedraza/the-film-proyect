@@ -4,6 +4,7 @@ import useSession from "../store";
 import { login } from "../services/authentication.service";
 import { AuthFailure } from "../interfaces/services/rest.interface";
 import { CallToAction } from "../components/ui/call-to-action";
+import { CheckCircle } from "@material-ui/icons";
 
 const Authorize: FC<{}> = () => {
   const params = new URLSearchParams(window.location.search);
@@ -37,7 +38,7 @@ const Authorize: FC<{}> = () => {
   },[requestToken,approved])
   if ( operationResult ){
         return <CallToAction 
-        title='SUCCESS'
+        title={ <CheckCircle style={{ fontSize: 128, color: 'green' }} />}
         redirect='/'
         subtitle='Your account was connected successfully'
         redirectMessage='Go home'

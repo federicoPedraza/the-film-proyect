@@ -44,7 +44,7 @@ export interface IHomeFilterField {
 } 
 
 export interface CallToAction {
-    title: string;
+    title: string | ReactNode;
     subtitle: string;
     redirect: string;
     redirectMessage: string;

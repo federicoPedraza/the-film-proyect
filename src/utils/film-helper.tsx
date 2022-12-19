@@ -1,6 +1,6 @@
 import { IFilmViewerOptions } from "../interfaces/film-viewer-options.interface";
 import { IFilm } from "../interfaces/film.interface";
-import { IGenre } from "../interfaces/genre.interface";
+import moment from 'moment';
 
 export const getImage = (posterUrl?: string) => {
     if ( !posterUrl ){
@@ -42,6 +42,14 @@ export const POPULAR_THRESHOLD = 4000;
 export const SIMPLIFIED_FILM_RANGE = [ 0, 5 ]
 
 export const isFilmPopular = (popularity?: number): boolean => (popularity || 0) > POPULAR_THRESHOLD;
+
+export const isFilmNew = (releaseDate?: string): boolean => {
+    if (!releaseDate) return false;
+    const currentDate = moment();
+    const otherDate = moment(releaseDate);
+    const diffInDays = currentDate.diff(otherDate, 'days');
+    return diffInDays <= 30;
+}
 
 export const sortByDate = (films: IFilm[] | null): IFilm[] => {
     if (!films) {
