@@ -12,9 +12,13 @@ export const sortByPopularity = (films: IFilm[] | null): IFilm[] => {
     return films.sort((a, b) => {
         const aPop = a.popularity || 0;
         const bPop = b.popularity || 0;
-        return aPop - bPop
+        return bPop - aPop
     });
 }
+
+export const POPULAR_THRESHOLD = 4000;
+
+export const isFilmPopular = (popularity?: number): boolean => (popularity || 0) > POPULAR_THRESHOLD;
 
 export const sortByDate = (films: IFilm[] | null): IFilm[] => {
     if (!films) {

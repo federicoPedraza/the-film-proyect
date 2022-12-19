@@ -91,7 +91,7 @@ export const CardStyles = makeStyles({
         objectFit: "contain",
     },
     cardMediaHover: {
-        height: "10%",
+        height: "30%",
         width: "100%",
         transition: "height 0.1s",
         objectFit: "cover",
