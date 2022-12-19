@@ -17,7 +17,6 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label, options } = props;
     const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer, filmViewerHeader, filmViewerFilterButton } = FilmViewerStyles();
     const [ filmsToShow, setFilmsToShow ] = useState<IFilm[] | null>([])
-    const [ sortingVisible, setSortingVisible ] = useState(false);
 
     //Filtering and sorting
     useEffect(() => {
@@ -27,14 +26,6 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
             setFilmsToShow(films);
         }
     }, [options, films])
-
-    const handleOnMouseEnter = () => {
-        setSortingVisible(true);
-    }
-
-    const handleOnMouseLeave = () => {
-        setSortingVisible(false);
-    }
 
     /*
         Check if there should be an skeleton waiting for values.
@@ -71,15 +62,10 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     }
     const childrenVariants = staggerChildren(filmsToShow)
     return (
-        <Paper onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}  elevation={20} className={filmViewerContainer} 
+        <Paper elevation={20} className={filmViewerContainer} 
         style={{ height: "300px", zIndex: "-1" }}>
             <Box className={filmViewerHeader}>
                 <Typography className={filmViewerTitle} variant="h5">{label?.toUpperCase()}</Typography>
-                <Box style={{ visibility: sortingVisible ? "visible" : "hidden" }}>
-                    <Fab size="small" className={filmViewerFilterButton}>
-                        <FilterListRoundedIcon fontSize="small" />
-                    </Fab>
-                </Box>
             </Box>
             <Box className={filmViewer}>
                 <Grid container spacing={2} >
