@@ -3,13 +3,13 @@ import { Box, Grid, Skeleton } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
-import { UIStyles } from "../../theme/globalStyles";
+import { FilmViewerStyles } from "../../theme/globalStyles";
 import { applyOptions } from "../../utils/film-helper";
 import { Film } from "./film";
 
 export const FilmViewerExtended: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label, alternativeLabel = '', options } = props;
-    const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer } = UIStyles();
+    const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer } = FilmViewerStyles();
     const [ filmsToShow, setFilmsToShow ] = useState<IFilm[] | null>([]);
 
     useEffect(() => {

@@ -11,6 +11,7 @@ const Genres: FC<GernesInterface> = ({ categories }) => {
             {categories.map(({ name, id }) => (
                 <Tooltip title="Añadir género a favorito" key={`tooltip-${id}`}>
                     <Chip
+                        style={{ marginLeft: '15px' }}
                         label={name}
                         key={`label-${id}`}
                         icon={

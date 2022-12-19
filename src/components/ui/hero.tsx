@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from 'react';
-import { Grid, Box, CardMedia, Typography, Divider } from '@material-ui/core';
+import { Grid, Box, CardMedia, Typography, Divider, Paper } from '@material-ui/core';
 import { HeroComponent } from '../../interfaces/details.interface';
-import { HeroStyle } from '../../theme/globalStyles';
+import { HeroStyle, tfpTheme } from '../../theme/globalStyles';
 import moment from 'moment'
 import { ProgressWithText } from './progress';
 import Genres from './chips-container';
 import { useDetail } from '../../services/hooks/useDetail';
 import { FavoriteButton } from './favorite-button';
-import { getImage } from '../../utils/film-helper';
+import { getImage, isFilmNew, isFilmPopular } from '../../utils/film-helper';
 import { ButtonWithTooltip } from './tooltipped-button'
 import { Dialog } from './dialog';
 import { WatchProvider } from '../models/watchprovider';
@@ -41,50 +41,84 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
   }, [id])
 
   const { title: titleStyle } = HeroStyle()
-  const [open, setOpen] = useState<boolean>(false);
 
   return (
-    <>
-      <Grid container>
-        <Grid item xs={4}>
-          <Box >
-            <CardMedia height={700} component="img" image={getImage(poster_path)} />
+    <Paper elevation={20} style={{ padding: '5px', overflowX: 'hidden' }}>
+      <Grid container style={{ margin: '10px', display: 'flex', flexDirection:'row'}}>
+        <Grid item>
+          <Box>
+            <CardMedia height={610} style={{ objectFit: 'contain' }} component="img" image={getImage(poster_path)} />
           </Box>
         </Grid>
-        <Grid xs={1} />
-        <Grid item xs={7}>
-          <Box className={titleStyle}>
-            <FavoriteButton
-              active={favorite || false}
-              favoriteFn={() => handleFavorite(!favorite, id)}
-            />
-            <Typography component='h1' variant='h5'>
-              {title || name}
-            </Typography>
-            <Typography component='h2' variant='h6'>
-              ({moment(release_date).year()})
-            </Typography>
-          </Box>
-
-          <Box className={titleStyle}>
-            <Typography component='h3' variant='body1'>
-              {overview}
-            </Typography>
-          </Box>
-          <Divider />
-          <Grid container style={{ width: '25%' }}>
-            {actions.map(({ icon, tooltipMessage }) => {
-              return <Grid item xs={2}>
-                <ButtonWithTooltip icon={icon} tooltipMessage={tooltipMessage} />
+        <Grid item style={{ marginLeft: '50px'}} xs={7}>
+          <Grid container style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between'}}>
+            <Grid item style={{ display: 'flex', flexDirection: 'column', gap: '10px'}}>
+              <Box className={titleStyle}>
+                <FavoriteButton
+                  active={favorite || false}
+                  favoriteFn={() => handleFavorite(!favorite, id)}/>
+                <Typography component='h1' variant='h2'>
+                  {title || name}
+                </Typography>
+              </Box>
+              <Grid container style={{ display: 'flex', flexDirection: 'row', gap: '15px' }}>
+              { release_date ? (
+                    <Grid item>
+                      <Paper style={{ backgroundColor: '#1D1C1D', width: '140px' }}>
+                        <Typography variant="body1" align='center'>
+                          {release_date}
+                        </Typography>
+                      </Paper>
+                    </Grid>
+                  ) : (<></>) }
+                <Grid item>
+                  <Paper style={{ backgroundColor: '#1D1C1D', width: '180px' }}>
+                    <Typography variant="body1" align='center'>
+                      Popularity: {Math.floor(popularity || 0)}
+                    </Typography>
+                  </Paper>
+                </Grid>
+                  { isFilmPopular(popularity) ? (
+                    <Grid item>
+                      <Paper style={{ backgroundColor: '#1D1C1D', width: '140px' }}>
+                        <Typography variant="body1" style={{ color: '#F26419' }} align='center'>
+                          TRENDING
+                        </Typography>
+                      </Paper>
+                    </Grid>
+                  ) : (<></>) }
+                  { isFilmNew(release_date) ? (
+                    <Grid item>
+                      <Paper style={{ backgroundColor: '#1D1C1D', width: '140px' }}>
+                        <Typography variant="body1" align='center'>
+                          NEW
+                        </Typography>
+                      </Paper>
+                    </Grid>
+                  ) : (<></>) }
               </Grid>
-            })}
+            </Grid>
+            <Grid item>
+              <Box className={titleStyle}>
+                <Box style={{ padding: '5px' }}>
+                  <Typography style={{ marginLeft: '30px' }} component='h3' variant='h5'>
+                    {overview}
+                  </Typography>
+                </Box>  
+              </Box>
+            </Grid>
+            <Grid item style={{ marginTop: '23px'}}>
+              <Grid container>
+                {actions.map(({ icon, tooltipMessage }) => {
+                  return <Grid item style={{ marginRight: '20px'}}>
+                    <ButtonWithTooltip icon={icon} tooltipMessage={tooltipMessage} />
+                  </Grid>
+                })}
+              {genres && <Genres categories={genres} />}
+              </Grid>
+            </Grid>
           </Grid>
-          {genres && <Genres categories={genres} />}
-          {popularity && <ProgressWithText value={popularity} />}
-          {popularity && <Typography>IMdb popularity: {popularity}</Typography>}
         </Grid>
-
-
       </Grid>
       {id &&
       <Dialog 
@@ -93,7 +127,7 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
         onClose={handleStreamingModalClose}
         content={<WatchProvider results={providers?.results}/>}
         />}
-    </>
+    </Paper>
   );
 };
 

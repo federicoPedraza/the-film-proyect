@@ -1,15 +1,14 @@
-import { Paper, Typography } from "@material-ui/core";
-import { Box, Grid, Skeleton } from "@mui/material";
+import { Typography } from "@material-ui/core";
+import { Box, Grid } from "@mui/material";
 import { FC } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
-import { FilmViewerStyles, UIStyles } from "../../theme/globalStyles";
-import { Film } from "./film";
+import { FilmViewerStyles } from "../../theme/globalStyles";
 import { FilmSimplified } from "./film-simplified";
 
 export const FilmViewerSimplified: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label } = props;
     const { filmViewerSimplifiedContainer } = FilmViewerStyles();
-    const { filmViewerTitle, filmClass, filmViewer, filmViewerHeader } = UIStyles();
+    const { filmViewerTitle, filmClass, filmViewer, filmViewerHeader } = FilmViewerStyles();
 
     return (
         <Box className={filmViewerSimplifiedContainer} 
