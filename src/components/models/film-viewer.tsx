@@ -4,10 +4,14 @@ import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
 import { UIStyles } from "../../theme/globalStyles";
-import { applyOptions, SIMPLIFIED_FILM_RANGE, sortByDate, sortByPopularity } from "../../utils/film-helper";
+import { applyOptions, SIMPLIFIED_FILM_RANGE } from "../../utils/film-helper";
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import { Film } from "./film";
 import { FilmViewerSimplified } from "./film-viewer-simplified";
+import { AnimatePresence } from "framer-motion";
+import { motion } from 'framer-motion'
+
+const MotionGrid = motion(Grid)
 
 export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label, options } = props;
@@ -42,13 +46,30 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
             if (filmsToShow?.length > SIMPLIFIED_FILM_RANGE[0]) {
                 return <FilmViewerSimplified films={filmsToShow} label={label} />
             }
-
-            return (<></>)
+            return null
         }
     } else {
         return <FilmViewerSkeleton />
     }
-
+    const staggerChildren = (films: IFilm[]) => {
+        const initialDelay = 0.2 + Math.random() * 1
+        return films.map((film, index) => {
+            return {
+            hidden: {
+                opacity: 0,
+            },
+            visible: {
+                opacity: 1,
+                transition: {
+                delay: index * 0.2 + initialDelay,
+                duration: 0.2,
+                ease: 'easeInOut'
+                }
+            }
+            }
+        })
+    }
+    const childrenVariants = staggerChildren(filmsToShow)
     return (
         <Paper onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave}  elevation={20} className={filmViewerContainer} 
         style={{ height: "300px", zIndex: "-1" }}>
@@ -64,11 +85,14 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
                 <Grid container spacing={2} >
                     <Grid item>
                         <Grid className={filmClass} container spacing={2} wrap="nowrap">
+                            <AnimatePresence>
+
                             {filmsToShow?.map((film, index) => {
-                                return <Grid key={index} item>
+                                return <MotionGrid key={index} item initial="hidden" animate="visible" variants={childrenVariants[index]}>
                                         <Film data={film}/>
-                                    </Grid>
+                                    </MotionGrid>
                             })}
+                            </AnimatePresence>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -80,7 +104,7 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
 export const FilmViewerSkeleton = () => {
     return (
         <Box style={{ height: "280px" }}>
-                    <Skeleton className={UIStyles().filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
+            <Skeleton className={UIStyles().filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
         </Box>
     )
 }

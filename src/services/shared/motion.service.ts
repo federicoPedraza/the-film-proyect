@@ -1,5 +1,6 @@
 // Libs
 import { Variants } from "framer-motion";
+import { ReactNode } from "react";
 // Types
 import { transformProps, transitionProps } from '../../interfaces/motion.interface'
 export const boilerplateMotion = {
@@ -83,3 +84,20 @@ export const offsetApparition = (
         },
     };
 };
+export const staggerChildren = (children: ReactNode[]) => {
+  return children.map((child, index) => {
+    return {
+      hidden: {
+        opacity: 0,
+      },
+      visible: {
+        opacity: 1,
+        transition: {
+          delay: index * 0.2 + 0.2,
+          duration: 0.2,
+          ease: 'easeInOut'
+        }
+      }
+    }
+  })
+}
