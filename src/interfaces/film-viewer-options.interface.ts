@@ -1,7 +1,7 @@
 import { MediaType } from "./film.interface";
 
 export interface IFilmViewerOptions {
-    media?: MediaType;
+    media?: MediaType | null;
     sortByPopularity?: boolean;
     sortByDate?: boolean;
 }

@@ -3,10 +3,11 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
 import { CardStyles, tfpTheme } from "../../theme/globalStyles";
-import { getImage } from "../../utils/film-helper";
+import { getImage, isFilmPopular, POPULAR_THRESHOLD } from "../../utils/film-helper";
 import { CardFilmDetails } from "./card-film-details";
+import WhatshotIcon from '@mui/icons-material/Whatshot';
 
-export const Film:FC<{data: IFilm}> = ({data}) => {
+export const Film : FC<{data: IFilm}> = ({data}) => {
     const {
     poster_path,
     adult,
@@ -29,8 +30,7 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
     const { card, cardContent, cardMediaHover, cardMedia } = CardStyles();
     const navigate = useNavigate()
     const enterDetail = () =>{
-        const alt_media_type = title ? 'movie' : 'tv'
-        navigate(`details/${media_type || alt_media_type}/${id}`)
+        navigate(`details/${media_type}/${id}`)
     }
     
     const handleMouseEnter = () => {
@@ -46,6 +46,9 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
             <Box className={cardContent}>
                 <CardFilmDetails data={data} />
             </Box>
-        </Card>
+            { isFilmPopular(popularity) ? (
+                <WhatshotIcon htmlColor="#F26419" style={{ position: 'absolute', bottom: '0', right: '0', visibility: showInfo ? 'hidden' : 'visible' }} />
+            ) : (<></>) }
+        </Card> 
     )
 };

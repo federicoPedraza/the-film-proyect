@@ -4,9 +4,10 @@ import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
 import { UIStyles } from "../../theme/globalStyles";
-import { sortByDate, sortByPopularity } from "../../utils/film-helper";
+import { SIMPLIFIED_FILM_RANGE, sortByDate, sortByPopularity } from "../../utils/film-helper";
 import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import { Film } from "./film";
+import { FilmViewerSimplified } from "./film-viewer-simplified";
 
 export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label, options } = props;
@@ -18,8 +19,9 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     useEffect(() => {
         if (options && films) {
             let _films = films;
-            if (options?.media) 
+            if ((options?.media ?? 'all') !== 'all')  {
                 _films = _films?.filter((film) => film.media_type == options?.media);
+            }
     
             if (options?.sortByPopularity)
                 _films = sortByPopularity(_films);
@@ -33,10 +35,6 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
         }
     }, [options, films])
 
-    const hasFilms = () => {
-        return films ? films.length > 0 : false;
-    }
-
     const handleOnMouseEnter = () => {
         setSortingVisible(true);
     }
@@ -45,12 +43,21 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
         setSortingVisible(false);
     }
 
-    if (!hasFilms()) {
-        return (
-            <Box style={{ height: "280px" }}>
-                <Skeleton className={filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
-            </Box>
-        );
+    /*
+        Check if there should be an skeleton waiting for values.
+        After checking for skeletons, it checks if the amount of films is worth of placing a full film viewer
+        Or just a simplified version of it
+    */
+    if (filmsToShow) {
+        if (filmsToShow?.length < SIMPLIFIED_FILM_RANGE[1]) {
+            if (filmsToShow?.length > SIMPLIFIED_FILM_RANGE[0]) {
+                return <FilmViewerSimplified films={filmsToShow} label={label} />
+            }
+
+            return (<></>)
+        }
+    } else {
+        return <FilmViewerSkeleton />
     }
 
     return (
@@ -79,4 +86,12 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
             </Box>
         </Paper>
     );
-}   
+}
+
+export const FilmViewerSkeleton = () => {
+    return (
+        <Box style={{ height: "280px" }}>
+                    <Skeleton className={UIStyles().filmViewerContainer} variant="rectangular" sx={{bgcolor: 'grey.900', height: "180px"  }}  />
+        </Box>
+    )
+}

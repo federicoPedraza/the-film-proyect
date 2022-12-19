@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode, ChangeEvent } from "react";
 
 export interface SpeedDialMenu {
     actions: Actions[],
@@ -39,3 +39,6 @@ export interface DialogInterface {
     onClose: ()=>void;
     content: ReactNode;
 }
+export interface IHomeFilterField {
+    onFilterChange: (event: ChangeEvent<HTMLInputElement>) => void;
+} 
