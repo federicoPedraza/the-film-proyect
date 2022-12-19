@@ -6,7 +6,7 @@ import { getUserData, validateSession } from "../authentication.service";
 const AVATAR_URL = process.env.REACT_APP_AVATAR_BASE_URL
 
 export const useUser = () => {
-  const { session_id } = useSession();
+  const { session_id, setUserData:setCacheUser } = useSession();
   const [loading, setLoading] = useState<boolean>(false)
   const [userData, setUserData ] = useState<UserData>(initialUserData)
 
@@ -15,7 +15,7 @@ export const useUser = () => {
       const result = await getUserData(key)
       const { id, include_adult, iso_639_1, iso_3166_1, name, username, avatar } = result
       const hashCompleteRoute:string = `${AVATAR_URL}${avatar?.gravatar?.hash}`
-      setUserData({
+      const processedUser = {
         id: id,
         include_adult: include_adult,
         iso_3166_1,
@@ -28,7 +28,8 @@ export const useUser = () => {
           },
           tmdb: avatar?.tmdb
         }
-      })
+      }
+      setUserData(processedUser)
     } catch (error) {
       console.log(error)
       setUserData(initialUserData)
@@ -36,6 +37,10 @@ export const useUser = () => {
       setLoading(false)
     }
   }
+
+  useEffect(()=>{
+    setCacheUser(userData)
+  },[userData])
 
   useEffect(() => {
     if (session_id) {

@@ -1,10 +1,9 @@
-import { IFilm, MediaType } from "../interfaces/film.interface";
+import { IFilm } from "../interfaces/film.interface";
 import { GetTrendingResponse, HttpMethod } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
 
 export function mapFilmResults(results: []) {
     const films = results.map((film: IFilm) => {
-        const _title = film.media_type == MediaType.Movie ? film.title : film.name;
         const _poster_path = film.poster_path ? film.poster_path : film.backdrop_path;
         return {
             poster_path: _poster_path,
@@ -18,7 +17,7 @@ export function mapFilmResults(results: []) {
             vote_average: film.vote_average,
             video: film.video,
             id: film.id,
-            media_type: film.media_type || MediaType.Other,
+            media_type: film.media_type ,
             title: film.title,
             name: film.name,
             backdrop_path: film.backdrop_path,

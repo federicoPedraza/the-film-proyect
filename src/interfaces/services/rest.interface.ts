@@ -15,6 +15,14 @@ export interface ApiResponse<T> {
   expires_at?: string;
 }
 
+export interface PaginatedResponse<T> {
+  id?: number;
+  page?: number;
+  results?: T[];
+  total_pages?: number;
+  total_results?: number;
+}
+
 export interface GetTrendingResponse {
   results: [],
   page: number,
@@ -46,7 +54,20 @@ export interface UserData {
       hash: string;
     },
     tmdb:{
-      avatar_path?: string,
+      avatar_path?: string;
     }
   }
+}
+
+
+export interface CommonPostRes {
+  status_code?: string;
+  status_message?: string;
+}
+
+export interface AccountStatesRes {
+  id?: number;
+  favorite?:boolean,
+  rated?: { value?: number };
+  watchlist?:boolean;
 }

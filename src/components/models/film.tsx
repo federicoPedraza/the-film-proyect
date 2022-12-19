@@ -4,8 +4,7 @@ import { FC, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
 import { CardStyles } from "../../theme/globalStyles";
-import { getPoster } from "../../utils/poster-helper";
-import { FavoriteButton } from "../ui/favorite-button";
+import { getImage } from "../../utils/poster-helper";
 
 export const Film:FC<{data: IFilm}> = ({data}) => {
     const {
@@ -30,9 +29,11 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
     const { card, cardContent, cardMediaHover, cardMedia } = CardStyles();
     const [backdrop, setBackdrop ] = useState()
     const navigate = useNavigate()
-
+    const header = title || name || original_title
     const enterDetail = () =>{
-        navigate(`details/${id}`)
+        console.log(name,title)
+        const media = media_type || title ? 'movie' : 'tv'
+        navigate(`details/${media}/${id}`)
     }
     const handleMouseEnter = () => {
         setShowInfo(true);
@@ -44,10 +45,10 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
 
     return (
         <Card onClick={enterDetail} className={card} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            <CardMedia className={showInfo ? cardMediaHover : cardMedia} component="img" image={getPoster(poster_path)} />
+            <CardMedia className={showInfo ? cardMediaHover : cardMedia} component="img" image={getImage(poster_path)} />
             <CardContent className={cardContent} sx={{ backgroundColor: ' MI COLOR' }}>
                 <Typography variant="body1" align="center">
-                    {title || name || original_title } 
+                    {header} 
                 </Typography>
             </CardContent>
         </Card>

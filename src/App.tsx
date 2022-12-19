@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Outlet, Route, Routes } from "react-router-dom";
 import { OnboardingLayout } from "./pages/onboarding";
 import { Authorize, Welcome } from "./pages";
@@ -19,7 +18,7 @@ function App() {
           <Route path="profile/*" element={<ProfileLayout/>}>
             <Route path="overview" element={<Profile />} />
           </Route>
-          <Route path="details/:movieId" element={<Details />}/>
+          <Route path="details/:film_type/:film_id" element={<Details />}/>
         </Route>
       </Routes>
     </Router>
