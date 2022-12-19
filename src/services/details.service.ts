@@ -3,7 +3,7 @@ import { DetailsInterface, ProviderResults, ReviewResults } from "../interfaces/
 import { ApiResponse, HttpMethod, PaginatedResponse } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
 
-const apiKey = process.env.react_app_api_v3_auth;
+const apiKey = process.env.react_app_api_v3_auth || '2c6cd383602f9dd84e2c543271f39c40';
 export async function getDetailReviews(movie_id:string): Promise<ReviewResults[]> {
     const url = `/movie/${movie_id}/reviews?api_key=${apiKey}`;
     try {
