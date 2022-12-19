@@ -14,7 +14,6 @@ const Details: FC<{}> = () => {
   const [reviews, setReviews] = useState<ReviewResults[]>([]);
   const { film_id, film_type } = useParams()
 
-
   const handleInitialCall = async () => {
     const result:ApiResponse<DetailsInterface> = await getFilmDetails(Number(film_id), film_type);
     const { status, data } = result
@@ -41,7 +40,7 @@ const Details: FC<{}> = () => {
   }, []);
 
   return (
-    <Box sx={{ margin: '70px'}}>
+    <Box style={{ margin: '1%'}}>
       <MovieHero details={heroDetails}  />
       <CommentViewer comments={reviews} loading={loading} />
     </Box>

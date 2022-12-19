@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@material-ui/core";
 import { FC, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { matchPath, useLocation, useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
 import { CardStyles, tfpTheme } from "../../theme/globalStyles";
 import { getImage, isFilmPopular, POPULAR_THRESHOLD } from "../../utils/film-helper";
@@ -26,6 +26,7 @@ export const Film : FC<{data: IFilm}> = ({data}) => {
     popularity,
     backdrop_path,
 } = data;
+  const location = useLocation();
     const [showInfo, setShowInfo] = useState(false);
     const { card, cardContent, cardMediaHover, cardMedia } = CardStyles();
     const navigate = useNavigate()

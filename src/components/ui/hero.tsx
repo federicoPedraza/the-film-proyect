@@ -10,6 +10,7 @@ import { FavoriteButton } from './favorite-button';
 import { getImage, isFilmNew, isFilmPopular } from '../../utils/film-helper';
 import { ButtonWithTooltip } from './tooltipped-button'
 import { Dialog } from './dialog';
+import  Confetti  from 'react-confetti';
 import { WatchProvider } from '../models/watchprovider';
 export const Hero: FC<HeroComponent> = ({ details }) => {
   const {
@@ -34,6 +35,11 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
     getProviders
   } = useDetail()
 
+  const [ isGodPresent, setIsGodPresent ] = useState<boolean>(id === 213762)
+
+  useEffect(()=>{
+    setIsGodPresent( id === 213762 )
+  },[id])
 
 
   const { favorite, rated, watchlist } = accountOptions
@@ -45,13 +51,15 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
 
   return (
     <Paper elevation={20} style={{ padding: '5px', overflowX: 'hidden' }}>
+      {isGodPresent && <Confetti colors={['#87CEEB', '#FFFFFF']} /> }
       <Grid container style={{ margin: '10px', display: 'flex', flexDirection:'row'}}>
-        <Grid item>
+        <Grid item xs={11} md={3}>
           <Box>
             <CardMedia height={610} style={{ objectFit: 'contain' }} component="img" image={getImage(poster_path)} />
           </Box>
         </Grid>
-        <Grid item style={{ marginLeft: '50px'}} xs={7}>
+        <Grid item  xs={1}/>
+        <Grid item xs={7} >
           <Grid container style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between'}}>
             <Grid item style={{ display: 'flex', flexDirection: 'column', gap: '10px'}}>
               <Box className={titleStyle}>
@@ -102,7 +110,7 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
             <Grid item>
               <Box className={titleStyle}>
                 <Box style={{ padding: '5px' }}>
-                  <Typography style={{ marginLeft: '30px' }} component='h3' variant='h6'>
+                  <Typography component='h3' variant='h6'>
                     {overview}
                   </Typography>
                 </Box>  

@@ -1,8 +1,6 @@
-import { Chip, IconButton, Tooltip } from "@material-ui/core";
-import { Favorite } from "@material-ui/icons";
+import { Chip } from "@material-ui/core";
 import { FC } from "react";
 import { Genres as GernesInterface } from "../../interfaces/ui.interface";
-import { UIStyles } from "../../theme/globalStyles";
 
 const Genres: FC<GernesInterface> = ({ categories }) => {
     return (
@@ -11,7 +9,7 @@ const Genres: FC<GernesInterface> = ({ categories }) => {
                 <Chip
                     label={name}
                     key={`label-${id}`}
-                    style={{padding: 12, marginRight: '1rem'}}
+                    style={{padding: '1rem', marginRight: '1rem', marginBottom: '1rem'}}
                 />
             ))}
         </>

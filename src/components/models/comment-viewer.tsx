@@ -35,7 +35,7 @@ export const CommentViewer: FC<{comments:ReviewResults[], loading:boolean}> = ({
     }
 
     if (comments.length === 0 ){
-        return <Paper style={{padding: '10rem'}} elevation={20} className={commentViewerContainer} >
+        return <Paper style={{padding: '10%'}} elevation={20} className={commentViewerContainer} >
              <Typography> There are no reviews yet. Be the first one!</Typography>
         </Paper>
     }

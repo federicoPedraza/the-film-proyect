@@ -14,7 +14,7 @@ const Comment:FC<{comment:ReviewResults}> = ({ comment }) =>{
   const commentOwner = comment.author_details.name || 'Anónimo'
   const avatar:string = `${AVATAR_URL}${comment.author_details.avatar_path}`
   return ( 
-     <Paper style={{ padding: "8px 26px" }}>
+     <Paper style={{ padding: "8px 16px", maxWidth: '80%', overflow:'hidden' }}>
         <Grid container wrap="nowrap" spacing={2}>
           <Grid item>
             <Avatar alt={commentOwner} src={avatar} />
