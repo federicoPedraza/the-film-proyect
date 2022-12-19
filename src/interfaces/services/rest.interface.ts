@@ -68,6 +68,6 @@ export interface CommonPostRes {
 export interface AccountStatesRes {
   id?: number;
   favorite?:boolean,
-  rated?: { value?: number };
+  rated?: { value?: number } | false;
   watchlist?:boolean;
 }

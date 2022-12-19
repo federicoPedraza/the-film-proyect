@@ -1,8 +1,9 @@
 import { IFilm, MediaType } from "../interfaces/film.interface";
-import { GetFilmsResponse, HttpMethod } from "../interfaces/services/rest.interface";
+import { ApiResponse, GetFilmsResponse, HttpMethod, PaginatedResponse } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
+const API_KEY = process.env.REACT_APP_API_V3_AUTH;
 
-export function mapFilmResults(results: []) {
+export function mapFilmResults(results: IFilm[]) {
     const films = results.map((film: IFilm) => {
         const _poster_path = film.poster_path ? film.poster_path : film.backdrop_path;
         return {
@@ -27,10 +28,19 @@ export function mapFilmResults(results: []) {
 
     return films;
 }
+export async function getFavoriteFilms(account_id: number, session_id: string, film_type: MediaType  ):Promise<ApiResponse<PaginatedResponse<IFilm>>>{
+    const url = `account/${account_id}/favorite/${film_type}?api_key=${API_KEY}&session_id=${session_id}`;
+    try {
+        const response = await rest<PaginatedResponse<IFilm>>(HttpMethod.GET, url);
+        return response
+    } catch (error) {
+        console.error(error);
+        throw error
+    }
+}
 
 export async function getFilmsByName(searchValue: string): Promise<IFilm[]> {
-    const apiKey = process.env.REACT_APP_API_V3_AUTH;
-    const url = `/search/multi?api_key=${apiKey}&query=${searchValue}`;
+    const url = `/search/multi?api_key=${API_KEY}&query=${searchValue}`;
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results);
@@ -41,8 +51,7 @@ export async function getFilmsByName(searchValue: string): Promise<IFilm[]> {
 }
 
 export async function getTrendingFilms(): Promise<IFilm[]> {
-    const apiKey = process.env.REACT_APP_API_V3_AUTH;
-    const url = `/trending/all/week?api_key=${apiKey}`;
+    const url = `/trending/all/week?api_key=${API_KEY}`;
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
         return mapFilmResults(response.data.results)
@@ -59,8 +68,7 @@ export async function getTrendingFilms(): Promise<IFilm[]> {
 }
 
 export async function getDiscoverMovies(): Promise<IFilm[]> {
-    const apiKey = process.env.REACT_APP_API_V3_AUTH;
-    const url = `/discover/movie?api_key=${apiKey}`;
+    const url = `/discover/movie?api_key=${API_KEY}`;
 
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);
@@ -72,8 +80,7 @@ export async function getDiscoverMovies(): Promise<IFilm[]> {
 }
 
 export async function getDiscoverTVShows(): Promise<IFilm[]> {
-    const apiKey = process.env.REACT_APP_API_V3_AUTH;
-    const url = `/discover/tv?api_key=${apiKey}`;
+    const url = `/discover/tv?api_key=${API_KEY}`;
 
     try {
         const response = await rest<GetFilmsResponse>(HttpMethod.GET, url);

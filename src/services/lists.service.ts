@@ -22,7 +22,7 @@ export async function addToFavorites(account_id:number, session_id: string, medi
 }
 
 export async function getIdMediaInformation(id:number, session_id: string, media_type: string): Promise<ApiResponse<AccountStatesRes>>{
-    const url = `${media_type}/${id}/favorite?api_key=${API_KEY}&session_id=${session_id}`;
+    const url = `${media_type}/${id}/account_states?api_key=${API_KEY}&session_id=${session_id}`;
     try {
         const response = await rest<AccountStatesRes>(HttpMethod.GET, url);
         return response

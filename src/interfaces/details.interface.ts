@@ -129,3 +129,10 @@ export interface ReviewAuthorDetails {
 export interface HeroComponent {
     details: DetailsInterface
 }
+
+export interface AccountOptionsInterface {
+    favorite?: boolean;
+    id?: number;
+    rated?: boolean;
+    watchlist?: boolean;
+}

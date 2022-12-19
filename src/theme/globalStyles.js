@@ -109,6 +109,13 @@ export const UIStyles = makeStyles({
             color: '#ff0080'
         }
     },
+    favoriteHearthFilled:{
+        color: '#ff0080',
+        "&:hover":{
+            transition: 'color ease-in-out .3s',
+            color: '#fff'
+        }
+    },
     //Comment viewer
     commentViewerContainer: {
         padding: '8px'

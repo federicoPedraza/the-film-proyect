@@ -31,14 +31,12 @@ export const Film:FC<{data: IFilm}> = ({data}) => {
     const navigate = useNavigate()
     const header = title || name || original_title
     const enterDetail = () =>{
-        console.log(name,title)
-        const media = media_type || title ? 'movie' : 'tv'
-        navigate(`details/${media}/${id}`)
+        const alt_media_type = title ? 'movie' : 'tv'
+        navigate(`details/${media_type || alt_media_type}/${id}`)
     }
     const handleMouseEnter = () => {
         setShowInfo(true);
     }
-
     const handleMouseLeave = () => {
         setShowInfo(false);
     }

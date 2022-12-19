@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Grid, Box, CardMedia, Typography } from '@material-ui/core';
 import { HeroComponent } from '../../interfaces/details.interface';
 import { getImage } from '../../utils/poster-helper';
@@ -17,24 +17,34 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Tooltip } from "@material-ui/core";
 import Genres from './chips-container';
 import { useDetail } from '../../services/hooks/useDetail';
+import { FavoriteButton } from './favorite-button';
 export const Hero: FC<HeroComponent> = ({ details }) => {
   const {
     genres,
+    id,
     popularity,
     poster_path,
     title, name, overview, release_date
   } = details
   const {
+    accountOptions,
     getMedia,
     loadingMedia,
     handleFavorite,
     loadingFavorite,
   } = useDetail()
+
+
+  
+  const { favorite, rated, watchlist } = accountOptions
+  useEffect(()=>{
+    getMedia(id)
+  },[id])
+
   const { title: titleStyle } = HeroStyle()
   const [open, setOpen] = useState<boolean>(false);
   const [hover, setHover] = useState<boolean>(false);
 
-  const { favoriteHearth } = UIStyles()
   return (
     <Grid container>
       <Grid item xs={4}>
@@ -45,8 +55,10 @@ export const Hero: FC<HeroComponent> = ({ details }) => {
       <Grid item xs={1} />
       <Grid item xs={7}>
         <Box className={titleStyle}>
-          <FavoriteBorderIcon className={favoriteHearth} onClick={() => handleFavorite(true, details.id)} />
-    
+          <FavoriteButton 
+          active={favorite || false} 
+          favoriteFn={()=>handleFavorite(!favorite,id)} 
+          />
           <Typography component='h1' variant='h5'>
             {title || name}
           </Typography>

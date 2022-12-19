@@ -1,5 +1,5 @@
 export enum MediaType {
-    Movie = "movie", TV = "tv"
+    Movie = "movies", TV = "tv"
 }
 
 //https://developers.themoviedb.org/3/discover/movie-discover
