@@ -5,7 +5,6 @@ import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
 import { FilmViewerStyles } from "../../theme/globalStyles";
 import { applyOptions, SIMPLIFIED_FILM_RANGE } from "../../utils/film-helper";
-import FilterListRoundedIcon from '@mui/icons-material/FilterListRounded';
 import { Film } from "./film";
 import { FilmViewerSimplified } from "./film-viewer-simplified";
 import { AnimatePresence } from "framer-motion";
@@ -27,14 +26,6 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
             setFilmsToShow(films);
         }
     }, [options, films])
-
-    const handleOnMouseEnter = () => {
-        setSortingVisible(true);
-    }
-
-    const handleOnMouseLeave = () => {
-        setSortingVisible(false);
-    }
 
     /*
         Check if there should be an skeleton waiting for values.
@@ -71,15 +62,10 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     }
     const childrenVariants = staggerChildren(filmsToShow)
     return (
-        <Paper onMouseEnter={handleOnMouseEnter} onMouseLeave={handleOnMouseLeave} elevation={20} className={filmViewerContainer}
-            style={{ height: "300px", zIndex: "-1" }}>
+        <Paper elevation={20} className={filmViewerContainer} 
+        style={{ height: "300px", zIndex: "-1" }}>
             <Box className={filmViewerHeader}>
                 <Typography className={filmViewerTitle} variant="h5">{label?.toUpperCase()}</Typography>
-                <Box style={{ visibility: sortingVisible ? "visible" : "hidden" }}>
-                    <Fab size="small" className={filmViewerFilterButton}>
-                        <FilterListRoundedIcon fontSize="small" />
-                    </Fab>
-                </Box>
             </Box>
             <Box className={filmViewer}>
                 <Grid container spacing={2} >
