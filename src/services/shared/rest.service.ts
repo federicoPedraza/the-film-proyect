@@ -3,8 +3,8 @@ import {
   ApiResponse,
   HttpMethod,
 } from "../../interfaces/services/rest.interface";
-const BASE_URL = process.env.REACT_APP_BASE_URL
-const API_KEY = process.env.REACT_APP_API_V4_AUTH
+const BASE_URL = process.env.react_app_base_url
+const API_KEY = process.env.react_app_api_v4_auth
 export async function rest<T>(
   method: HttpMethod,
   url: string,

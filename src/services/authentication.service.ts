@@ -3,8 +3,8 @@ import { HttpMethod, SessionResponse, UserData, } from "../interfaces/services/r
 import { rest } from "./shared/rest.service";
 
 const badEndMessage = 'Unable to read ENV';
-const API_KEY = process.env.REACT_APP_API_V3_AUTH || badEndMessage;
-const API_KEY_V4 = process.env.REACT_APP_API_V4_AUTH || badEndMessage
+const API_KEY = process.env.react_app_api_v3_auth || badEndMessage;
+const API_KEY_V4 = process.env.react_app_api_v4_auth || badEndMessage
 
 
 export async function getRequestToken() {

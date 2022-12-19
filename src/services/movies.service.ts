@@ -1,7 +1,7 @@
 import { Movie, RequestTokenResponse } from "../interfaces/services/api.interface";
 import { HttpMethod } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
-const apiKey = process.env.REACT_APP_API_V3_AUTH;
+const apiKey = process.env.react_app_api_v3_auth;
 
 export async function getMovie(query: string, year: string) {
   const url = `search/movie?api_key=${apiKey}&query=${query}&year=${year}`;
@@ -15,7 +15,7 @@ export async function getMovie(query: string, year: string) {
 }
 
 export async function getGenresList() {
-  const apiKey = process.env.REACT_APP_API_V3_AUTH;
+  const apiKey = process.env.react_app_api_v3_auth;
   const url = `/authentication/token/new?api_key=${apiKey}`;
 
   try {

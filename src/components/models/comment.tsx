@@ -7,7 +7,7 @@ import moment from 'moment';
 import 'moment/locale/es' 
 import { Rating } from '../ui/rating';
 
-const AVATAR_URL = process.env.REACT_APP_AVATAR_BASE_URL
+const AVATAR_URL = process.env.react_app_avatar_base_url
 
 const Comment:FC<{comment:ReviewResults}> = ({ comment }) =>{
   moment.locale('es')

@@ -3,7 +3,7 @@ import { sortByPopularity } from "../utils/film-helper";
 import { ApiResponse, GetFilmsResponse, HttpMethod, PaginatedResponse } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
 import { IGenre } from "../interfaces/genre.interface";
-const API_KEY = process.env.REACT_APP_API_V3_AUTH;
+const API_KEY = process.env.react_app_api_v3_auth;
 
 export function mapFilmResults(results: IFilm[]) {
     const films = results.map((film: IFilm) => {

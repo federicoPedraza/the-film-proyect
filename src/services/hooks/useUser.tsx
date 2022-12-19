@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UserData } from "../../interfaces/services/rest.interface";
 import useSession  from "../../store";
 import { logout as logoutRest, getUserData, validateSession } from "../authentication.service";
-const AVATAR_URL = process.env.REACT_APP_AVATAR_BASE_URL
+const AVATAR_URL = process.env.react_app_avatar_base_url
 
 export const useUser = () => {
   const { session_id, setSession, user_data:cacheUserData, setUserData:setCacheUser } = useSession();
