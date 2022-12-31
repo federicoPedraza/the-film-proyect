@@ -1,10 +1,12 @@
 import { FC, memo, ReactNode, useEffect, useState } from 'react';
-import { AppBar, Avatar, Button, ButtonGroup, Paper, Toolbar, Typography } from '@material-ui/core';
-import { useUser } from '../../services/hooks/useUser';
-import { AvatarMenu } from './menu';
-import { UIStyles } from '../../theme/globalStyles';
+import { AppBar, Avatar, Box, Button, ButtonGroup, Paper, Toolbar, Typography } from '@material-ui/core';
+import { useUser } from '../../../services/hooks/useUser';
+import { AvatarMenu } from '../menu';
+import { UIStyles } from '../../../theme/globalStyles';
 import { useNavigate } from 'react-router-dom';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { NavbarButton } from './navbar-button';
+import { NavbarButtonIcon } from './navbar-button.types';
 
 const Navbar: FC<{}> = ({ }) => {
   const navigate = useNavigate()
@@ -30,13 +32,19 @@ const Navbar: FC<{}> = ({ }) => {
   const options: Record<string, string>[] = session_id ? loggedOptions : unloggedOptions
 
   return (
-    <AppBar style={{ zIndex: "99" }} position="static" elevation={20} color="primary">
+    <AppBar style={{ zIndex: "99", backgroundColor: 'transparent' }} position="static" elevation={20} color="primary">
       <Toolbar className={appBar}>
-        <Button className={pageHeader} variant="contained" onClick={() => navigate('/')}>
-          <Typography noWrap variant="h4" component="h1">
-            The Film Project
-          </Typography>
-        </Button>
+        <Box style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <Button className={pageHeader} variant="contained" onClick={() => navigate('/')}>
+            <Typography style={{ paddingRight: '15px', paddingLeft: '15px' }} noWrap variant="h4" component="h1">
+              The Film Project
+            </Typography>
+          </Button>
+          <Box style={{ marginLeft: '25px' }}>
+            <NavbarButton variant='outlined' content='Home' url='/' /> 
+            <NavbarButton variant='rounded' content='' icon={NavbarButtonIcon.SETTINGS} url='/' /> 
+          </Box>
+        </Box>
 
         <div>
           <AvatarMenu

@@ -304,7 +304,7 @@ export const UIStyles = makeStyles({
         '&:hover': {
             opacity: 0.8,
             color: tfpTheme.palette.primary.contrastText,
-            backgroundColor: tfpTheme.palette.background
+            backgroundColor: tfpTheme.palette
         }
     },
 
@@ -326,7 +326,39 @@ export const UIStyles = makeStyles({
     },
 
     pageHeader: {
-        borderRadius: '25px'
+        borderRadius: '25px',
+        marginTop: '15px',
+        marginBottom: '15px',
+        backgroundColor: tfpTheme.palette.primary.main,
+        color: tfpTheme.palette.primary.contrastText,
+        '&:hover': {
+            opacity: 0.8,
+            color: tfpTheme.palette.primary.dark,
+            backgroundColor: tfpTheme.palette.primary.contrastText
+        }
+    },
+
+    pageHeaderButtonOutlined: {
+        borderRadius: '10px',
+        margin: '0px 10px 0px 0px',
+        paddingRight: '5px', 
+        paddingLeft: '5px',
+        backgroundColor: 'transparent',
+        color: tfpTheme.palette.primary.contrastText,
+        boxshadow: '0 0 0 0 white',
+        '&:hover': {
+            boxshadow: '0 0 0 14px rgba(0, 0, 0, 0.2)',
+        }
+    },
+
+    pageHeaderButtonRounded: {
+        backgroundColor: 'transparent',
+        color: tfpTheme.palette.primary.dark,
+        '&:hover': {
+            opacity: 0.8,
+            color: tfpTheme.palette.primary.contrastText,
+            backgroundColor: tfpTheme.palette.primary.dark
+        }
     },
 
     //Login
