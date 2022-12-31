@@ -1,5 +1,5 @@
 
-import { Paper, TableRow, TableCell, Avatar, Tab, Typography } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import { FC } from 'react';
 import { SkeletonRows } from '../../components/ui/skeletons';
 import Table from '../../components/ui/table';

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { UserData } from "../../interfaces/services/rest.interface";
 import useSession  from "../../store";
 import { logout as logoutRest, getUserData, validateSession } from "../authentication.service";
-const AVATAR_URL = process.env.react_app_avatar_base_url
 
 export const useUser = () => {
   const { session_id, setSession, user_data:cacheUserData, setUserData:setCacheUser } = useSession();
@@ -62,14 +61,14 @@ export const useUser = () => {
 
   useEffect(()=>{
     setCacheUser(userData)
-  },[userData])
+  },[userData, setCacheUser])
 
   useEffect(() => {
     if (session_id) {
       setLoading(true)
       handleUserData(session_id)
     }
-  }, [session_id]);
+  }, [session_id, handleUserData]);
 
   return { loading, userData, session_id, logout, cacheUserData };
 }

@@ -1,10 +1,9 @@
-import { Box, Card, CardActionArea, CardContent, CardMedia, Typography } from "@material-ui/core";
+import { Box, Card, CardMedia } from "@material-ui/core";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";
-import { CardStyles, SimplifiedCardStyles, tfpTheme } from "../../theme/globalStyles";
-import { getImage, isFilmPopular, POPULAR_THRESHOLD } from "../../utils/film-helper";
-import WhatshotIcon from '@mui/icons-material/Whatshot';
+import { SimplifiedCardStyles } from "../../theme/globalStyles";
+import { getImage } from "../../utils/film-helper";
 import { CardFilmDetailsSimplified } from "./card-film-details-simplified";
 
 export const FilmSimplified :FC<{data: IFilm}> = ({data}) => {

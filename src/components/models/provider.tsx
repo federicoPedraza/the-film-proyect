@@ -1,4 +1,3 @@
-import { Container } from "@material-ui/core";
 import { FC } from "react";
 import { Provider as ProviderInterface } from "../../interfaces/details.interface";
 import { ProviderDetails } from "./provider-details";

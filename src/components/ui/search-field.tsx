@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { UIStyles } from "../../theme/globalStyles"
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Input, InputAdornment, Paper } from "@material-ui/core";
+import { Input, InputAdornment, Paper } from "@material-ui/core";
 
 export interface ISearchField {
     onSearchChange: any | null;

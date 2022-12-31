@@ -1,6 +1,6 @@
-import { Provider, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { AccountOptionsInterface, ProviderResults } from "../../interfaces/details.interface";
+import { ProviderResults } from "../../interfaces/details.interface";
 import { AccountStatesRes } from "../../interfaces/services/rest.interface";
 import { BooleanOptions } from "../../interfaces/ui.interface";
 import useSession from "../../store";

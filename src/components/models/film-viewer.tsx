@@ -1,4 +1,4 @@
-import { Fab, Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 import { Box, Grid, Skeleton } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
@@ -14,9 +14,8 @@ const MotionGrid = motion(Grid)
 
 export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
     const { films, label, options } = props;
-    const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer, filmViewerHeader, filmViewerFilterButton } = FilmViewerStyles();
+    const { filmViewerContainer, filmViewerTitle, filmClass, filmViewer, filmViewerHeader } = FilmViewerStyles();
     const [filmsToShow, setFilmsToShow] = useState<IFilm[] | null>([])
-    const [sortingVisible, setSortingVisible] = useState(false);
 
     //Filtering and sorting
     useEffect(() => {

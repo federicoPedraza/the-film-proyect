@@ -1,10 +1,9 @@
-import { Box, CardMedia, Container, IconButton, Paper, Typography } from "@material-ui/core";
+import { Box, Container, IconButton, Paper, Typography } from "@material-ui/core";
 import { Grid } from "@mui/material";
 import { FC } from "react";
 import { IFilm } from "../../interfaces/film.interface";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import { getImage, isFilmPopular } from "../../utils/film-helper";
-import { FavoriteButton } from "../ui/favorite-button";
+import { isFilmPopular } from "../../utils/film-helper";
 
 export const CardFilmDetails:FC<{data: IFilm}> = ({data}) => {
     const {

@@ -1,13 +1,10 @@
 import React, { FC } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { ReviewResults } from '../../interfaces/details.interface';
 import { Avatar, Divider, Grid } from '@material-ui/core';
 import moment from 'moment';
 import 'moment/locale/es' 
 import { Rating } from '../ui/rating';
-
-const AVATAR_URL = process.env.react_app_avatar_base_url
 
 const Comment:FC<{comment:ReviewResults}> = ({ comment }) =>{
   moment.locale('es')

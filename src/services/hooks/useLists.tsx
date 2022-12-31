@@ -59,12 +59,13 @@ export function useLists() {
         }
     }
 
+
     useEffect(()=>{
         getFavoriteList(MediaType.Movie)
         getFavoriteList(MediaType.TV)
         handleWatchList(MediaType.Movie)
         handleWatchList(MediaType.TV)
-    },[])
+    },[getFavoriteList, handleWatchList])
 
     return { watchLaterTV, watchLaterMovie, favoriteMovies, favoriteTV, loading }
 }

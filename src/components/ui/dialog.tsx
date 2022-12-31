@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { Box, Dialog as Modal, Typography } from "@material-ui/core";
+import { Dialog as Modal } from "@material-ui/core";
 import { DialogInterface } from "../../interfaces/ui.interface";
 export const Dialog:FC<DialogInterface> = ({isOpen,onClose,content, onOpen}) => {
     useEffect(()=>{
