@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormLabel, Paper, Radio, RadioGroup } from "@material-ui/core";
+import { FormControl, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import { MediaType } from "../../interfaces/film.interface";
 import { IHomeFilterField } from "../../interfaces/ui.interface";
 

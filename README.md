@@ -11,9 +11,10 @@ Este proyecto se basa en el desarrollo de una aplicación web en torno a pelicul
  * Clonar el repositorio con: git clone https://github.com/federicopedraza/the-film-proyect.git
  * Instalar las dependencias usando `npm install` o `yarn install`
 * Correr el servidor con: `npm start` or `yarn start`
-* Accede a la aplicación en: http://localhost:3000
+* Accede a la aplicación en: https://golball-brunompedraza.vercel.app
 
 Puedes crear y vincular tu cuenta de [TMDB](https://www.themoviedb.org/) para acceder a más funciones.
+Aplicación deployada en: https://golball-brunompedraza.vercel.app/
 
 # Dependencias
 -   `react`: Una librería de JavaScript para crear interfaces de usuario.

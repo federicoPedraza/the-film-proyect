@@ -1,6 +1,5 @@
 import { Grid, Paper, Typography } from "@material-ui/core";
-import {  LinearProgress } from "@mui/material";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { UIStyles } from "../../theme/globalStyles";
 import { ReviewResults } from "../../interfaces/details.interface";
 import Comment from "./comment";

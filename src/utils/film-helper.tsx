@@ -25,7 +25,7 @@ export const applyOptions = (options: IFilmViewerOptions, films: IFilm[]): IFilm
     let _films = films;
     
     if ((options?.media ?? 'all') !== 'all')  {
-        _films = _films?.filter((film) => film.media_type == options?.media);
+        _films = _films?.filter((film) => film.media_type === options?.media);
     }
 
     if (options?.sortByPopularity)

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/ui/navbar";
+import Navbar from "../components/ui/navbar/navbar";
 
 const Layout:FC<{}> = () =>{
     return (<>
