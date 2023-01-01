@@ -9,7 +9,7 @@ import { IFilm, MediaType } from "../interfaces/film.interface";
 import { IGenre } from "../interfaces/genre.interface";
 import { getDiscoverMovies, getDiscoverTVShows, getFilmsByName, getMovieGenresList, getTrendingFilms } from "../services/film.service";
 
-const Welcome: FC<{}> = () => {
+const Home: FC<{}> = () => {
   const [filterValue, setFilterValue] = useState<MediaType | null>(null);
 
   const [searchedFilms, setSearchedFilms] = useState<IFilm[]>([]);
@@ -90,14 +90,6 @@ const Welcome: FC<{}> = () => {
     setSearchedFilms(matchingFilms);
   }
 
-  /*
-  useEffect(() => {
-    if (favoriteMovies.length > 0) {
-      setFilmCarrousel([...filmCarrousel, {  label: "Favorite movies", films: favoriteMovies }]);
-    }
-  }, [favoriteMovies]);
-  */
-
   useEffect(() => {
     const updatedCarrousel = filmCarrousel.map((film) => {
       return {
@@ -111,7 +103,7 @@ const Welcome: FC<{}> = () => {
 
   useEffect(() => {
     handleInitialCall();
-  }, []);
+  }, [handleInitialCall]);
 
   return (  
     <Box sx={{ margin: '30px' }}>
@@ -129,4 +121,4 @@ const Welcome: FC<{}> = () => {
     </Box>
   );
 };
-export default Welcome
+export default Home

@@ -1,11 +1,10 @@
-import { response } from "msw";
 import { DetailsInterface, ProviderResults, ReviewResults } from "../interfaces/details.interface";
 import { ApiResponse, HttpMethod, PaginatedResponse } from "../interfaces/services/rest.interface";
 import { rest } from "./shared/rest.service";
+const API_KEY = process.env.REACT_APP_API_V3_AUTH;
 
-const apiKey = process.env.react_app_api_v3_auth || '2c6cd383602f9dd84e2c543271f39c40';
 export async function getDetailReviews(movie_id:string): Promise<ReviewResults[]> {
-    const url = `/movie/${movie_id}/reviews?api_key=${apiKey}`;
+    const url = `/movie/${movie_id}/reviews?api_key=${API_KEY}`;
     try {
         const response = await rest<PaginatedResponse<ReviewResults>>(HttpMethod.GET, url);
         return response.data.results || [];
@@ -16,7 +15,7 @@ export async function getDetailReviews(movie_id:string): Promise<ReviewResults[]
 }
 export async function getFilmDetails(film_id:number, film_type: string='movie'): Promise<ApiResponse<DetailsInterface>> {
     const requested_data = 'reviews,details,images,keywords,videos,recommendations,similar,lists'
-    const url = `${film_type}/${film_id}?api_key=${apiKey}&append_to_response=${requested_data}`;
+    const url = `${film_type}/${film_id}?api_key=${API_KEY}&append_to_response=${requested_data}`;
     try {
         const response = await rest<DetailsInterface>(HttpMethod.GET, url);
         return response
@@ -27,7 +26,7 @@ export async function getFilmDetails(film_id:number, film_type: string='movie'):
 }
 
 export async function getFilmProviders(film_id:number, film_type: string='movie'): Promise<ApiResponse<ProviderResults>> {
-    const url = `${film_type}/${film_id}/watch/providers?api_key=${apiKey}`;
+    const url = `${film_type}/${film_id}/watch/providers?api_key=${API_KEY}`;
     try {
         const response = await rest<ProviderResults>(HttpMethod.GET, url);
         return response

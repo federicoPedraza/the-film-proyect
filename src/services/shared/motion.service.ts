@@ -9,6 +9,7 @@ export const boilerplateMotion = {
     exit: "exit",
     transition: "transition",
 };
+
 export const PathApparition = () => {
     return {
         initial: {

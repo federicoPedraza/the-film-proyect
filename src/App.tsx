@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Authorize, Details, Error404, Layout, Welcome } from "./pages";
+import { Authorize, Details, Error404, Home, Layout } from "./pages";
 import { Lists, Profile, ProfileLayout } from "./pages/profile";
 import Logout from "./pages/profile/Logout";
 
@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         <Route element={<Layout/>}>
-          <Route path="/" element={<Welcome />} />
+          <Route path="/" element={<Home />} />
           <Route path="authorize" element={<Authorize />} />
           <Route path="profile/*" element={<ProfileLayout/>}>
             <Route path="overview" element={<Profile />} />

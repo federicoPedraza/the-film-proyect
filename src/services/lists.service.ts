@@ -2,7 +2,7 @@ import { AccountStatesRes, ApiResponse, CommonPostRes, HttpMethod } from "../int
 import { rest } from "./shared/rest.service";
 
 const badEndMessage = 'Unable to read ENV';
-const API_KEY = process.env.react_app_api_v3_auth || '2c6cd383602f9dd84e2c543271f39c40' || badEndMessage;
+const API_KEY = process.env.REACT_APP_API_V3_AUTH || badEndMessage;
 
 
 export async function addToFavorites(account_id:number, session_id: string, media_type: string, media_id:number, favorite:boolean): Promise<ApiResponse<CommonPostRes>> {
