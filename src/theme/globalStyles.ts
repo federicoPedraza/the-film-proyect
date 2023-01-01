@@ -1,11 +1,11 @@
-import { createStyles, createTheme, makeStyles } from '@material-ui/core/styles'
-import { Theme } from '@material-ui/core';
+import { createStyles, createTheme } from '@mui/material'
+import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material';
 export const tfpTheme = createTheme({
     typography: {
         fontFamily: 'Rubik'
     },
     palette: {
-        type: 'dark',
         background: {
             default: '#363537',
         },
@@ -17,7 +17,7 @@ export const tfpTheme = createTheme({
     },
 })
 
-export const GlobalStyles = makeStyles({
+export const GlobalStyles = () => makeStyles({
     body: {
         color: tfpTheme.palette.primary.contrastText,
         backgroundColor: tfpTheme.palette.primary.main
@@ -43,7 +43,7 @@ export const GlobalStyles = makeStyles({
     },
 });
 
-export const HeroStyle = makeStyles({
+export const HeroStyle = () => makeStyles({
     title: {
         display: 'flex',
         flexDirection: 'row',
@@ -55,72 +55,70 @@ export const HeroStyle = makeStyles({
     }
 })
 
-export const WatchProviderStyles = makeStyles((theme: Theme) =>
-    createStyles({
-         card: {
-            backgroundColor: '#363537',
-            width: 140, 
-            height: 200,
-            transition: "transform .1s ease-in-out, translate .1s ease-in-out",
-            transform: "translate(0px, 0px) scale(1)",
-            position: "relative",
-            zIndex: 0,
-                "img": {
-                    "&:hover":{
-                        scale: "1.5",
-                    },
-                },
-            "&:hover": {
-                transform: "translate(0px, -20px) scale(1.3)",
-                cursor:'pointer',
-                position: "relative",
-                zIndex: "99",
-            }
-        },
-        cardContent: {
-            height: '100%',
-            width: '100%',
-            backgroundColor: '#363537',
-        },
-        cardMedia: {
-            height: "100%",
-            width: "100%",
-            transition: "height 0.1s",
-            objectFit: "contain",
-        },
-        cardMediaHover: {
-            height: "30%",
-            width: "100%",
-            transition: "height 0.1s",
-            objectFit: "cover",
-        },
-        providerColumn: { 
-            maxHeight: '95%', 
-            overflowY: 'scroll',
-            '&::-webkit-scrollbar': {
-                height: '4px'
-            },
-            '&::-webkit-scrollbar-thumb': {
-                borderRadius: '12px',
-                background: '#BA1F33'
-            }
-        },
-        providerDetails: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '2rem 4rem',
-            height: '12rem',
-            width: '15rem',
-            transition: 'background-color .2s ease-in',
-            backgroundColor: 'inherit',
-            "&:hover": {
-                backgroundColor: '#ff010173'
-            },
-            cursor: 'pointer',
-        }
-    })
-);
+export const WatchProviderStyles = makeStyles({
+    card: {
+       backgroundColor: '#363537',
+       width: 140, 
+       height: 200,
+       transition: "transform .1s ease-in-out, translate .1s ease-in-out",
+       transform: "translate(0px, 0px) scale(1)",
+       position: "relative",
+       zIndex: 0,
+           "img": {
+               "&:hover":{
+                   scale: "1.5",
+               },
+           },
+       "&:hover": {
+           transform: "translate(0px, -20px) scale(1.3)",
+           cursor:'pointer',
+           position: "relative",
+           zIndex: "99",
+       }
+   },
+   cardContent: {
+       height: '100%',
+       width: '100%',
+       backgroundColor: '#363537',
+   },
+   cardMedia: {
+       height: "100%",
+       width: "100%",
+       transition: "height 0.1s",
+       objectFit: "contain",
+   },
+   cardMediaHover: {
+       height: "30%",
+       width: "100%",
+       transition: "height 0.1s",
+       objectFit: "cover",
+   },
+   providerColumn: { 
+       maxHeight: '95%', 
+       overflowY: 'scroll',
+       '&::-webkit-scrollbar': {
+           height: '4px'
+       },
+       '&::-webkit-scrollbar-thumb': {
+           borderRadius: '12px',
+           background: '#BA1F33'
+       }
+   },
+   providerDetails: {
+       display: 'flex',
+       flexDirection: 'column',
+       alignItems: 'center',
+       padding: '2rem 4rem',
+       height: '12rem',
+       width: '15rem',
+       transition: 'background-color .2s ease-in',
+       backgroundColor: 'inherit',
+       "&:hover": {
+           backgroundColor: '#ff010173'
+       },
+       cursor: 'pointer',
+   }
+})
 
 
 

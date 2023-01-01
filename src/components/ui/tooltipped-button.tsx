@@ -1,4 +1,4 @@
-import { Tooltip } from "@material-ui/core";
+import { Tooltip } from "@mui/material";
 import { FC } from "react";
 import { ButtonContainer } from "../../interfaces/ui.interface";
 

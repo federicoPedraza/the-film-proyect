@@ -1,4 +1,4 @@
-import { Paper, Typography } from "@material-ui/core";
+import { Paper, Typography } from "@mui/material";
 import { Box, Grid, Skeleton } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";

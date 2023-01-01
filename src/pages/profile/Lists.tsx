@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useLists } from "../../services/hooks/useLists";
 import { FilmViewer } from "../../components/models/film-viewer";
-import { Skeleton } from "@material-ui/lab";
-import { Box } from "@material-ui/core";
+import { Skeleton, Box } from '@mui/material';
+
 const Lists:FC<{}> = () => {
     const{ watchLaterTV, watchLaterMovie, favoriteMovies, favoriteTV, loading } = useLists()
     

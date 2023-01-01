@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, Typography } from "@material-ui/core";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { Provider as ProviderInterface, ProviderResults } from "../../interfaces/details.interface";
 import { WatchProviderStyles } from "../../theme/globalStyles";

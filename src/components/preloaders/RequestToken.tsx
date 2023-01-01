@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
-import { CheckCircle } from "@material-ui/icons";
 import { getRequestToken } from "../../services/authentication.service";
-import { CircularProgress, Container, Typography } from "@material-ui/core";
+import { CircularProgress, Container, Typography } from "@mui/material";
+import { CheckCircle } from "@mui/icons-material";
 import { CallToAction } from "../ui/call-to-action";
 import { AnimatePresence, motion } from 'framer-motion';
 import { boilerplateMotion, delayedAnimation, offsetApparition } from "../../services/shared/motion.service";

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Box, Button, IconButton, Typography } from '@material-ui/core';
+import { Box, Button, IconButton, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { UIStyles } from '../../../theme/globalStyles';
 import { NavbarButtonIcon, NavbarButtonType } from './navbar-button.types';

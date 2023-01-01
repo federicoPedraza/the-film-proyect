@@ -1,4 +1,4 @@
-import { Box, Button, ClickAwayListener, IconButton, Popover } from "@material-ui/core";
+import { Box, Button, ClickAwayListener, IconButton, Popover } from "@mui/material";
 import { FC, MouseEvent, ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UIStyles } from "../../theme/globalStyles";

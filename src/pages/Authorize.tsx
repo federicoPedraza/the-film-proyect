@@ -4,7 +4,7 @@ import useSession from "../store";
 import { login } from "../services/authentication.service";
 import { AuthFailure } from "../interfaces/services/rest.interface";
 import { CallToAction } from "../components/ui/call-to-action";
-import { CheckCircle } from "@material-ui/icons";
+import { CheckCircle } from "@mui/icons-material";
 
 const Authorize: FC<{}> = () => {
   const params = new URLSearchParams(window.location.search);

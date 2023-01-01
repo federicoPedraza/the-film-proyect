@@ -1,7 +1,6 @@
-import { Button, Card, CardContent, Container, Typography } from "@material-ui/core"
-import { CheckCircle } from "@material-ui/icons"
+import { Button, Card, CardContent, Container, Typography } from "@mui/material"
+import { CheckCircle } from "@mui/icons-material"
 import { AnimatePresence, motion } from "framer-motion"
-import { CallToAction } from "../../components/ui/call-to-action"
 import { useUser } from "../../services/hooks/useUser"
 import { boilerplateMotion, delayedAnimation, offsetApparition } from "../../services/shared/motion.service"
 

@@ -1,6 +1,4 @@
-import { Typography } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
-import { Box } from "@mui/material";
+import { Typography, Box, Skeleton } from "@mui/material";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { FilmViewer } from "../components/models/film-viewer";
 import { FilmViewerExtended } from "../components/models/film-viewer-extended";

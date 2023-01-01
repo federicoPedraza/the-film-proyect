@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { tfpTheme } from './theme/globalStyles';
-import '@material-ui/core/styles';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

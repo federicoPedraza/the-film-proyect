@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { Grid, Box, CardMedia, Typography, Divider, Paper } from '@material-ui/core';
+import { Grid, Box, CardMedia, Typography, Divider, Paper } from '@mui/material';
 import { HeroComponent } from '../../interfaces/details.interface';
 import { HeroStyle } from '../../theme/globalStyles';
 import Genres from './chips-container';

@@ -1,9 +1,8 @@
-import { Grid, Paper, Typography } from "@material-ui/core";
+import { Grid, Skeleton, Paper, Typography } from "@mui/material";
 import { FC } from "react";
 import { UIStyles } from "../../theme/globalStyles";
 import { ReviewResults } from "../../interfaces/details.interface";
 import Comment from "./comment";
-import { Skeleton } from "@material-ui/lab";
 import { Rating } from "../ui/rating";
 
 export const CommentViewer: FC<{comments:ReviewResults[], loading:boolean}> = ({comments, loading}) => {
@@ -13,7 +12,7 @@ export const CommentViewer: FC<{comments:ReviewResults[], loading:boolean}> = ({
         return  <Paper style={{padding: '2rem'}} elevation={20} className={commentViewerContainer} >
                 <Grid container wrap="nowrap" spacing={2}>
                 <Grid item>
-                    <Skeleton variant="circle"/>
+                    <Skeleton variant="circular"/>
                 </Grid>
                 <Grid justifyContent='flex-start' item xs zeroMinWidth>
                     <h4 style={{ margin: 0, textAlign: "left" }}>

@@ -1,6 +1,6 @@
 import { UIStyles } from "../../theme/globalStyles"
 import SearchIcon from '@mui/icons-material/Search';
-import { Input, InputAdornment, Paper } from "@material-ui/core";
+import { Input, InputAdornment, Paper } from "@mui/material";
 
 export interface ISearchField {
     onSearchChange: any | null;

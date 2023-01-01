@@ -1,4 +1,4 @@
-import { Box, Container, IconButton, Paper, Typography } from "@material-ui/core";
+import { Box, Container, IconButton, Paper, Typography } from "@mui/material";
 import { Grid } from "@mui/material";
 import { FC } from "react";
 import { IFilm } from "../../interfaces/film.interface";

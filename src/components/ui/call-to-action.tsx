@@ -1,4 +1,4 @@
-import { Button, Card, CardActionArea, CardContent, Typography } from "@material-ui/core";
+import { Button, Card, CardActionArea, CardContent, Typography } from "@mui/material";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { CallToAction as Interface } from "../../interfaces/ui.interface";

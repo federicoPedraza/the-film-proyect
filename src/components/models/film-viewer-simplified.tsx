@@ -1,5 +1,4 @@
-import { Typography } from "@material-ui/core";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { FC } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { FilmViewerStyles } from "../../theme/globalStyles";

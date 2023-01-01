@@ -1,5 +1,5 @@
 import { FC, memo, ReactNode, useEffect, useState } from 'react';
-import { AppBar, Avatar, Box, Button, ButtonGroup, Paper, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Avatar, Box, Button, Toolbar, Typography } from '@mui/material';
 import { useUser } from '../../../services/hooks/useUser';
 import { AvatarMenu } from '../menu';
 import { UIStyles } from '../../../theme/globalStyles';

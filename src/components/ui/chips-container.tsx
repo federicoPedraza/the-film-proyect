@@ -1,4 +1,4 @@
-import { Chip } from "@material-ui/core";
+import { Chip } from "@mui/material";
 import { FC } from "react";
 import { Genres as GernesInterface } from "../../interfaces/ui.interface";
 

@@ -1,5 +1,5 @@
 
-import { Table as MUITable, TableRow, TableCell } from '@material-ui/core';
+import { Table as MUITable, TableRow, TableCell } from '@mui/material';
 import { FC } from 'react';
 const Table: FC<{ cellInfo: Record<string, string | number | boolean | undefined>[] }> = ({ cellInfo }) => {
     return (

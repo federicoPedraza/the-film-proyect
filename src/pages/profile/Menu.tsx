@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Tabs as MaterialTabs, Tab } from '@material-ui/core';
+import { Tabs as MaterialTabs, Tab } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 export const Menu: FC = () => {
   const navigate = useNavigate();

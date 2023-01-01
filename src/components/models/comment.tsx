@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
-import Paper from '@material-ui/core/Paper';
 import { ReviewResults } from '../../interfaces/details.interface';
-import { Avatar, Divider, Grid } from '@material-ui/core';
+import { Avatar, Divider, Grid, Paper } from '@mui/material';
 import moment from 'moment';
 import 'moment/locale/es' 
 import { Rating } from '../ui/rating';

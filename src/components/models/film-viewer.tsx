@@ -1,5 +1,4 @@
-import { Paper, Typography } from "@material-ui/core";
-import { Box, Grid, Skeleton } from "@mui/material";
+import { Box, Grid, Skeleton, Paper, Typography } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IFilmViewer } from "../../interfaces/film-viewer.interface";
 import { IFilm } from "../../interfaces/film.interface";
@@ -87,9 +86,11 @@ export const FilmViewer: FC<IFilmViewer> = (props: IFilmViewer) => {
 }
 
 export const FilmViewerSkeleton = () => {
+    const { filmViewerContainer } = FilmViewerStyles();
+
     return (
         <Box style={{ height: "280px" }}>
-            <Skeleton className={FilmViewerStyles().filmViewerContainer} variant="rectangular" sx={{ bgcolor: 'grey.900', height: "180px" }} />
+            <Skeleton className={filmViewerContainer} variant="rectangular" sx={{ bgcolor: 'grey.900', height: "180px" }} />
         </Box>
     )
 }

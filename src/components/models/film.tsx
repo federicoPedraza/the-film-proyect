@@ -1,4 +1,4 @@
-import { Box, Card, CardMedia } from "@material-ui/core";
+import { Box, Card, CardMedia } from "@mui/material";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IFilm } from "../../interfaces/film.interface";

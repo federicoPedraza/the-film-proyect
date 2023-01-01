@@ -1,5 +1,4 @@
-import { Table, TableCell, TableRow } from '@material-ui/core';
-import { Skeleton } from '@material-ui/lab';
+import { Table, TableCell, TableRow, Skeleton } from '@mui/material';
 import React, { FC } from 'react';
 
 export const SkeletonRows: FC<{ cellInfo: Record<string, string | number | boolean | undefined>[] }> = ({ cellInfo }) => {

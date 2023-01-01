@@ -1,7 +1,5 @@
 import { FC } from "react";
-import Step from "@material-ui/core/Step";
-import StepLabel from "@material-ui/core/StepLabel";
-import Stepper from "@material-ui/core/Stepper";
+import { Step, StepLabel, Stepper } from '@mui/material'
 import { UIStyles } from "../../theme/globalStyles";
 
 interface Props {

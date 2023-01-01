@@ -1,7 +1,6 @@
 "use strict";
 exports.__esModule = true;
 exports.CommentViewer = void 0;
-var core_1 = require("@material-ui/core");
 var material_1 = require("@mui/material");
 var react_1 = require("react");
 var globalStyles_1 = require("../../theme/globalStyles");

@@ -1,4 +1,4 @@
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import { FC } from "react";
 import { Outlet } from "react-router-dom";
 import { Menu } from "./Menu";

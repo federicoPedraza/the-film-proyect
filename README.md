@@ -20,9 +20,6 @@ Aplicación deployada en: https://golball-brunompedraza.vercel.app/
 -   `react`: Una librería de JavaScript para crear interfaces de usuario.
 -   `react-dom`: El punto de entrada para las capacidades de renderizado de DOM de React.
 -   `react-router-dom`: Una colección de componentes de navegación que se componen de manera declarativa con tu aplicación.
--   `@material-ui/core`: Una librería popular de React UI que proporciona una amplia gama de componentes personalizables.
--   `@material-ui/icons`: Una librería de iconos de Material Design para usar con componentes Material-UI.
--   `@material-ui/lab`: Un conjunto de componentes experimentales de Material-UI.
 -   `@mui/icons-material`: Una librería de iconos de Material Design para usar con componentes Material-UI.
 -   `@mui/material`: Un conjunto de componentes experimentales de Material-UI.
 -   `axios`: Una librería para hacer solicitudes HTTP.
